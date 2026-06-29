@@ -1,0 +1,857 @@
+/* ═══════════════════════════════════════════════════════
+   18 ENCUENTROS — Hoja de estilos principal
+   Estética: Arte sacro, libro antiguo, retiro espiritual
+   ═══════════════════════════════════════════════════════ */
+
+
+/* ══════════════════════════
+   1. VARIABLES & RESET
+══════════════════════════ */
+:root {
+  /* Paleta sacra */
+  --pergamino:        #FDFBF7;
+  --pergamino-oscuro: #F0EAD8;
+  --pergamino-medio:  #E8E0CC;
+  --oro:              #C5A059;
+  --oro-suave:        #D4B97A;
+  --oro-tenue:        rgba(197, 160, 89, 0.12);
+  --carmesi:          #6B1A1A;
+  --carmesi-suave:    #8B2E2E;
+  --tinta:            #1C1917;
+  --tinta-media:      #3D3830;
+  --tinta-suave:      #6B645A;
+  --regla:            #D4C9B0;
+  --regla-suave:      #E5DDD0;
+
+  /* Tipografía */
+  --garamond:  'EB Garamond', Georgia, 'Times New Roman', serif;
+  --cinzel:    'Cinzel', 'Trajan Pro', serif;
+  --cinzel-dec:'Cinzel Decorative', 'Trajan Pro', serif;
+
+  /* Layout */
+  --max-index:    960px;
+  --max-encuentro:700px;
+  --radio:        2px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 18px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--pergamino);
+  color: var(--tinta);
+  font-family: var(--garamond);
+  line-height: 1.85;
+  min-height: 100vh;
+  /* Textura sutil tipo pergamino */
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(197,160,89,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(107,26,26,0.04) 0%, transparent 60%);
+}
+
+
+/* ══════════════════════════
+   2. TIPOGRAFÍA BASE
+══════════════════════════ */
+h1, h2, h3, h4 {
+  font-family: var(--cinzel);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--tinta);
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1.4em;
+  color: var(--tinta-media);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+em {
+  font-style: italic;
+}
+
+strong {
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+sup {
+  font-size: 0.6rem;
+  color: var(--oro);
+  vertical-align: super;
+  font-family: var(--garamond);
+}
+
+cite {
+  font-style: normal;
+  font-family: var(--garamond);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: var(--tinta-suave);
+}
+
+a {
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+
+/* ══════════════════════════
+   3. ORNAMENTOS & DIVISORES
+══════════════════════════ */
+.ornamento {
+  text-align: center;
+  color: var(--oro);
+  font-size: 1rem;
+  letter-spacing: 0.3em;
+  margin: 1.5rem 0;
+}
+
+.ornamento-superior {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.cruz-ornamental {
+  text-align: center;
+  color: var(--carmesi);
+  font-size: 1.6rem;
+  margin: 0.8rem 0;
+  opacity: 0.8;
+}
+
+.divisor {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.5rem auto;
+  max-width: 400px;
+}
+
+.divisor-linea {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--regla), transparent);
+}
+
+.divisor-ornamento {
+  font-family: var(--garamond);
+  color: var(--oro);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.divisor-seccion {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2.8rem 0;
+}
+
+.divisor-pie {
+  max-width: 200px;
+}
+
+
+/* ══════════════════════════
+   4. PÁGINA DE INICIO
+══════════════════════════ */
+.inicio-contenedor {
+  max-width: var(--max-index);
+  margin: 0 auto;
+  padding: 60px 32px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* --- Frontispicio --- */
+.frontispicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.figura-san-agustin {
+  margin-bottom: 2rem;
+}
+
+.pintura-san-agustin {
+  width: clamp(140px, 22vw, 200px);
+  height: auto;
+  border: 2px solid var(--regla);
+  /* Efecto estampita / libro antiguo */
+  filter: sepia(30%) contrast(1.05) brightness(0.97);
+  box-shadow:
+    0 0 0 6px var(--pergamino),
+    0 0 0 7px var(--regla),
+    0 4px 24px rgba(28, 25, 23, 0.15);
+  border-radius: 1px;
+}
+
+.titulo-principal {
+  font-family: var(--cinzel-dec);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 700;
+  color: var(--tinta);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.3rem;
+}
+
+.cita-agustin {
+  max-width: 560px;
+  margin: 1.2rem auto 0;
+  border: none;
+  padding: 0;
+}
+
+.cita-agustin p {
+  font-family: var(--garamond);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--tinta-media);
+  line-height: 1.8;
+  margin-bottom: 0.6rem;
+}
+
+.cita-agustin cite {
+  font-size: 0.8rem;
+  color: var(--tinta-suave);
+  letter-spacing: 0.08em;
+}
+
+.salto-desktop { display: none; }
+@media (min-width: 600px) {
+  .salto-desktop { display: inline; }
+}
+
+/* --- Dedicatoria --- */
+.dedicatoria {
+  font-family: var(--cinzel);
+  font-size: 0.78rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  margin-bottom: 2.5rem;
+}
+
+/* --- Grid de encuentros --- */
+.encuentros-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 680px) {
+  .encuentros-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .encuentros-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tarjeta base */
+.encuentro-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  gap: 6px;
+  padding: 20px 12px 16px;
+  border: 1px solid var(--regla);
+  border-radius: var(--radio);
+  background: var(--pergamino);
+  position: relative;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+/* Número romano */
+.num-romano {
+  font-family: var(--cinzel);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+/* Título de la tarjeta */
+.card-titulo {
+  font-family: var(--garamond);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--tinta-suave);
+  line-height: 1.5;
+}
+
+/* --- Tarjeta ACTIVA --- */
+.encuentro-card.activo {
+  border-color: var(--oro-suave);
+  background: #fff;
+  box-shadow:
+    0 2px 12px rgba(197, 160, 89, 0.14),
+    inset 0 0 0 1px rgba(197, 160, 89, 0.1);
+  text-decoration: none;
+}
+
+.encuentro-card.activo .num-romano {
+  color: var(--carmesi);
+}
+
+.encuentro-card.activo .card-titulo {
+  color: var(--tinta);
+  font-weight: 500;
+}
+
+.encuentro-card.activo:hover {
+  border-color: var(--oro);
+  box-shadow:
+    0 4px 20px rgba(197, 160, 89, 0.22),
+    inset 0 0 0 1px rgba(197, 160, 89, 0.2);
+  transform: translateY(-1px);
+}
+
+/* --- Tarjeta BLOQUEADA --- */
+.encuentro-card.bloqueado {
+  opacity: 0.42;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.candado {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 0.55rem;
+  color: var(--regla);
+  opacity: 0.7;
+}
+
+/* --- Pie del inicio --- */
+.inicio-pie {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.versiculo-pie {
+  font-family: var(--garamond);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+.versiculo-referencia {
+  font-family: var(--garamond);
+  font-size: 0.75rem;
+  color: var(--tinta-suave);
+  letter-spacing: 0.08em;
+  display: block;
+}
+
+
+/* ══════════════════════════
+   5. PÁGINA DEL ENCUENTRO
+══════════════════════════ */
+
+/* --- Navegación superior --- */
+.nav-superior {
+  padding: 22px 32px;
+  border-bottom: 1px solid var(--regla-suave);
+}
+
+.enlace-volver {
+  font-family: var(--cinzel);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.enlace-volver:hover {
+  color: var(--oro);
+}
+
+/* --- Contenedor principal --- */
+.encuentro-contenedor {
+  max-width: var(--max-encuentro);
+  margin: 0 auto;
+  padding: 56px 40px 96px;
+}
+
+/* --- Cabecera del encuentro --- */
+.encuentro-cabecera {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.encuentro-numero-label {
+  font-family: var(--cinzel);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 10px;
+}
+
+.encuentro-titulo {
+  font-family: var(--cinzel);
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 600;
+  color: var(--tinta);
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.divisor-cabecera {
+  width: 60px;
+  height: 1px;
+  background: var(--oro-suave);
+  margin: 0 auto 20px;
+}
+
+.cita-santo {
+  border: none;
+  padding: 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.cita-santo p {
+  font-family: var(--garamond);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--tinta-media);
+  line-height: 1.75;
+  margin-bottom: 0.5rem;
+}
+
+.cita-santo cite {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+/* --- Estampita del santo --- */
+.estampita {
+  text-align: center;
+  margin: 32px auto 40px;
+}
+
+.imagen-santo {
+  width: clamp(100px, 20vw, 150px);
+  height: auto;
+  border: 1px solid var(--regla);
+  filter: sepia(20%) contrast(1.05);
+  box-shadow:
+    0 0 0 5px var(--pergamino),
+    0 0 0 6px var(--regla),
+    0 4px 16px rgba(28, 25, 23, 0.1);
+  border-radius: 1px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.estampita figcaption {
+  font-family: var(--cinzel);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  opacity: 0.7;
+}
+
+/* --- Carta / cuerpo del texto --- */
+.carta {
+  margin-bottom: 48px;
+}
+
+/* Drop cap en el primer párrafo */
+.carta-apertura::first-letter {
+  font-family: var(--cinzel-dec);
+  font-size: 3.8rem;
+  float: left;
+  line-height: 0.75;
+  padding-right: 10px;
+  padding-top: 8px;
+  color: var(--carmesi);
+  font-weight: 700;
+}
+
+.carta p {
+  font-size: 1.02rem;
+  line-height: 1.9;
+  margin-bottom: 1.3em;
+  color: var(--tinta-media);
+}
+
+/* Secciones de verdad numeradas */
+.verdad {
+  margin-bottom: 1.6em;
+}
+
+.verdad-titulo {
+  font-family: var(--garamond);
+  font-size: 1rem;
+  font-weight: 600;
+  font-style: italic;
+  color: var(--tinta);
+  margin-bottom: 0.5em;
+  letter-spacing: 0.01em;
+}
+
+/* Nota de audio inline */
+.nota-audio-inline {
+  font-style: italic;
+  font-size: 0.88rem !important;
+  color: var(--tinta-suave) !important;
+  border-left: 2px solid var(--regla);
+  padding-left: 14px;
+  margin-top: 0.8em;
+}
+
+/* --- Sección de audio --- */
+.audio-bloque {
+  background: var(--pergamino-oscuro);
+  border: 1px solid var(--regla);
+  border-left: 3px solid var(--oro-suave);
+  border-radius: var(--radio);
+  padding: 24px 24px 20px;
+  margin-bottom: 20px;
+}
+
+.audio-cabecera {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.audio-icono {
+  font-size: 1.4rem;
+  color: var(--oro);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.audio-etiqueta {
+  font-family: var(--cinzel);
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 3px;
+}
+
+.audio-nombre {
+  font-family: var(--garamond);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--tinta);
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.audio-descripcion {
+  font-size: 0.78rem;
+  color: var(--tinta-suave);
+  margin: 0;
+}
+
+.reproductor {
+  width: 100%;
+  height: 36px;
+  outline: none;
+  filter: sepia(10%);
+  accent-color: var(--oro);
+}
+
+/* --- Sección de video (cuando esté activa) --- */
+.video-bloque {
+  margin-bottom: 40px;
+}
+
+.video-etiqueta {
+  font-family: var(--cinzel);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  border: 1px solid var(--regla);
+  border-radius: var(--radio);
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Oración --- */
+.oracion-bloque {
+  margin: 48px 0;
+  border: 1px solid var(--regla);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.oracion-cabecera {
+  background: linear-gradient(135deg, var(--carmesi) 0%, var(--carmesi-suave) 100%);
+  padding: 20px 28px;
+  text-align: center;
+}
+
+.ornamento-oracion {
+  display: block;
+  color: rgba(255,255,255,0.6);
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.oracion-etiqueta {
+  font-family: var(--cinzel);
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 4px;
+}
+
+.oracion-titulo {
+  font-family: var(--cinzel);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.oracion-texto {
+  padding: 28px 32px;
+  background: var(--pergamino);
+}
+
+.oracion-inicio {
+  font-size: 0.85rem;
+  color: var(--tinta-suave);
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.oracion-texto p {
+  font-size: 0.98rem;
+  line-height: 2;
+  color: var(--tinta-media);
+}
+
+.amen {
+  text-align: center;
+  margin-top: 0.8em;
+  font-size: 1rem;
+  color: var(--carmesi) !important;
+}
+
+/* --- Ahora habla con Dios --- */
+.habla-con-dios {
+  text-align: center;
+  padding: 32px 24px;
+  margin-bottom: 40px;
+  border: 1px solid var(--regla-suave);
+  border-radius: var(--radio);
+  background: var(--oro-tenue);
+}
+
+.habla-etiqueta {
+  font-family: var(--cinzel);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--oro);
+  margin-bottom: 10px;
+}
+
+.habla-con-dios p {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--tinta-media);
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+/* --- Versículo final --- */
+.versiculo-final {
+  text-align: center;
+  padding: 40px 20px;
+  margin-bottom: 40px;
+  border: none;
+}
+
+.versiculo-final p {
+  font-family: var(--garamond);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--tinta);
+  line-height: 1.9;
+  margin-bottom: 12px;
+}
+
+.versiculo-final cite {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+}
+
+/* --- Nota al pie --- */
+.nota-pie {
+  border-top: 1px solid var(--regla-suave);
+  padding-top: 20px;
+  margin-bottom: 40px;
+}
+
+.nota-pie p {
+  font-family: var(--garamond);
+  font-size: 0.78rem;
+  color: var(--tinta-suave);
+  line-height: 1.7;
+}
+
+/* --- Cierre ornamental --- */
+.cierre-ornamental {
+  text-align: center;
+  color: var(--oro);
+  font-size: 1.2rem;
+  letter-spacing: 0.5em;
+  margin: 32px 0 40px;
+  opacity: 0.6;
+}
+
+/* --- Botón volver --- */
+.boton-volver-contenedor {
+  text-align: center;
+}
+
+.boton-volver {
+  display: inline-block;
+  font-family: var(--cinzel);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  border: 1px solid var(--regla);
+  padding: 13px 32px;
+  border-radius: var(--radio);
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.boton-volver:hover {
+  border-color: var(--oro-suave);
+  color: var(--oro);
+  background: var(--oro-tenue);
+}
+
+
+/* ══════════════════════════
+   6. ANIMACIÓN DE ENTRADA
+══════════════════════════ */
+.pagina-inicio,
+.pagina-encuentro {
+  animation: aparecer 0.6s ease both;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ══════════════════════════
+   7. RESPONSIVO
+══════════════════════════ */
+@media (max-width: 600px) {
+
+  html { font-size: 16px; }
+
+  .inicio-contenedor {
+    padding: 40px 20px 60px;
+  }
+
+  .encuentro-contenedor {
+    padding: 40px 22px 72px;
+  }
+
+  .nav-superior {
+    padding: 16px 22px;
+  }
+
+  .oracion-texto {
+    padding: 22px 20px;
+  }
+
+  .encuentro-titulo {
+    font-size: 1.5rem;
+  }
+
+  .versiculo-final p {
+    font-size: 1rem;
+  }
+
+  .carta-apertura::first-letter {
+    font-size: 3rem;
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 380px) {
+  .titulo-principal {
+    font-size: 1.7rem;
+  }
+}
