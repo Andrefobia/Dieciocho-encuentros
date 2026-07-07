@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para cuando el miedo no te deje avanzar — 18 Encuentros</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+  :root {
+    --p:   #FDFBF7;
+    --pd:  #F0EAD8;
+    --az:  #4A6090;
+    --azs: #6A82B0;
+    --azt: rgba(74,96,144,.09);
+    --nc:  #1E2E4A;
+    --t:   #1C1917;
+    --tm:  #3D3830;
+    --ts:  #6B645A;
+    --rg:  #C8CDD8;
+    --rgs: #DDE0E8;
+    --G:   'EB Garamond', Georgia, serif;
+    --C:   'Cinzel', serif;
+    --CD:  'Cinzel Decorative', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: #111;
+    font-family: var(--G);
+    color: var(--t);
+    overflow: hidden;
+  }
+
+  /* ── NAV ── */
+  .nav-sup {
+    position: fixed; top: 18px; left: 22px; z-index: 600;
+    font-family: var(--C); font-size: .54rem; letter-spacing: .28em;
+    text-transform: uppercase; opacity: .5; text-decoration: none;
+    transition: opacity .2s, color .2s;
+    color: #fff;
+  }
+  .nav-sup.oscuro { color: var(--ts); }
+  .nav-sup:hover { opacity: 1; }
+
+  /* ══════════════════════════════════════════
+     I. SILENCIO
+  ══════════════════════════════════════════ */
+  #silencio {
+    position: fixed; inset: 0; z-index: 400;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: opacity .9s ease;
+  }
+  #silencio.ocultar { opacity: 0; pointer-events: none; }
+
+  .sil-fondo {
+    position: absolute; inset: 0;
+    background: #0D1821;
+    overflow: hidden;
+  }
+  .sil-fondo img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: .55;
+    display: block;
+    transition: opacity 1s ease;
+  }
+  /* Gradiente oscurecedor sobre la imagen */
+  .sil-fondo::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(13,24,33,.3) 0%,
+      rgba(13,24,33,.1) 40%,
+      rgba(13,24,33,.5) 100%);
+  }
+
+  .sil-contenido {
+    position: relative; z-index: 1;
+    text-align: center;
+    padding: 40px 28px;
+    max-width: 540px;
+  }
+
+  .sil-signo {
+    display: block;
+    font-family: var(--C);
+    font-size: .6rem;
+    letter-spacing: .5em;
+    color: rgba(200,210,230,.35);
+    margin-bottom: 36px;
+  }
+
+  .sil-frase {
+    font-family: var(--G);
+    font-size: clamp(1.25rem, 3.8vw, 1.7rem);
+    font-style: italic;
+    color: rgba(253,251,247,.9);
+    line-height: 1.8;
+    letter-spacing: .01em;
+  }
+
+  .sil-toque {
+    margin-top: 60px;
+    font-family: var(--C);
+    font-size: .48rem;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: rgba(200,210,230,.35);
+    animation: latir 3s 3s ease-in-out infinite;
+  }
+  @keyframes latir { 0%,100%{opacity:.2} 50%{opacity:.65} }
+
+  /* Barra de progreso auto-avance */
+  .sil-barra {
+    position: absolute; bottom: 0; left: 0;
+    height: 1.5px; width: 0;
+    background: rgba(200,210,230,.4);
+  }
+
+  /* ══════════════════════════════════════════
+     II. INTRODUCCIÓN
+  ══════════════════════════════════════════ */
+  #intro {
+    position: fixed; inset: 0; z-index: 350;
+    background: var(--p);
+    opacity: 0; pointer-events: none;
+    transition: opacity .7s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 52px 28px 60px;
+  }
+  #intro.vis { opacity: 1; pointer-events: all; }
+
+  .intro-inner {
+    max-width: 560px; width: 100%;
+    animation: aparecer .7s ease both;
+  }
+  @keyframes aparecer { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
+
+  .intro-enc {
+    font-family: var(--C); font-size: .54rem; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--ts); opacity: .5;
+    margin-bottom: 18px; text-align: center;
+  }
+
+  .intro-titulo {
+    font-family: var(--CD);
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    font-weight: 400; color: var(--nc);
+    text-align: center; margin-bottom: 28px;
+    line-height: 1.4;
+  }
+
+  .intro-div {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+  }
+  .intro-div-linea { flex: 1; height: 1px; background: var(--rgs); }
+  .intro-div-signo { color: var(--rg); font-size: .7rem; }
+
+  .intro-txt {
+    font-size: 1.05rem; line-height: 1.85; color: var(--tm);
+  }
+  .intro-txt p { margin-bottom: 14px; }
+  .intro-txt em { font-style: italic; }
+  .intro-txt .nb {
+    font-family: var(--C); font-size: .88rem;
+    letter-spacing: .06em; color: var(--nc);
+    font-style: normal;
+  }
+
+  .intro-cierre {
+    margin-top: 32px; text-align: center;
+  }
+  .intro-cierre-frase {
+    font-style: italic; color: var(--ts);
+    font-size: 1rem; margin-bottom: 22px;
+    line-height: 1.7;
+  }
+
+  .btn-comenzar {
+    display: inline-block;
+    font-family: var(--C); font-size: .54rem;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: var(--az); border: 1px solid var(--az);
+    padding: 11px 26px; border-radius: 1px;
+    cursor: pointer; background: transparent;
+    transition: background .25s, color .25s;
+  }
+  .btn-comenzar:hover { background: var(--az); color: var(--p); }
+
+  /* ══════════════════════════════════════════
+     III. CANVAS — LÍNEA DE TIEMPO
+  ══════════════════════════════════════════ */
+  #vp {
+    position: fixed; inset: 0; z-index: 5;
+    background: var(--p);
+    overflow: hidden;
+  }
+
+  .mapa-titulo {
+    position: absolute; left: 50%; top: 22px;
+    transform: translateX(-50%);
+    font-family: var(--CD);
+    font-size: clamp(.8rem, 2vw, 1.1rem);
+    font-weight: 400; color: var(--nc);
+    opacity: .42; white-space: nowrap;
+    pointer-events: none;
+    transition: opacity .4s;
+    z-index: 6;
+  }
+  .mapa-titulo.oculto { opacity: 0; }
+
+  .mapa-hint {
+    position: absolute; left: 50%; bottom: 58px;
+    transform: translateX(-50%);
+    font-family: var(--C); font-size: .48rem;
+    letter-spacing: .3em; text-transform: uppercase;
+    color: var(--ts); opacity: 0; white-space: nowrap;
+    pointer-events: none; z-index: 6;
+    animation: latir 3s 1s ease-in-out infinite;
+  }
+  .mapa-hint.vis { opacity: 1; }
+
+  #canvas {
+    position: absolute;
+    width: 1200px; height: 700px;
+    left: 50%; top: 50%;
+    margin-left: -600px; margin-top: -350px;
+    transform-origin: center center;
+  }
+
+  /* Nodos */
+  .nodo {
+    position: absolute; width: 132px; height: 178px;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+    transition: opacity .4s ease;
+    will-change: transform, opacity;
+  }
+  .nodo-card {
+    width: 100%; height: 100%;
+    background: var(--p); border: 1px solid var(--rg);
+    border-radius: 3px; overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 2px 12px rgba(30,46,74,.06);
+    transition: box-shadow .3s, border-color .3s;
+  }
+  .nodo:hover .nodo-card,
+  .nodo.activo .nodo-card {
+    box-shadow: 0 0 0 5px var(--p), 0 0 0 6.5px var(--az), 0 8px 28px rgba(30,46,74,.14);
+    border-color: var(--azs);
+  }
+  .nodo.apagado { opacity: .15; pointer-events: none; }
+
+  .nodo-img {
+    flex: 1; background: var(--pd);
+    overflow: hidden; position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nodo-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .nodo-ph {
+    position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center;
+    font-family: var(--C); font-size: 1rem; color: var(--rg); opacity: .5;
+  }
+
+  .nodo-pie {
+    padding: 7px 8px 8px; border-top: 1px solid var(--rgs);
+    text-align: center; background: var(--p); flex-shrink: 0;
+  }
+  .nodo-nombre {
+    display: block; font-family: var(--C); font-size: .5rem;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--nc);
+    margin-bottom: 2px; line-height: 1.3;
+  }
+  .nodo-era {
+    display: block; font-family: var(--G); font-size: .68rem;
+    font-style: italic; color: var(--ts); opacity: .78;
+  }
+
+  .nodo.hoy .nodo-card {
+    border-color: var(--az);
+    background: linear-gradient(160deg, var(--p) 0%, rgba(74,96,144,.06) 100%);
+  }
+  .nodo.hoy .nodo-img { background: transparent; }
+
+  .mini-espejo {
+    width: 50px; height: 68px;
+    border-radius: 25px 25px 18px 18px;
+    border: 1px solid var(--rg);
+    background: linear-gradient(145deg, rgba(255,255,255,.6) 0%, var(--pd) 55%, rgba(255,255,255,.3) 100%);
+    box-shadow: inset 0 2px 6px rgba(255,255,255,.85);
+    position: relative; overflow: hidden;
+  }
+  .mini-espejo::before {
+    content:''; position:absolute; width:14px; height:14px;
+    border-radius:50%; background:var(--rg); opacity:.35;
+    bottom:30px; left:50%; transform:translateX(-50%);
+  }
+  .mini-espejo::after {
+    content:''; position:absolute; width:20px; height:32px;
+    border-radius:10px 10px 5px 5px; background:var(--rg); opacity:.28;
+    bottom:6px; left:50%; transform:translateX(-50%);
+  }
+
+  /* Backdrop y panel (igual que antes) */
+  #backdrop {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(253,251,247,.72);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    opacity: 0; pointer-events: none;
+    transition: opacity .45s ease; cursor: pointer;
+  }
+  #backdrop.vis { opacity: 1; pointer-events: all; }
+
+  #panel {
+    position: fixed; bottom: 0; left: 50%;
+    transform: translateX(-50%) translateY(106%);
+    z-index: 100;
+    width: min(580px,96vw); max-height: 80vh;
+    background: var(--p); border: 1px solid var(--rg);
+    border-bottom: none; border-radius: 10px 10px 0 0;
+    box-shadow: 0 -6px 50px rgba(30,46,74,.13);
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+    transition: transform .52s cubic-bezier(0.22,1,0.36,1);
+    cursor: default;
+  }
+  #panel.vis { transform: translateX(-50%) translateY(0); }
+
+  .p-handle { width:34px; height:3px; background:var(--rg); border-radius:2px; margin:11px auto 0; opacity:.55; }
+  .p-head { padding:16px 26px 14px; text-align:center; border-bottom:1px solid var(--rgs); position:sticky; top:0; background:var(--p); z-index:1; }
+  .p-romano { font-family:var(--C); font-size:.48rem; letter-spacing:.3em; text-transform:uppercase; color:var(--azs); opacity:.75; margin-bottom:4px; }
+  .p-nombre { font-family:var(--CD); font-size:1.55rem; font-weight:400; color:var(--nc); line-height:1.2; margin-bottom:2px; }
+  .p-ref { font-family:var(--C); font-size:.46rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ts); opacity:.55; }
+
+  .p-els { padding:4px 24px 20px; }
+
+  .el { display:flex; align-items:flex-start; gap:14px; padding:13px 0; border-bottom:1px solid var(--rgs); opacity:0; transform:translateY(9px); transition:opacity .5s,transform .5s; }
+  .el:last-child { border-bottom:none; }
+  .el.vis { opacity:1; transform:none; }
+  .el.ens { background:var(--azt); border:none; border-radius:2px; padding:13px 14px; margin-top:6px; }
+  .el-i { font-size:1rem; flex-shrink:0; width:22px; text-align:center; margin-top:3px; }
+  .el-b { flex:1; }
+  .el-lbl { display:block; font-family:var(--C); font-size:.45rem; letter-spacing:.23em; text-transform:uppercase; color:var(--ts); opacity:.58; margin-bottom:4px; }
+  .el-txt { font-size:1rem; line-height:1.65; color:var(--tm); }
+  .el-txt em { font-style:italic; }
+  .el.ens .el-txt { font-style:italic; color:var(--nc); font-size:1.04rem; }
+
+  .cita-bloque { border-left:2px solid var(--azs); padding-left:12px; margin-top:10px; font-style:italic; color:var(--tm); font-size:.95rem; line-height:1.7; }
+  .cita-bloque cite { display:block; font-family:var(--C); font-size:.44rem; letter-spacing:.2em; font-style:normal; text-transform:uppercase; color:var(--ts); margin-top:5px; opacity:.62; }
+
+  .pedro-sp { display:flex; gap:18px; margin-top:10px; }
+  .pedro-col { flex:1; text-align:center; }
+  .pedro-ico { font-size:1.5rem; display:block; margin-bottom:5px; }
+  .pedro-lbl { font-family:var(--C); font-size:.5rem; letter-spacing:.2em; text-transform:uppercase; display:block; margin-bottom:6px; }
+  .pedro-lbl.a { color:var(--az); }
+  .pedro-lbl.h { color:var(--ts); }
+  .pedro-desc { font-size:.88rem; font-style:italic; color:var(--ts); line-height:1.5; }
+  .pedro-div { width:1px; background:var(--rg); align-self:stretch; margin:6px 0; }
+
+  .p-cierre { text-align:center; padding:4px 0 18px; font-family:var(--C); font-size:.46rem; letter-spacing:.26em; text-transform:uppercase; color:var(--ts); opacity:.38; }
+
+  /* Panel HOY */
+  .hoy-cuerpo { padding:28px 24px 32px; text-align:center; }
+  .hoy-grande { font-family:var(--CD); font-size:3.8rem; font-weight:400; color:var(--nc); line-height:1; margin-bottom:4px; }
+  .hoy-sub { font-family:var(--C); font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ts); opacity:.5; margin-bottom:28px; }
+  .espejo { width:96px; height:128px; border-radius:48px 48px 32px 32px; border:1px solid var(--rg); background:linear-gradient(150deg,rgba(255,255,255,.65) 0%,var(--pd) 48%,rgba(255,255,255,.3) 100%); box-shadow:inset 0 3px 10px rgba(255,255,255,.9),0 0 0 5px var(--p),0 0 0 6px var(--rg); margin:0 auto 26px; position:relative; overflow:hidden; }
+  .espejo::before { content:''; position:absolute; width:18px; height:18px; border-radius:50%; background:var(--rg); opacity:.34; bottom:56px; left:50%; transform:translateX(-50%); }
+  .espejo::after { content:''; position:absolute; width:28px; height:46px; border-radius:14px 14px 8px 8px; background:var(--rg); opacity:.28; bottom:12px; left:50%; transform:translateX(-50%); }
+  .hoy-pregunta { font-size:1.2rem; font-style:italic; color:var(--tm); line-height:1.7; margin-bottom:8px; }
+
+  /* Botón continuar (aparece cuando se visita HOY) */
+  #btn-cierre {
+    position: fixed; bottom: 24px; right: 24px; z-index: 160;
+    font-family: var(--C); font-size: .52rem; letter-spacing: .26em;
+    text-transform: uppercase; color: var(--az);
+    border: 1px solid var(--az); background: var(--p);
+    padding: 9px 18px; border-radius: 1px; cursor: pointer;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .5s, transform .5s, background .2s, color .2s;
+    pointer-events: none;
+  }
+  #btn-cierre.vis { opacity:1; transform:none; pointer-events:all; }
+  #btn-cierre:hover { background:var(--az); color:var(--p); }
+
+  /* ══════════════════════════════════════════
+     IV. CIERRE
+  ══════════════════════════════════════════ */
+  #cierre {
+    position: fixed; inset: 0; z-index: 300;
+    background: var(--p); opacity: 0; pointer-events: none;
+    transition: opacity .7s ease;
+    overflow-y: auto; -webkit-overflow-scrolling: touch;
+  }
+  #cierre.vis { opacity:1; pointer-events:all; }
+
+  /* — Tríptico — */
+  .triptico {
+    padding: 60px 32px 52px;
+    text-align: center;
+    max-width: 680px; margin: 0 auto;
+  }
+  .trip-enc { font-family:var(--C); font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ts); opacity:.45; margin-bottom:14px; }
+  .trip-titulo { font-family:var(--CD); font-size:clamp(1rem,3vw,1.4rem); font-weight:400; color:var(--nc); margin-bottom:40px; line-height:1.4; }
+
+  .trip-cartas { display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+  .trip-carta { width:148px; text-align:center; }
+
+  .trip-img {
+    width:116px; height:148px; margin:0 auto 12px;
+    border:1px solid var(--rg); border-radius:3px;
+    overflow:hidden; background:var(--pd);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .trip-img img { width:100%; height:100%; object-fit:cover; display:block; }
+
+  /* Silueta CSS */
+  .sil-figura { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .sil-cab { width:22px; height:22px; border-radius:50%; background:var(--ts); opacity:.3; }
+  .sil-cuerp { width:28px; height:48px; border-radius:14px 14px 8px 8px; background:var(--ts); opacity:.25; }
+  /* MISIÓN: ligeramente inclinada, avanzando */
+  .sil-figura.mision { transform:rotate(-4deg) translateX(3px); }
+  .sil-figura.mision .sil-cab { transform:rotate(4deg); }
+
+  .trip-flecha { font-size:1.1rem; color:var(--rg); flex-shrink:0; }
+  .trip-label { font-family:var(--C); font-size:.52rem; letter-spacing:.24em; text-transform:uppercase; color:var(--nc); margin-bottom:3px; }
+  .trip-desc { font-family:var(--G); font-style:italic; font-size:.82rem; color:var(--ts); line-height:1.5; }
+
+  /* — Divisor — */
+  .sec-div { display:flex; align-items:center; gap:16px; padding:0 40px; margin-bottom:48px; }
+  .sec-div-l { flex:1; height:1px; background:var(--rgs); }
+  .sec-div-s { color:var(--rg); font-size:.7rem; }
+
+  /* — Video — */
+  .sec-video { padding:0 32px 48px; max-width:620px; margin:0 auto; }
+  .video-enc { font-family:var(--C); font-size:.52rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ts); opacity:.45; text-align:center; margin-bottom:14px; }
+  .video-wrap { width:100%; aspect-ratio:16/9; background:var(--pd); border:1px solid var(--rg); border-radius:2px; overflow:hidden; position:relative; }
+  .video-wrap video { width:100%; height:100%; object-fit:cover; display:block; }
+  .video-ph { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+  .video-ph-signo { font-size:1.2rem; color:var(--rg); opacity:.5; }
+  .video-ph-txt { font-family:var(--C); font-size:.48rem; letter-spacing:.24em; text-transform:uppercase; color:var(--ts); opacity:.4; }
+
+  /* — Salmo 23 — */
+  .sec-salmo { padding:0 32px 48px; max-width:560px; margin:0 auto; }
+  .salmo-bloque { border:1px solid var(--rgs); border-radius:2px; overflow:hidden; }
+  .salmo-cab {
+    background: linear-gradient(135deg, var(--nc) 0%, var(--az) 100%);
+    padding: 18px 24px; text-align: center;
+  }
+  .salmo-cab-cruz { font-size:1rem; color:rgba(255,255,255,.35); margin-bottom:6px; }
+  .salmo-cab-titulo { font-family:var(--C); font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.75); }
+  .salmo-cuerpo { padding:28px 28px 24px; background:var(--p); }
+  .salmo-txt {
+    font-size:1rem; line-height:1.9; color:var(--tm); font-style:italic; text-align:center;
+  }
+  .salmo-txt p { margin-bottom:10px; }
+  .salmo-txt p:last-child { margin-bottom: 0; }
+  .salmo-ref { text-align:center; margin-top:18px; font-family:var(--C); font-size:.46rem; letter-spacing:.22em; text-transform:uppercase; color:var(--ts); opacity:.55; }
+
+  /* — Oración Suscipe — */
+  .sec-oracion { padding:0 32px 48px; max-width:560px; margin:0 auto; }
+  .or-bloque { border:1px solid var(--rgs); border-radius:2px; overflow:hidden; }
+  .or-cab { padding:18px 24px; text-align:center; border-bottom:1px solid var(--rgs); background:var(--pd); }
+  .or-cab-cruz { font-size:1rem; color:var(--rg); margin-bottom:6px; }
+  .or-cab-titulo { font-family:var(--C); font-size:.52rem; letter-spacing:.3em; text-transform:uppercase; color:var(--ts); opacity:.75; }
+  .or-cuerpo { padding:26px 28px 22px; background:var(--p); }
+  .or-txt { font-size:1.05rem; line-height:1.88; color:var(--tm); font-style:italic; text-align:center; }
+  .or-fuente { text-align:center; margin-top:16px; font-family:var(--C); font-size:.44rem; letter-spacing:.22em; text-transform:uppercase; color:var(--ts); opacity:.5; }
+
+  /* — Imagen final: Santísimo — */
+  .sec-final {
+    width: 100%; height: 100vh;
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .final-fondo { position:absolute; inset:0; background:#0D1821; overflow:hidden; }
+  .final-fondo img { width:100%; height:100%; object-fit:cover; opacity:.7; display:block; }
+  .final-fondo::after {
+    content:''; position:absolute; inset:0;
+    background:linear-gradient(to bottom, rgba(30,46,74,.15) 0%, rgba(30,46,74,.35) 100%);
+  }
+  /* Sin texto. Solo la imagen. */
+
+  /* — Volver — */
+  .cierre-pie { text-align:center; padding:36px 0 48px; background:var(--p); }
+  .btn-inicio {
+    font-family:var(--C); font-size:.52rem; letter-spacing:.28em;
+    text-transform:uppercase; color:var(--ts); text-decoration:none;
+    opacity:.45; transition:opacity .2s;
+  }
+  .btn-inicio:hover { opacity:1; }
+
+  /* ══════════════════════════════════════════
+     MOBILE
+  ══════════════════════════════════════════ */
+  @media (max-width:640px) {
+    html, body { overflow:auto; height:auto; background:var(--p); }
+    #silencio { position:relative; min-height:100vh; }
+    #intro { position:relative; opacity:1; pointer-events:all; padding:52px 20px 52px; }
+    #intro.vis { opacity:1; }
+    #vp, #backdrop, #panel, #btn-cierre { display:none; }
+    #cierre { position:relative; opacity:1; pointer-events:all; }
+    .mobile { display:block; }
+    .nav-sup { color: var(--ts) !important; }
+  }
+
+  .mobile { display:none; }
+
+  /* Mobile: componentes */
+  .m-portada { text-align:center; padding-bottom:28px; border-bottom:1px solid var(--rgs); margin-bottom:20px; }
+  .m-signo { font-size:.9rem; color:var(--azs); opacity:.6; letter-spacing:.5em; margin-bottom:14px; }
+  .m-enc { font-family:var(--C); font-size:.55rem; letter-spacing:.35em; text-transform:uppercase; color:var(--ts); margin-bottom:12px; }
+  .m-titulo { font-family:var(--CD); font-size:1.45rem; font-weight:400; color:var(--nc); line-height:1.4; margin-bottom:12px; }
+  .m-subtitulo { font-size:.9rem; font-style:italic; color:var(--ts); }
+
+  .m-nodo { border-bottom:1px solid var(--rgs); }
+  .m-header { display:flex; align-items:center; gap:12px; padding:12px 0; cursor:pointer; }
+  .m-img { width:50px; height:65px; border:1px solid var(--rg); border-radius:2px; overflow:hidden; flex-shrink:0; background:var(--pd); display:flex; align-items:center; justify-content:center; font-family:var(--C); font-size:.8rem; color:var(--rg); }
+  .m-img img { width:100%; height:100%; object-fit:cover; display:block; }
+  .m-meta { flex:1; }
+  .m-romano { font-family:var(--C); font-size:.44rem; letter-spacing:.24em; text-transform:uppercase; color:var(--azs); display:block; margin-bottom:2px; }
+  .m-nombre { font-family:var(--CD); font-size:1.05rem; font-weight:400; color:var(--nc); display:block; }
+  .m-era { font-family:var(--G); font-style:italic; font-size:.78rem; color:var(--ts); display:block; }
+  .m-chevron { font-size:.75rem; color:var(--rg); transition:transform .3s; flex-shrink:0; }
+  .m-nodo.open .m-chevron { transform:rotate(90deg); }
+  .m-cont { display:none; padding:4px 0 12px; }
+  .m-nodo.open .m-cont { display:block; }
+  .m-el { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--rgs); }
+  .m-el:last-child { border-bottom:none; }
+  .m-el.ens { background:var(--azt); padding:10px 12px; border-radius:2px; border:none; margin-top:4px; }
+  .m-el-i { font-size:.9rem; flex-shrink:0; width:20px; text-align:center; margin-top:2px; }
+  .m-el-b { flex:1; }
+  .m-el-lbl { display:block; font-family:var(--C); font-size:.42rem; letter-spacing:.22em; text-transform:uppercase; color:var(--ts); opacity:.58; margin-bottom:3px; }
+  .m-el-txt { font-size:.95rem; line-height:1.6; color:var(--tm); }
+  .m-el-txt em { font-style:italic; }
+  .m-el.ens .m-el-txt { font-style:italic; color:var(--nc); }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="nav-sup" id="nav-lnk">← Inicio</a>
+
+<!-- ══════════════════════════════════
+     I. SILENCIO
+══════════════════════════════════ -->
+<div id="silencio">
+  <div class="sil-fondo">
+    <img src="img/enc7-silencio.jpg"
+         onerror="this.style.display='none'"/>
+  </div>
+  <div class="sil-contenido">
+    <span class="sil-signo">†</span>
+    <p class="sil-frase">
+      El miedo no siempre desaparece.<br>
+      Pero Dios nunca deja de estar presente.
+    </p>
+    <p class="sil-toque">Toca para continuar</p>
+  </div>
+  <div class="sil-barra" id="sil-barra"></div>
+</div>
+
+<!-- ══════════════════════════════════
+     II. INTRODUCCIÓN
+══════════════════════════════════ -->
+<div id="intro">
+  <div class="intro-inner">
+
+    <p class="intro-enc">Séptimo Encuentro</p>
+    <h1 class="intro-titulo">El miedo nunca fue<br>el verdadero enemigo.</h1>
+
+    <div class="intro-div">
+      <span class="intro-div-linea"></span>
+      <span class="intro-div-signo">✦</span>
+      <span class="intro-div-linea"></span>
+    </div>
+
+    <div class="intro-txt">
+      <p>Hola, Sophi.</p>
+      <p>Si hoy abriste este encuentro, quizá sea porque hay algo delante de ti que parece demasiado grande.</p>
+      <p>Tal vez no sea una montaña.<br>
+      Tal vez sea una llamada que debes hacer.<br>
+      Una decisión.<br>
+      Una conversación.<br>
+      Un cambio.<br>
+      Una pérdida.<br>
+      O simplemente un futuro que todavía no puedes ver.</p>
+      <p>Y eso está bien.</p>
+      <p>Porque la Biblia nunca presenta el miedo como un pecado en sí mismo.<br>
+      Los grandes hombres y mujeres de Dios también sintieron miedo.</p>
+      <p><span class="nb">Abraham</span> lo sintió.<br>
+      <span class="nb">Moisés</span> lo sintió.<br>
+      <span class="nb">David</span> lo sintió.<br>
+      <span class="nb">Pedro</span> lo sintió.<br>
+      Incluso Nuestro Señor quiso mostrarnos en <span class="nb">Getsemaní</span> toda la profundidad de la angustia humana.</p>
+      <p>La diferencia nunca estuvo en quién sintió miedo.<br>
+      La diferencia estuvo en quién decidió confiar.</p>
+      <p>Por eso quiero invitarte a recorrer la historia de personas que caminaron con las piernas temblando, pero con el corazón sostenido por Dios.</p>
+    </div>
+
+    <div class="intro-cierre">
+      <button class="btn-comenzar" id="btn-comenzar">Comenzar el recorrido</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     III. CANVAS
+══════════════════════════════════ -->
+<div id="vp">
+  <p class="mapa-titulo" id="mapa-titulo">Para cuando el miedo no te deje avanzar.</p>
+  <p class="mapa-hint" id="mapa-hint">Recorre lentamente cada historia. Toca para comenzar.</p>
+
+  <div id="canvas">
+
+    <!-- PATH SERPENTEANTE -->
+    <svg style="position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none"
+         viewBox="0 0 1200 700">
+      <path fill="none" stroke="#C8CDD8" stroke-width="1.5" stroke-dasharray="6 9"
+            d="M 150,100 L 500,100 L 850,100
+               C 1060,100 1060,340 850,340
+               L 500,340 L 150,340
+               C -60,340 -60,580 150,580
+               L 500,580 L 850,580"/>
+      <!-- flechas dirección -->
+      <polygon points="326,95 340,100 326,105" fill="#D8DCE6"/>
+      <polygon points="674,95 688,100 674,105" fill="#D8DCE6"/>
+      <polygon points="674,335 660,340 674,345" fill="#D8DCE6"/>
+      <polygon points="326,335 312,340 326,345" fill="#D8DCE6"/>
+      <polygon points="326,575 340,580 326,585" fill="#D8DCE6"/>
+      <polygon points="674,575 688,580 674,585" fill="#D8DCE6"/>
+      <circle cx="850" cy="580" r="8" fill="none" stroke="#4A6090" stroke-width="1.5"/>
+    </svg>
+
+    <!-- NODO 0: ABRAHAM -->
+    <div class="nodo" id="n0" style="left:150px;top:100px" data-idx="0">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/abraham.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">Abraham</span>
+          <span class="nodo-era">~2000 a.C.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 1: MOISÉS -->
+    <div class="nodo" id="n1" style="left:500px;top:100px" data-idx="1">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/moises.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">Moisés</span>
+          <span class="nodo-era">~1300 a.C.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 2: JOSUÉ -->
+    <div class="nodo" id="n2" style="left:850px;top:100px" data-idx="2">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/josue.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">Josué</span>
+          <span class="nodo-era">~1200 a.C.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 3: GEDEÓN -->
+    <div class="nodo" id="n3" style="left:850px;top:340px" data-idx="3">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/gedeon.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">Gedeón</span>
+          <span class="nodo-era">~1100 a.C.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 4: DAVID -->
+    <div class="nodo" id="n4" style="left:500px;top:340px" data-idx="4">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/david.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">David</span>
+          <span class="nodo-era">~1000 a.C.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 5: MARÍA -->
+    <div class="nodo" id="n5" style="left:150px;top:340px" data-idx="5">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/maria-enc7.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">María</span>
+          <span class="nodo-era">Nazaret, s. I</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 6: PEDRO -->
+    <div class="nodo" id="n6" style="left:150px;top:580px" data-idx="6">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/pedro-enc7.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">Pedro</span>
+          <span class="nodo-era">~30 d.C.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 7: GETSEMANÍ -->
+    <div class="nodo" id="n7" style="left:500px;top:580px" data-idx="7">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <img src="img/getsemani.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">Jesús</span>
+          <span class="nodo-era">Getsemaní, ~33</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- NODO 8: HOY -->
+    <div class="nodo hoy" id="n8" style="left:850px;top:580px" data-idx="8">
+      <div class="nodo-card">
+        <div class="nodo-img">
+          <div class="mini-espejo"></div>
+        </div>
+        <div class="nodo-pie">
+          <span class="nodo-nombre">Hoy</span>
+          <span class="nodo-era">2026</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /canvas -->
+</div><!-- /vp -->
+
+<!-- BACKDROP + PANEL -->
+<div id="backdrop"></div>
+<div id="panel">
+  <div class="p-handle"></div>
+  <div class="p-head">
+    <p class="p-romano" id="p-romano"></p>
+    <h2 class="p-nombre" id="p-nombre"></h2>
+    <p class="p-ref"    id="p-ref"></p>
+  </div>
+  <div class="p-els" id="p-els"></div>
+  <p class="p-cierre" id="p-cierre">Toca fuera para volver al mapa</p>
+</div>
+
+<button id="btn-cierre">Continuar →</button>
+
+<!-- ══════════════════════════════════
+     IV. CIERRE
+══════════════════════════════════ -->
+<div id="cierre">
+
+  <!-- Tríptico -->
+  <div class="triptico">
+    <p class="trip-enc">Séptimo Encuentro</p>
+    <h2 class="trip-titulo">El mismo camino,<br>siempre.</h2>
+
+    <div class="trip-cartas">
+
+      <div class="trip-carta">
+        <div class="trip-img">
+          <div class="sil-figura">
+            <div class="sil-cab"></div>
+            <div class="sil-cuerp"></div>
+          </div>
+        </div>
+        <p class="trip-label">Miedo</p>
+        <p class="trip-desc">El punto de partida</p>
+      </div>
+
+      <span class="trip-flecha">→</span>
+
+      <div class="trip-carta">
+        <div class="trip-img">
+          <img src="img/santisimo-enc7.jpg" onerror="this.style.display='none'"/>
+          <span style="position:absolute;font-family:var(--C);font-size:1rem;color:var(--rg);opacity:.4">†</span>
+        </div>
+        <p class="trip-label">Cristo</p>
+        <p class="trip-desc">El encuentro</p>
+      </div>
+
+      <span class="trip-flecha">→</span>
+
+      <div class="trip-carta">
+        <div class="trip-img">
+          <div class="sil-figura mision">
+            <div class="sil-cab"></div>
+            <div class="sil-cuerp"></div>
+          </div>
+        </div>
+        <p class="trip-label">Misión</p>
+        <p class="trip-desc">El envío</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Divisor -->
+  <div class="sec-div">
+    <span class="sec-div-l"></span>
+    <span class="sec-div-s">✦</span>
+    <span class="sec-div-l"></span>
+  </div>
+
+  <!-- Video -->
+  <div class="sec-video">
+    <p class="video-enc">Un testimonio</p>
+    <div class="video-wrap">
+      <video id="enc7-video" controls playsinline
+             poster="img/enc7-video-poster.jpg">
+        <source src="video/enc7-video.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-ph" id="video-ph">
+        <span class="video-ph-signo">✦</span>
+        <span class="video-ph-txt">El video llegará pronto</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divisor -->
+  <div class="sec-div">
+    <span class="sec-div-l"></span>
+    <span class="sec-div-s">†</span>
+    <span class="sec-div-l"></span>
+  </div>
+
+  <!-- Salmo 23 (Biblia de Jerusalén) -->
+  <div class="sec-salmo">
+    <div class="salmo-bloque">
+      <div class="salmo-cab">
+        <p class="salmo-cab-cruz">†</p>
+        <p class="salmo-cab-titulo">Salmo 23</p>
+      </div>
+      <div class="salmo-cuerpo">
+        <div class="salmo-txt">
+          <p>El Señor es mi pastor, nada me falta.<br>
+          Por prados de hierba fresca me apacienta,<br>
+          hacia las aguas de reposo me conduce,<br>
+          y repara mis fuerzas.</p>
+          <p>Me guía por el recto camino<br>
+          en gracia de su nombre.<br>
+          Aunque pase por valle tenebroso,<br>
+          no temo ningún mal,<br>
+          pues tú estás conmigo;<br>
+          tu vara y tu cayado me sosiegan.</p>
+          <p>Tú mismo me preparas la mesa<br>
+          delante de mis adversarios;<br>
+          con aceite perfumas mi cabeza,<br>
+          mi copa rebosa.</p>
+          <p>Sí, dicha y gracia me acompañan<br>
+          todos los días de mi vida;<br>
+          mi morada es la casa del Señor<br>
+          por largo tiempo.</p>
+        </div>
+        <p class="salmo-ref">— Salmo 23. Biblia de Jerusalén</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Divisor -->
+  <div class="sec-div">
+    <span class="sec-div-l"></span>
+    <span class="sec-div-s">✦</span>
+    <span class="sec-div-l"></span>
+  </div>
+
+  <!-- Oración: Suscipe -->
+  <div class="sec-oracion">
+    <div class="or-bloque">
+      <div class="or-cab">
+        <p class="or-cab-cruz">†</p>
+        <p class="or-cab-titulo">Oración de la entrega</p>
+      </div>
+      <div class="or-cuerpo">
+        <p class="or-txt">
+          «Toma, Señor, y recibe toda mi libertad,<br>
+          mi memoria, mi entendimiento<br>
+          y toda mi voluntad.<br>
+          Todo mi haber y mi poseer<br>
+          Tú me lo diste; a Ti, Señor, lo torno.<br>
+          Todo es tuyo. Dispón de ello según tu voluntad.<br>
+          Dame solamente tu amor y tu gracia,<br>
+          que ésta me basta.»
+        </p>
+        <p class="or-fuente">— San Ignacio de Loyola, Ejercicios Espirituales</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Imagen final: Santísimo. Sin texto. -->
+  <div class="sec-final">
+    <div class="final-fondo">
+      <img src="img/santisimo-enc7.jpg"
+           onerror="this.style.display='none'"/>
+    </div>
+  </div>
+
+  <!-- Volver -->
+  <div class="cierre-pie">
+    <a href="index.html" class="btn-inicio">← Volver al inicio</a>
+  </div>
+
+</div><!-- /cierre -->
+
+<!-- ══════════════════════════════════
+     MOBILE: ACORDEÓN
+══════════════════════════════════ -->
+<div class="mobile" id="mobile">
+  <!-- Generado por JS -->
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════
+   DATOS
+════════════════════════════════════════════════════ */
+const DATOS = [
+  { nombre:'Abraham', era:'~2000 a.C.', ref:'Génesis 12', romano:'I de VIII', img:'img/abraham.jpg', x:150, y:100,
+    els:[
+      {i:'📜',lbl:'El miedo',txt:'Dejar toda su vida atrás. Su tierra, su familia, su certeza. Hacia un lugar que Dios no le mostró de antemano.'},
+      {i:'✝️',lbl:'La respuesta de Dios',txt:'<em>«Sal de tu tierra y ve a la tierra que yo te mostraré.»</em> No temas.'},
+      {i:'❤️',lbl:'La respuesta de Abraham',txt:'Salió. Sin saber adónde iba. <em>(Hebreos 11, 8)</em>'},
+      {i:'🌿',lbl:'La enseñanza',txt:'La fe comienza dando un paso sin ver todo el camino.',ens:true}
+    ]
+  },
+  { nombre:'Moisés', era:'~1300 a.C.', ref:'Éxodo 3 — 4', romano:'II de VIII', img:'img/moises.jpg', x:500, y:100,
+    els:[
+      {i:'📜',lbl:'El miedo',txt:'<em>«No soy hombre de palabra... soy torpe de boca y de lengua.»</em> Se sentía incapaz. El menos indicado.'},
+      {i:'✝️',lbl:'La respuesta de Dios',txt:'<em>«Yo estaré contigo.»</em> No temas.'},
+      {i:'❤️',lbl:'La respuesta de Moisés',txt:'Fue. Habló al Faraón. Condujo a un pueblo entero a través del mar.'},
+      {i:'🌿',lbl:'La enseñanza',txt:'Dios no siempre llama a los más capaces. Capacita a quienes llama.',ens:true}
+    ]
+  },
+  { nombre:'Josué', era:'~1200 a.C.', ref:'Josué 1', romano:'III de VIII', img:'img/josue.jpg', x:850, y:100,
+    els:[
+      {i:'📜',lbl:'El miedo',txt:'Suceder a Moisés. Cargar con una misión que parecía imposible para cualquier hombre.'},
+      {i:'✝️',lbl:'La respuesta de Dios',txt:'Dios le dice lo mismo tres veces: <em>«Sé fuerte y valiente.»</em><div class="cita-bloque">«¿No te lo he ordenado yo? Sé fuerte y valiente. No temas ni te acobardes, porque el Señor tu Dios estará contigo dondequiera que vayas.»<cite>— Josué 1, 9</cite></div>'},
+      {i:'❤️',lbl:'La respuesta de Josué',txt:'Cruzó el río Jordán. Condujo al pueblo a la tierra prometida.'},
+      {i:'🌿',lbl:'La enseñanza',txt:'Cuando Dios repite algo tres veces, es porque lo necesitas escuchar tres veces.',ens:true}
+    ]
+  },
+  { nombre:'Gedeón', era:'~1100 a.C.', ref:'Jueces 6', romano:'IV de VIII', img:'img/gedeon.jpg', x:850, y:340,
+    els:[
+      {i:'📜',lbl:'El miedo',txt:'<em>«Mi familia es la más pobre de Manasés, y yo soy el menor en la casa de mi padre.»</em> Se veía pequeño. Insignificante. El último.'},
+      {i:'✝️',lbl:'La respuesta de Dios',txt:'Antes de que Gedeón pudiera verse de otra manera, el ángel lo saludó: <em>«¡El Señor está contigo, valiente guerrero!»</em> No temas.'},
+      {i:'❤️',lbl:'La respuesta de Gedeón',txt:'Venció a un ejército de miles con solo 300 hombres. No porque fuera el más poderoso. Sino porque Dios estaba con él.'},
+      {i:'🌿',lbl:'La enseñanza',txt:'Dios no te ve como tú te ves. Te ve como te creó.',ens:true}
+    ]
+  },
+  { nombre:'David', era:'~1000 a.C.', ref:'1 Samuel 17', romano:'V de VIII', img:'img/david.jpg', x:500, y:340,
+    els:[
+      {i:'📜',lbl:'El miedo',txt:'Todo el ejército de Israel temblaba. El gigante medía casi tres metros. Nadie —nadie— se atrevía a enfrentarlo.'},
+      {i:'✝️',lbl:'La respuesta de Dios',txt:'No hubo voz del cielo. Solo una certeza que David llevaba dentro, forjada en el silencio del campo mientras cuidaba ovejas.'},
+      {i:'❤️',lbl:'La respuesta de David',txt:'<em>«Yo vengo a ti en nombre del Señor de los ejércitos.»</em> Tomó una piedra. Avanzó.'},
+      {i:'🌿',lbl:'La enseñanza',txt:'La fe no ignora el tamaño del peligro. Solo sabe de quién es más grande.',ens:true}
+    ]
+  },
+  { nombre:'María', era:'Nazaret, s. I', ref:'Lucas 1', romano:'VI de VIII', img:'img/maria-enc7.jpg', x:150, y:340,
+    els:[
+      {i:'📜',lbl:'El miedo',txt:'<em>«¿Cómo será esto, puesto que no conozco varón?»</em> Era joven. No entendía nada. Le anunciaban algo humanamente imposible.'},
+      {i:'✝️',lbl:'La respuesta de Dios',txt:'<em>«No temas, María, porque has hallado gracia delante de Dios.»</em> No temas.'},
+      {i:'❤️',lbl:'La respuesta de María',txt:'<em>«He aquí la esclava del Señor; hágase en mí según tu palabra.»</em>'},
+      {i:'🌿',lbl:'La enseñanza',txt:'El acto de confianza más grande de la historia no fue de un guerrero. Fue de una joven que dijo: hágase.',ens:true}
+    ]
+  },
+  { nombre:'Pedro', era:'~30 d.C.', ref:'Mateo 14', romano:'VII de VIII', img:'img/pedro-enc7.jpg', x:150, y:580, esPedro:true,
+    els:[
+      {i:'📜',lbl:'El miedo',txt:'Había tormenta. Las olas eran altas. Pedro sintió el viento. Sintió el miedo. Y empezó a hundirse.'},
+      {i:'✝️',lbl:'La respuesta de Dios',txt:'Una sola palabra: <em>«Ven.»</em> No temas.'},
+      {i:'❤️',lbl:'La respuesta de Pedro',tipo:'pedro',txt:'Cristo lo rescató.'},
+      {i:'🌿',lbl:'La enseñanza',txt:'El problema no es tener miedo. El problema es a quién miras cuando lo sientes.',ens:true}
+    ]
+  },
+  { nombre:'Jesús', era:'Getsemaní, ~33', ref:'Mateo 26', romano:'VIII de VIII', img:'img/getsemani.jpg', x:500, y:580,
+    els:[
+      {i:'📜',lbl:'La angustia',txt:'<em>«Padre mío, si es posible, que pase de mí este cáliz.»</em> Dios hecho hombre experimentó la angustia humana más profunda. Su sudor fue como gotas de sangre.'},
+      {i:'✝️',lbl:'El silencio del Padre',txt:'El cáliz no pasó. Pero un ángel vino a fortalecerlo. El Padre no quitó el sufrimiento. Acompañó en él.'},
+      {i:'❤️',lbl:'La respuesta de Jesús',txt:'<em>«Pero no sea como yo quiero, sino como tú quieres.»</em>'},
+      {i:'🌿',lbl:'La enseñanza',txt:'La confianza no es la ausencia de angustia. Es elegir la voluntad de Dios en medio de ella.',ens:true}
+    ]
+  },
+  { nombre:'Hoy', era:'2026', ref:'Y ahora, tú', romano:'', img:'', x:850, y:580, esHoy:true }
+];
+
+/* ════════════════════════════════════════════════════
+   MÁQUINA DE ESTADOS
+════════════════════════════════════════════════════ */
+const navLnk = document.getElementById('nav-lnk');
+let estado = 0; // 0=silencio 1=intro 2=canvas 3=cierre
+let silTimer;
+
+const SIL_DUR = 9000; // 9 segundos auto-avance
+
+// Barra de progreso silencio
+const barra = document.getElementById('sil-barra');
+requestAnimationFrame(() => {
+  barra.style.transition = `width ${SIL_DUR}ms linear`;
+  barra.style.width = '100%';
+});
+silTimer = setTimeout(irAIntro, SIL_DUR);
+
+document.getElementById('silencio').addEventListener('click', () => {
+  clearTimeout(silTimer);
+  irAIntro();
+});
+
+function irAIntro() {
+  if (estado !== 0) return;
+  estado = 1;
+  const sil = document.getElementById('silencio');
+  sil.classList.add('ocultar');
+  setTimeout(() => { sil.style.display = 'none'; }, 900);
+  const intro = document.getElementById('intro');
+  intro.classList.add('vis');
+  navLnk.classList.add('oscuro');
+}
+
+document.getElementById('btn-comenzar').addEventListener('click', irACanvas);
+
+function irACanvas() {
+  if (estado !== 1) return;
+  estado = 2;
+  const intro = document.getElementById('intro');
+  intro.style.transition = 'opacity .6s ease';
+  intro.style.opacity = '0';
+  setTimeout(() => { intro.style.display = 'none'; }, 650);
+  // Hint
+  setTimeout(() => {
+    document.getElementById('mapa-hint').classList.add('vis');
+  }, 1200);
+  // Botón continuar aparece después de un rato
+  setTimeout(() => {
+    document.getElementById('btn-cierre').classList.add('vis');
+  }, 5000);
+}
+
+document.getElementById('btn-cierre').addEventListener('click', irACierre);
+
+function irACierre() {
+  estado = 3;
+  backdrop.classList.remove('vis');
+  panel.classList.remove('vis');
+  const cierre = document.getElementById('cierre');
+  cierre.classList.add('vis');
+  navLnk.style.color = 'var(--ts)';
+  // Mostrar/ocultar placeholder video
+  const vid = document.getElementById('enc7-video');
+  const ph  = document.getElementById('video-ph');
+  vid.addEventListener('loadedmetadata', () => { ph.style.display = 'none'; });
+  vid.load();
+}
+
+/* ════════════════════════════════════════════════════
+   CANVAS ZOOM
+════════════════════════════════════════════════════ */
+const CW = 1200, CH = 700;
+const canvas   = document.getElementById('canvas');
+const backdrop = document.getElementById('backdrop');
+const panel    = document.getElementById('panel');
+const pRomano  = document.getElementById('p-romano');
+const pNombre  = document.getElementById('p-nombre');
+const pRef     = document.getElementById('p-ref');
+const pEls     = document.getElementById('p-els');
+const pCierre  = document.getElementById('p-cierre');
+const mapaTit  = document.getElementById('mapa-titulo');
+
+let baseS = 1, zoomed = false, activeIdx = -1;
+
+function calcBaseS() {
+  return Math.min((window.innerWidth - 80) / CW, (window.innerHeight - 80) / CH, 1);
+}
+
+function aplicarTransform(s, dx, dy, anim) {
+  canvas.style.transition = anim ? 'transform .68s cubic-bezier(0.22,1,0.36,1)' : 'none';
+  canvas.style.transformOrigin = 'center center';
+  canvas.style.transform = `scale(${s}) translate(${dx}px,${dy}px)`;
+}
+
+function init() {
+  baseS = calcBaseS();
+  aplicarTransform(baseS, 0, 0, false);
+  requestAnimationFrame(() => {
+    canvas.style.transition = 'transform .68s cubic-bezier(0.22,1,0.36,1)';
+  });
+}
+
+function zoomTo(idx) {
+  const d = DATOS[idx];
+  const S = Math.min(baseS * 2.4, 2.6);
+  const dx = CW / 2 - d.x;
+  const dy = CH / 2 - d.y;
+  aplicarTransform(S, dx, dy, true);
+  document.querySelectorAll('.nodo').forEach((n, i) => {
+    n.classList.toggle('apagado', i !== idx);
+    n.classList.toggle('activo', i === idx);
+  });
+  mapaTit.classList.add('oculto');
+  zoomed = true; activeIdx = idx;
+}
+
+function zoomOut() {
+  aplicarTransform(baseS, 0, 0, true);
+  document.querySelectorAll('.nodo').forEach(n => n.classList.remove('apagado','activo'));
+  backdrop.classList.remove('vis');
+  panel.classList.remove('vis');
+  mapaTit.classList.remove('oculto');
+  setTimeout(() => { panel.scrollTop = 0; pEls.innerHTML = ''; }, 520);
+  zoomed = false; activeIdx = -1;
+}
+
+function elHtml(el) {
+  if (el.tipo === 'pedro') {
+    return `<div class="el"><span class="el-i">${el.i}</span><div class="el-b"><span class="el-lbl">${el.lbl}</span>
+      <div class="pedro-sp">
+        <div class="pedro-col"><span class="pedro-ico">🚶</span><span class="pedro-lbl a">Caminó</span><p class="pedro-desc">Mientras miraba<br>a Cristo</p></div>
+        <div class="pedro-div"></div>
+        <div class="pedro-col"><span class="pedro-ico">🌊</span><span class="pedro-lbl h">Se hundió</span><p class="pedro-desc">Cuando miró<br>el miedo</p></div>
+      </div>
+      <p style="text-align:center;font-style:italic;color:var(--tm);font-size:.9rem;margin-top:10px">${el.txt}</p>
+    </div></div>`;
+  }
+  return `<div class="el${el.ens?' ens':''}"><span class="el-i">${el.i}</span><div class="el-b"><span class="el-lbl">${el.lbl}</span><p class="el-txt">${el.txt}</p></div></div>`;
+}
+
+function buildPanel(idx) {
+  const d = DATOS[idx]; pEls.innerHTML = '';
+  if (d.esHoy) {
+    pRomano.textContent = ''; pNombre.textContent = ''; pRef.textContent = '';
+    pCierre.style.display = 'none';
+    pEls.innerHTML = `<div class="hoy-cuerpo">
+      <h2 class="hoy-grande">Hoy.</h2>
+      <p class="hoy-sub">Y ahora, tú</p>
+      <div class="espejo"></div>
+      <p class="hoy-pregunta">«¿Qué paso te está invitando<br>Dios a dar hoy?»</p>
+    </div>`;
+    // Hacer visible el botón continuar con mayor énfasis
+    const bc = document.getElementById('btn-cierre');
+    bc.classList.add('vis');
+    bc.style.opacity = '1';
+    return;
+  }
+  pCierre.style.display = '';
+  pRomano.textContent = d.romano;
+  pNombre.textContent = d.nombre;
+  pRef.textContent    = d.ref;
+  d.els.forEach((el, i) => {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = elHtml(el);
+    const div = tmp.firstElementChild;
+    pEls.appendChild(div);
+    setTimeout(() => div.classList.add('vis'), 90 + i * 380);
+  });
+}
+
+function abrirNodo(idx) {
+  zoomTo(idx);
+  buildPanel(idx);
+  backdrop.classList.add('vis');
+  setTimeout(() => panel.classList.add('vis'), 320);
+}
+
+document.querySelectorAll('.nodo').forEach((el, idx) => {
+  el.addEventListener('click', e => { e.stopPropagation(); abrirNodo(idx); });
+});
+
+backdrop.addEventListener('click', zoomOut);
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && zoomed) zoomOut(); });
+window.addEventListener('resize', () => { if (!zoomed) init(); });
+
+init();
+
+/* ════════════════════════════════════════════════════
+   MOBILE
+════════════════════════════════════════════════════ */
+function buildMobile() {
+  const mob = document.getElementById('mobile');
+
+  // Portada
+  mob.innerHTML = `
+    <div class="m-portada">
+      <p class="m-signo">✦</p>
+      <p class="m-enc">Séptimo Encuentro</p>
+      <h1 class="m-titulo">Para cuando el miedo<br>no te deje avanzar.</h1>
+      <p class="m-subtitulo">Recorre lentamente cada historia.</p>
+    </div>`;
+
+  DATOS.forEach((d, idx) => {
+    if (d.esHoy) {
+      const div = document.createElement('div');
+      div.style.cssText = 'text-align:center;padding:32px 0 16px;';
+      div.innerHTML = `
+        <div style="width:36px;height:1px;background:var(--rgs);margin:0 auto 24px"></div>
+        <h2 class="hoy-grande">Hoy.</h2>
+        <p class="hoy-sub" style="margin-bottom:22px">Y ahora, tú</p>
+        <div class="espejo" style="margin-bottom:20px"></div>
+        <p class="hoy-pregunta">«¿Qué paso te está invitando<br>Dios a dar hoy?»</p>`;
+      mob.appendChild(div);
+      return;
+    }
+
+    const elsHtml = d.els.map(el => {
+      if (el.tipo === 'pedro') {
+        return `<div class="m-el"><span class="m-el-i">${el.i}</span><div class="m-el-b"><span class="m-el-lbl">${el.lbl}</span>
+          <div class="pedro-sp"><div class="pedro-col"><span class="pedro-ico">🚶</span><span class="pedro-lbl a">Caminó</span><p class="pedro-desc">Mientras miraba a Cristo</p></div>
+          <div class="pedro-div"></div><div class="pedro-col"><span class="pedro-ico">🌊</span><span class="pedro-lbl h">Se hundió</span><p class="pedro-desc">Cuando miró el miedo</p></div></div>
+          <p style="text-align:center;font-style:italic;color:var(--tm);font-size:.88rem;margin-top:8px">${el.txt}</p></div></div>`;
+      }
+      return `<div class="m-el${el.ens?' ens':''}"><span class="m-el-i">${el.i}</span><div class="m-el-b"><span class="m-el-lbl">${el.lbl}</span><p class="m-el-txt">${el.txt}</p></div></div>`;
+    }).join('');
+
+    const nodo = document.createElement('div');
+    nodo.className = 'm-nodo';
+    nodo.innerHTML = `
+      <div class="m-header">
+        <div class="m-img"><img src="${d.img}" onerror="this.style.display='none'"/>†</div>
+        <div class="m-meta">
+          <span class="m-romano">${d.romano}</span>
+          <span class="m-nombre">${d.nombre}</span>
+          <span class="m-era">${d.era}</span>
+        </div>
+        <span class="m-chevron">›</span>
+      </div>
+      <div class="m-cont">${elsHtml}</div>`;
+
+    nodo.querySelector('.m-header').addEventListener('click', () => {
+      const open = nodo.classList.contains('open');
+      mob.querySelectorAll('.m-nodo.open').forEach(n => n.classList.remove('open'));
+      if (!open) nodo.classList.add('open');
+    });
+
+    mob.appendChild(nodo);
+  });
+}
+
+if (window.innerWidth <= 640) buildMobile();
+</script>
+</body>
+</html>
