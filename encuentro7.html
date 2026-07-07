@@ -336,6 +336,24 @@
   #panel.vis { transform: translateX(-50%) translateY(0); }
 
   .p-handle { width:34px; height:3px; background:var(--rg); border-radius:2px; margin:11px auto 0; opacity:.55; }
+
+  /* Imagen grande en panel */
+  .p-img-banner {
+    width: 100%; height: 220px;
+    overflow: hidden; background: var(--pd);
+    position: relative;
+  }
+  .p-img-banner img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+  .p-img-banner-ph {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--C); font-size: 1.4rem; color: var(--rg); opacity: .35;
+  }
+
   .p-head { padding:16px 26px 14px; text-align:center; border-bottom:1px solid var(--rgs); position:sticky; top:0; background:var(--p); z-index:1; }
   .p-romano { font-family:var(--C); font-size:.48rem; letter-spacing:.3em; text-transform:uppercase; color:var(--azs); opacity:.75; margin-bottom:4px; }
   .p-nombre { font-family:var(--CD); font-size:1.55rem; font-weight:400; color:var(--nc); line-height:1.2; margin-bottom:2px; }
@@ -758,7 +776,8 @@
     <div class="nodo hoy" id="n8" style="left:850px;top:580px" data-idx="8">
       <div class="nodo-card">
         <div class="nodo-img">
-          <div class="mini-espejo"></div>
+          <img src="img/sophi.jpg" onerror="this.style.display='none'"/>
+          <span class="nodo-ph">†</span>
         </div>
         <div class="nodo-pie">
           <span class="nodo-nombre">Hoy</span>
@@ -774,6 +793,9 @@
 <div id="backdrop"></div>
 <div id="panel">
   <div class="p-handle"></div>
+  <div class="p-img-banner" id="p-img-banner">
+    <span class="p-img-banner-ph">†</span>
+  </div>
   <div class="p-head">
     <p class="p-romano" id="p-romano"></p>
     <h2 class="p-nombre" id="p-nombre"></h2>
@@ -1143,7 +1165,7 @@ function zoomOut() {
   backdrop.classList.remove('vis');
   panel.classList.remove('vis');
   mapaTit.classList.remove('oculto');
-  setTimeout(() => { panel.scrollTop = 0; pEls.innerHTML = ''; }, 520);
+  setTimeout(() => { panel.scrollTop = 0; pEls.innerHTML = ''; pImgBanner.style.display='none'; pImgBanner.innerHTML='<span class="p-img-banner-ph">†</span>'; }, 520);
   zoomed = false; activeIdx = -1;
 }
 
@@ -1161,18 +1183,34 @@ function elHtml(el) {
   return `<div class="el${el.ens?' ens':''}"><span class="el-i">${el.i}</span><div class="el-b"><span class="el-lbl">${el.lbl}</span><p class="el-txt">${el.txt}</p></div></div>`;
 }
 
+const pImgBanner = document.getElementById('p-img-banner');
+
+function setBanner(src) {
+  pImgBanner.innerHTML = `<img src="${src}" onerror="this.style.display='none'"/><span class="p-img-banner-ph">†</span>`;
+}
+
 function buildPanel(idx) {
   const d = DATOS[idx]; pEls.innerHTML = '';
+
+  // Imagen banner
+  if (d.img) {
+    pImgBanner.style.display = 'block';
+    setBanner(d.img);
+  } else if (d.esHoy) {
+    pImgBanner.style.display = 'block';
+    setBanner('img/sophi.jpg');
+  } else {
+    pImgBanner.style.display = 'none';
+  }
+
   if (d.esHoy) {
     pRomano.textContent = ''; pNombre.textContent = ''; pRef.textContent = '';
     pCierre.style.display = 'none';
     pEls.innerHTML = `<div class="hoy-cuerpo">
       <h2 class="hoy-grande">Hoy.</h2>
       <p class="hoy-sub">Y ahora, tú</p>
-      <div class="espejo"></div>
       <p class="hoy-pregunta">«¿Qué paso te está invitando<br>Dios a dar hoy?»</p>
     </div>`;
-    // Hacer visible el botón continuar con mayor énfasis
     const bc = document.getElementById('btn-cierre');
     bc.classList.add('vis');
     bc.style.opacity = '1';
