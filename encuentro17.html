@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para cuando pierdas a alguien — 18 Encuentros</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+  :root {
+    --p:   #F4F3F0;
+    --pd:  #E8E6E0;
+    --in:  #3D4A6B;
+    --ins: #5A6A90;
+    --int: rgba(61,74,107,.07);
+    --nc:  #1A1C28;
+    --t:   #1A1C28;
+    --tm:  #38394A;
+    --ts:  #6A6C7A;
+    --rg:  #C0C4D4;
+    --rgs: #D4D8E8;
+    --or:  #8B7040;
+    --ors: #C4A055;
+    --G:   'EB Garamond', Georgia, serif;
+    --C:   'Cinzel', serif;
+    --CD:  'Cinzel Decorative', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--p);
+    font-family: var(--G);
+    color: var(--t);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .nav-sup {
+    display: block; padding: 22px 28px 0;
+    font-family: var(--C); font-size: .54rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--ts); text-decoration: none;
+    opacity: .45; transition: opacity .2s;
+  }
+  .nav-sup:hover { opacity: 1; }
+
+  /* ── CONTENEDOR ── */
+  .contenedor {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* ── HEADER ── */
+  .enc-header {
+    text-align: center;
+    padding: 48px 0 36px;
+  }
+  .enc-numero {
+    display: block; font-family: var(--C); font-size: .54rem;
+    letter-spacing: .4em; text-transform: uppercase;
+    color: var(--in); opacity: .6; margin-bottom: 16px;
+  }
+  .enc-titulo {
+    font-family: var(--CD); font-size: clamp(1.3rem, 4vw, 1.9rem);
+    font-weight: 400; color: var(--nc); line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .enc-div {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .enc-div-l { flex: 1; height: 1px; background: var(--rgs); }
+  .enc-div-s { color: var(--rg); font-size: .7rem; }
+
+  /* ── CITA APERTURA ── */
+  .cita-apertura {
+    margin: 32px 0 36px;
+    padding: 22px 28px;
+    border-left: 2px solid var(--in);
+    background: var(--int);
+  }
+  .cita-apertura p {
+    font-style: italic; font-size: 1.08rem; color: var(--tm);
+    line-height: 1.75;
+  }
+
+  /* ── CUERPO ── */
+  .cuerpo {
+    font-size: 1.05rem; line-height: 1.88; color: var(--tm);
+    margin-bottom: 28px;
+  }
+  .cuerpo p { margin-bottom: 14px; }
+  .cuerpo p:last-child { margin-bottom: 0; }
+  .cuerpo em { font-style: italic; }
+
+  /* ── JUAN 11:35 ── */
+  .verso-centro {
+    text-align: center;
+    padding: 44px 0;
+  }
+  .verso-centro-txt {
+    font-family: var(--CD);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 400; color: var(--nc);
+    line-height: 1.4; margin-bottom: 10px;
+  }
+  .verso-centro-ref {
+    display: block; font-family: var(--C); font-size: .48rem;
+    letter-spacing: .25em; text-transform: uppercase;
+    color: var(--in); opacity: .65;
+  }
+
+  /* ── DIVISOR ── */
+  .divisor {
+    display: flex; align-items: center; gap: 16px;
+    margin: 44px 0;
+  }
+  .divisor-l { flex: 1; height: 1px; background: var(--rgs); }
+  .divisor-s { color: var(--rg); font-size: .7rem; }
+
+  /* ── SECCIONES (Primero / Segundo / Tercero) ── */
+  .sec-bloque {
+    margin-bottom: 36px;
+  }
+  .sec-header {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: var(--C); font-size: .5rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--in); opacity: .7;
+    flex-shrink: 0;
+  }
+  .sec-linea { flex: 1; height: 1px; background: var(--rgs); }
+  .sec-titulo {
+    font-family: var(--CD); font-size: 1.1rem; font-weight: 400;
+    color: var(--nc); margin-bottom: 12px;
+  }
+  .sec-cuerpo {
+    font-size: 1.05rem; line-height: 1.88; color: var(--tm);
+  }
+  .sec-cuerpo p { margin-bottom: 12px; }
+  .sec-cuerpo p:last-child { margin-bottom: 0; }
+
+  /* ── CIRIO DIGITAL ── */
+  .cirio-section {
+    text-align: center;
+    padding: 48px 0 36px;
+  }
+  .cirio-enc {
+    display: block; font-family: var(--C); font-size: .52rem;
+    letter-spacing: .35em; text-transform: uppercase;
+    color: var(--ts); opacity: .45; margin-bottom: 32px;
+  }
+  .cirio-wrap {
+    display: inline-block; cursor: pointer;
+    position: relative; padding: 0 20px;
+  }
+
+  /* Llama */
+  .llama {
+    width: 22px; height: 34px; margin: 0 auto 0;
+    position: relative;
+    opacity: .12;
+    transition: opacity .9s ease;
+  }
+  .llama::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 90%,
+      #FFE066 0%, #F5A623 45%, rgba(200,80,0,.3) 70%, transparent 100%);
+    border-radius: 50% 50% 40% 40%;
+    animation: flamear 2s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+  .llama::after {
+    content: '';
+    position: absolute; bottom: 6px; left: 50%;
+    transform: translateX(-50%);
+    width: 8px; height: 12px;
+    background: rgba(255,220,100,.6);
+    border-radius: 50%;
+    filter: blur(3px);
+    animation: flamear 2s .3s ease-in-out infinite;
+  }
+  @keyframes flamear {
+    0%,100%{ transform: scaleX(1) scaleY(1) rotate(-1deg); }
+    33%{ transform: scaleX(.88) scaleY(1.06) rotate(1.5deg); }
+    66%{ transform: scaleX(1.1) scaleY(.94) rotate(-0.5deg); }
+  }
+
+  /* Pabilo */
+  .pabilo {
+    width: 2px; height: 9px;
+    background: #888; margin: 0 auto;
+  }
+
+  /* Cuerpo de la vela */
+  .vela {
+    width: 26px; height: 90px; margin: 0 auto;
+    background: linear-gradient(to right,
+      #D8D0C5 0%, #F0EBE2 35%, #EDE5DA 65%, #C8C0B5 100%);
+    border-radius: 2px 2px 1px 1px;
+    position: relative;
+    box-shadow: inset -3px 0 6px rgba(0,0,0,.08);
+  }
+  .vela::after {
+    content: '';
+    position: absolute; top: 0; left: 5px;
+    width: 7px; height: 20px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.5), transparent);
+    border-radius: 0 0 50% 50%;
+  }
+
+  /* Base */
+  .vela-base {
+    width: 34px; height: 5px; margin: 0 auto;
+    background: linear-gradient(to right, #C0B8AA, #D8D0C5, #B8B0A2);
+    border-radius: 1px;
+  }
+
+  /* Estado encendida */
+  .cirio-wrap.encendida .llama { opacity: 1; }
+
+  /* Halo cuando encendida */
+  .cirio-wrap.encendida::before {
+    content: '';
+    position: absolute;
+    top: 28px; left: 50%;
+    transform: translateX(-50%);
+    width: 70px; height: 70px;
+    background: radial-gradient(circle, rgba(245,166,35,.18) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: halo 2.5s ease-in-out infinite;
+  }
+  @keyframes halo { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+  .cirio-hint {
+    display: block; margin-top: 16px;
+    font-family: var(--C); font-size: .47rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--ts); opacity: .45;
+    transition: opacity .4s;
+  }
+  .cirio-wrap.encendida ~ .cirio-hint { opacity: 0; pointer-events: none; }
+
+  /* Oración del cirio */
+  .cirio-oracion {
+    max-width: 360px; margin: 32px auto 0;
+    text-align: center;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity .9s ease, transform .9s ease;
+    pointer-events: none;
+  }
+  .cirio-oracion.vis { opacity: 1; transform: none; pointer-events: all; }
+  .cirio-oracion p {
+    font-style: italic; font-size: 1.08rem; color: var(--tm);
+    line-height: 1.8; margin-bottom: 6px;
+  }
+  .cirio-oracion .amen {
+    font-family: var(--C); font-size: .5rem; letter-spacing: .26em;
+    text-transform: uppercase; color: var(--in); opacity: .7;
+    display: block; margin-top: 10px;
+  }
+
+  /* Nota Santa Misa */
+  .misa-nota {
+    max-width: 420px; margin: 28px auto 0;
+    padding: 16px 20px;
+    border: 1px solid var(--rgs); border-radius: 2px;
+    background: var(--pd);
+    text-align: center;
+    opacity: 0; transition: opacity .9s .4s ease;
+  }
+  .misa-nota.vis { opacity: 1; }
+  .misa-nota p {
+    font-size: .95rem; line-height: 1.7; color: var(--ts);
+    font-style: italic;
+  }
+  .misa-nota strong {
+    font-style: normal; color: var(--in);
+    font-family: var(--C); font-size: .88rem; letter-spacing: .04em;
+  }
+
+  /* ── MARÍA ── */
+  .maria-section { margin: 0; }
+  .maria-img-wrap {
+    width: 100%; aspect-ratio: 4/3;
+    overflow: hidden; background: #1A1C28;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--rgs);
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .maria-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: center center;
+    display: block; opacity: .88;
+  }
+  .maria-img-ph {
+    position: absolute; font-family: var(--C);
+    font-size: 1.2rem; color: var(--rg); opacity: .25;
+  }
+  .maria-cita {
+    text-align: center; margin-bottom: 24px;
+  }
+  .maria-cita-txt {
+    font-style: italic; font-size: 1.08rem; color: var(--tm); line-height: 1.7;
+    margin-bottom: 8px;
+  }
+  .maria-cita-ref {
+    display: block; font-family: var(--C); font-size: .46rem;
+    letter-spacing: .24em; text-transform: uppercase; color: var(--in); opacity: .6;
+  }
+  .maria-cuerpo {
+    font-size: 1.05rem; line-height: 1.88; color: var(--tm);
+  }
+  .maria-cuerpo p { margin-bottom: 12px; }
+  .maria-cuerpo p:last-child { margin-bottom: 0; }
+
+  /* ── ORACIÓN FINAL ── */
+  .oracion-section { margin: 0; }
+  .oracion-enc {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--ts); opacity: .45;
+    text-align: center; margin-bottom: 14px;
+  }
+  .oracion-box {
+    border: 1px solid var(--rgs); border-radius: 2px; overflow: hidden;
+  }
+  .oracion-cab {
+    padding: 16px 24px; text-align: center;
+    border-bottom: 1px solid var(--rgs); background: var(--pd);
+  }
+  .oracion-cab-cruz { font-size: 1rem; color: var(--rg); margin-bottom: 5px; }
+  .oracion-cab-titulo {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ts); opacity: .7;
+  }
+  .oracion-cuerpo { padding: 26px 28px 24px; background: var(--p); }
+  .oracion-txt {
+    font-size: 1.05rem; line-height: 1.95; color: var(--tm);
+    font-style: italic; text-align: center;
+  }
+  .oracion-txt p { margin-bottom: 8px; }
+  .oracion-txt p:last-child { margin-bottom: 0; }
+
+  /* ── TRIGGER FINAL ── */
+  .final-trigger {
+    text-align: center; padding: 52px 0 0;
+  }
+  .final-cruz {
+    display: inline-block; font-size: 1.4rem;
+    color: var(--in); opacity: .35; cursor: pointer;
+    transition: opacity .3s, transform .3s;
+    animation: latir-cruz 4s 2s ease-in-out infinite;
+    user-select: none;
+  }
+  .final-cruz:hover { opacity: .75; transform: scale(1.1); }
+  @keyframes latir-cruz { 0%,100%{opacity:.2} 50%{opacity:.5} }
+
+  /* ── OVERLAY FINAL ── */
+  #final-overlay {
+    position: fixed; inset: 0; z-index: 900;
+    background: #0D0E16;
+    opacity: 0; pointer-events: none;
+    transition: opacity 1.4s ease;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 32px; padding: 40px;
+    text-align: center;
+  }
+  #final-overlay.vis { opacity: 1; pointer-events: all; }
+
+  .final-verso {
+    font-family: var(--G); font-style: italic;
+    font-size: clamp(1.15rem, 3.8vw, 1.6rem);
+    color: rgba(244,243,240,.88); line-height: 1.85;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    max-width: 500px;
+  }
+  .final-verso.vis { opacity: 1; transform: none; }
+  .final-verso-ref {
+    display: block; margin-top: 16px;
+    font-family: var(--C); font-size: .48rem; letter-spacing: .28em;
+    text-transform: uppercase; color: rgba(192,196,212,.55);
+  }
+  .final-volver {
+    opacity: 0; transition: opacity 1s 1s ease;
+    font-family: var(--C); font-size: .5rem; letter-spacing: .28em;
+    text-transform: uppercase; color: rgba(192,196,212,.35);
+    text-decoration: none;
+  }
+  .final-volver.vis { opacity: 1; }
+  .final-volver:hover { color: rgba(192,196,212,.7); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 560px) {
+    .contenedor { padding: 0 18px 60px; }
+    .cita-apertura { padding: 16px 18px; }
+    .oracion-cuerpo { padding: 20px 20px; }
+  }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="nav-sup" id="nav-lnk">← Inicio</a>
+
+<div class="contenedor">
+
+  <!-- HEADER -->
+  <div class="enc-header">
+    <span class="enc-numero">Decimoséptimo Encuentro</span>
+    <h1 class="enc-titulo">Para cuando pierdas<br>a alguien.</h1>
+    <div class="enc-div">
+      <span class="enc-div-l"></span>
+      <span class="enc-div-s">†</span>
+      <span class="enc-div-l"></span>
+    </div>
+  </div>
+
+  <!-- CITA APERTURA -->
+  <div class="cita-apertura">
+    <p>«Hay situaciones en la vida que no necesitan explicaciones; necesitan compañía.»</p>
+  </div>
+
+  <!-- INTRO -->
+  <div class="cuerpo">
+    <p>Hola, Sophi.</p>
+    <p>Si hoy abriste este encuentro, probablemente acabas de despedir a alguien.</p>
+    <p>Y si ese es el caso, antes de decir cualquier otra cosa, quiero decirte algo: <em>está bien llorar.</em></p>
+    <p>La fe jamás nos pidió dejar de amar para dejar de sufrir. Más bien, cuanto más profundo es el amor, más profunda suele ser la despedida.</p>
+  </div>
+
+  <!-- JUAN 11:35 -->
+  <div class="verso-centro">
+    <p class="verso-centro-txt">«Jesús lloró.»</p>
+    <span class="verso-centro-ref">Juan 11, 35</span>
+  </div>
+
+  <div class="cuerpo">
+    <p>El versículo más corto de toda la Biblia tiene únicamente dos palabras. Y es que Cristo quiso compartir verdaderamente nuestro dolor. Ante la tumba de su amigo Lázaro, aun sabiendo que lo resucitaría momentos después, lloró.</p>
+    <p>Ciertamente este encuentro tiene una enseñanza católica, pero antes que enseñar, busca acompañarte. No pretende minimizar el dolor, sino anunciar una esperanza que nace de Cristo.</p>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- PRIMERO -->
+  <div class="sec-bloque">
+    <div class="sec-header">
+      <span class="sec-num">Primero</span>
+      <span class="sec-linea"></span>
+    </div>
+    <h2 class="sec-titulo">La muerte no fue creada por Dios.</h2>
+    <div class="sec-cuerpo">
+      <p>La muerte entró en el mundo a causa del pecado.</p>
+      <p>Creo que es importante recordar esto para evitar pensar: <em>«Dios quiso quitármelo»</em> o <em>«Dios quiso quitármela.»</em></p>
+      <p>La Iglesia nos enseña algo aún más profundo. La muerte forma parte de nuestra condición humana a causa del pecado, pero Cristo la venció mediante su Pasión, su Muerte y su Resurrección.</p>
+      <p>Por eso, aunque hoy lloremos la ausencia de quienes amamos, sabemos que la muerte ya no tiene la última palabra.</p>
+    </div>
+  </div>
+
+  <!-- SEGUNDO -->
+  <div class="sec-bloque">
+    <div class="sec-header">
+      <span class="sec-num">Segundo</span>
+      <span class="sec-linea"></span>
+    </div>
+    <h2 class="sec-titulo">La muerte no tiene la última palabra.</h2>
+    <div class="sec-cuerpo">
+      <p>Toda la esperanza cristiana descansa sobre un hecho: Cristo resucitó.</p>
+      <p>Con su Pasión, Muerte y Resurrección, venció al pecado y abrió nuevamente para nosotros el camino hacia la vida eterna.</p>
+      <p>Por eso los cristianos no vivimos el duelo como quienes han perdido toda esperanza.</p>
+      <p>Seguimos llorando.<br>
+      Seguimos extrañando.<br>
+      Seguimos sintiendo el vacío.</p>
+      <p>Pero lo hacemos sabiendo que Cristo ha prometido una vida que no termina.</p>
+    </div>
+  </div>
+
+  <!-- TERCERO -->
+  <div class="sec-bloque">
+    <div class="sec-header">
+      <span class="sec-num">Tercero</span>
+      <span class="sec-linea"></span>
+    </div>
+    <h2 class="sec-titulo">El amor nunca deja de ser.</h2>
+    <div class="sec-cuerpo">
+      <p>Dios es eterno. Y todo amor verdadero encuentra su origen en Él. Por eso la muerte puede separar nuestros cuerpos, pero no puede destruir el amor.</p>
+      <p>Desde los primeros siglos, la Iglesia ha rezado por sus difuntos. ¿Por qué? Porque quien ama, sigue pudiendo amar.</p>
+      <p>La Iglesia también nos enseña que algunas personas, destinadas al cielo, necesitan antes una purificación final. A ese estado de purificación lo llamamos purgatorio. Por eso nuestras oraciones nunca son inútiles. Son un verdadero acto de caridad.</p>
+      <p>Mientras nosotros seguimos caminando hacia Dios en esta tierra, podemos pedirle que conceda a nuestros seres queridos entrar cuanto antes en la alegría plena del cielo. Y quizá, cuando llegue también nuestro día, otros recen por nosotros con el mismo amor.</p>
+    </div>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- CIRIO DIGITAL -->
+  <div class="cirio-section">
+    <span class="cirio-enc">Enciende un cirio</span>
+
+    <div class="cirio-wrap" id="cirio" role="button" tabindex="0" aria-label="Encender el cirio">
+      <div class="llama"></div>
+      <div class="pabilo"></div>
+      <div class="vela"></div>
+      <div class="vela-base"></div>
+    </div>
+
+    <span class="cirio-hint" id="cirio-hint">Toca para encender</span>
+
+    <div class="cirio-oracion" id="cirio-oracion">
+      <p>Señor, concédele el descanso eterno.</p>
+      <p>Y brille para él / ella la luz perpetua.</p>
+      <p>Descanse en paz.</p>
+      <span class="amen">Amén</span>
+    </div>
+
+    <div class="misa-nota" id="misa-nota">
+      <p>Si te es posible, ofrece también una <strong>Santa Misa</strong> por su alma.<br>
+      Es la oración más grande que la Iglesia puede ofrecer por quienes han partido.</p>
+    </div>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- MARÍA -->
+  <div class="maria-section">
+    <div class="maria-img-wrap">
+      <img src="img/pieta-enc17.jpg"
+           onerror="this.style.display='none'"
+           alt="La Pietà — Miguel Ángel"/>
+      <span class="maria-img-ph">†</span>
+    </div>
+
+    <div class="maria-cita">
+      <p class="maria-cita-txt">«Junto a la cruz de Jesús estaba su Madre.»</p>
+      <span class="maria-cita-ref">Juan 19, 25</span>
+    </div>
+
+    <div class="maria-cuerpo">
+      <p>No todas las respuestas al sufrimiento llegan en forma de explicaciones. A veces llegan en forma de una presencia que permanece.</p>
+      <p>María no pudo evitar la muerte de su Hijo. Pero permaneció junto a Él hasta el final.</p>
+      <p>Y desde entonces, la Iglesia la contempla como Madre que acompaña también a quienes atraviesan el dolor. No desde la distancia, sino desde adentro.</p>
+    </div>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ORACIÓN -->
+  <div class="oracion-section">
+    <p class="oracion-enc">Oremos</p>
+    <div class="oracion-box">
+      <div class="oracion-cab">
+        <p class="oracion-cab-cruz">†</p>
+        <p class="oracion-cab-titulo">Oración por los difuntos</p>
+      </div>
+      <div class="oracion-cuerpo">
+        <div class="oracion-txt">
+          <p>En el nombre del Padre,<br>del Hijo y del Espíritu Santo.</p>
+          <p>Señor,<br>
+          recibe en tu misericordia<br>
+          a quienes han partido de este mundo.</p>
+          <p>Consuela a quienes lloran su ausencia.<br>
+          Aumenta nuestra esperanza en la Resurrección.</p>
+          <p>Enséñanos a vivir santamente,<br>
+          para que un día podamos reunirnos contigo<br>
+          y con todos aquellos que, purificados por tu misericordia,<br>
+          gozan ya de tu presencia.</p>
+          <p>Por Cristo nuestro Señor.<br>
+          Amén.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRIGGER FINAL -->
+  <div class="final-trigger">
+    <span class="final-cruz" id="final-cruz" role="button" tabindex="0" aria-label="Continuar">†</span>
+  </div>
+
+</div><!-- /contenedor -->
+
+<!-- OVERLAY FINAL: oscuridad + campanadas + verso -->
+<div id="final-overlay">
+  <audio id="campanadas" src="audio/enc17-campanadas.mp3" preload="auto"></audio>
+  <div class="final-verso" id="final-verso">
+    «Yo soy la resurrección y la vida;<br>
+    el que cree en mí, aunque muera, vivirá.»
+    <span class="final-verso-ref">Juan 11, 25</span>
+  </div>
+  <a href="index.html" class="final-volver" id="final-volver">← Volver al inicio</a>
+</div>
+
+<script>
+/* ── CIRIO ── */
+const cirio     = document.getElementById('cirio');
+const cirioHint = document.getElementById('cirio-hint');
+const cirioOr   = document.getElementById('cirio-oracion');
+const misaNota  = document.getElementById('misa-nota');
+let encendido   = false;
+
+function encenderCirio() {
+  if (encendido) return;
+  encendido = true;
+  cirio.classList.add('encendida');
+  cirioHint.style.opacity = '0';
+  setTimeout(() => {
+    cirioOr.classList.add('vis');
+    misaNota.classList.add('vis');
+  }, 600);
+}
+
+cirio.addEventListener('click', encenderCirio);
+cirio.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); encenderCirio(); }
+});
+
+/* ── SECUENCIA FINAL ── */
+const finalCruz    = document.getElementById('final-cruz');
+const finalOverlay = document.getElementById('final-overlay');
+const campanadas   = document.getElementById('campanadas');
+const finalVerso   = document.getElementById('final-verso');
+const finalVolver  = document.getElementById('final-volver');
+let finalActivado  = false;
+
+function activarFinal() {
+  if (finalActivado) return;
+  finalActivado = true;
+
+  // Fade a oscuridad
+  finalOverlay.classList.add('vis');
+
+  // Reproducir campanadas
+  campanadas.play().catch(() => {});
+
+  // Verso aparece después de unos segundos (tiempo para las campanadas)
+  setTimeout(() => {
+    finalVerso.classList.add('vis');
+  }, 3500);
+
+  // Link volver aparece al final
+  setTimeout(() => {
+    finalVolver.classList.add('vis');
+  }, 5500);
+}
+
+finalCruz.addEventListener('click', activarFinal);
+finalCruz.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activarFinal(); }
+});
+
+// ESC para salir del overlay (accesibilidad)
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && finalActivado) {
+    finalOverlay.style.transition = 'opacity .6s ease';
+    finalOverlay.style.opacity = '0';
+    setTimeout(() => { finalOverlay.style.pointerEvents = 'none'; }, 600);
+  }
+});
+</script>
+
+</body>
+</html>
