@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para cuando tengas que perdonar a alguien — 18 Encuentros</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+  :root {
+    --p:   #FDFBF7;
+    --pd:  #F0EAD8;
+    --or:  #A67C3A;
+    --ors: #C49A52;
+    --ord: #6B4E1A;
+    --ort: rgba(166,124,58,.08);
+    --nc:  #1C1917;
+    --t:   #1C1917;
+    --tm:  #3D3830;
+    --ts:  #6B645A;
+    --rg:  #D4C4A0;
+    --rgs: #E8DECA;
+    --st:  #3A3D4A;
+    --stl: #52566A;
+    --G:   'EB Garamond', Georgia, serif;
+    --C:   'Cinzel', serif;
+    --CD:  'Cinzel Decorative', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--p);
+    font-family: var(--G);
+    color: var(--t);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .nav-sup {
+    display: block; padding: 22px 28px 0;
+    font-family: var(--C); font-size: .54rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--ts); text-decoration: none;
+    opacity: .45; transition: opacity .2s;
+  }
+  .nav-sup:hover { opacity: 1; }
+
+  /* ── CONTENEDOR ── */
+  .contenedor {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* ── SANTO APERTURA ── */
+  .santo-apertura {
+    margin: 32px 0 0;
+  }
+  .santo-img-wrap {
+    width: 100%; aspect-ratio: 4/3;
+    overflow: hidden; background: var(--pd);
+    border: 1px solid var(--rgs); border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; margin-bottom: 14px;
+  }
+  .santo-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top; display: block;
+  }
+  .santo-img-ph {
+    position: absolute; font-family: var(--C);
+    font-size: 1rem; color: var(--rg); opacity: .35;
+  }
+  .santo-nombre {
+    display: block; font-family: var(--C); font-size: .52rem;
+    letter-spacing: .32em; text-transform: uppercase;
+    color: var(--nc); opacity: .55; text-align: center; margin-bottom: 0;
+  }
+
+  /* ── HEADER ── */
+  .enc-header {
+    text-align: center;
+    padding: 40px 0 32px;
+  }
+  .enc-numero {
+    display: block; font-family: var(--C); font-size: .54rem;
+    letter-spacing: .4em; text-transform: uppercase;
+    color: var(--or); opacity: .7; margin-bottom: 14px;
+  }
+  .enc-titulo {
+    font-family: var(--CD); font-size: clamp(1.3rem, 4vw, 1.85rem);
+    font-weight: 400; color: var(--nc); line-height: 1.4; margin-bottom: 22px;
+  }
+  .enc-div {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .enc-div-l { flex: 1; height: 1px; background: var(--rgs); }
+  .enc-div-s { color: var(--rg); font-size: .75rem; }
+
+  /* ── INTRO ── */
+  .intro-txt {
+    font-size: 1.05rem; line-height: 1.9; color: var(--tm);
+    margin-bottom: 36px;
+  }
+  .intro-txt p { margin-bottom: 10px; }
+  .intro-txt p.small-gap { margin-bottom: 4px; }
+  .intro-txt p:last-child { margin-bottom: 0; }
+  .intro-txt em { font-style: italic; }
+  .intro-txt .vers-inline {
+    display: block; font-style: italic; margin: 18px 0;
+    color: var(--nc); text-align: center; font-size: 1.07rem;
+  }
+
+  /* ── DIVISORES ── */
+  .divisor {
+    display: flex; align-items: center; gap: 14px; margin: 40px 0;
+  }
+  .divisor-l { flex: 1; height: 1px; background: var(--rgs); }
+  .divisor-s { color: var(--rg); font-size: .75rem; }
+
+  /* ── SECCIÓN LABEL ── */
+  .enc-label {
+    display: block; font-family: var(--C); font-size: .52rem;
+    letter-spacing: .35em; text-transform: uppercase;
+    color: var(--ts); opacity: .42; text-align: center; margin-bottom: 28px;
+  }
+
+  /* ══════════════════════════════════════════
+     CUSTODIA + PIEDRAS
+  ══════════════════════════════════════════ */
+  .custodia-escena {
+    position: relative;
+    width: min(580px, 100%);
+    height: 330px;
+    margin: 0 auto;
+  }
+
+  /* SVG custodia — arranca casi invisible */
+  #custodia-svg {
+    position: absolute;
+    left: 50%; top: 0;
+    transform: translateX(-50%);
+    width: 220px; height: 310px;
+    opacity: .06;
+    transition: opacity 1s ease, filter 1.4s ease;
+    pointer-events: none;
+  }
+  #custodia-svg.revelada {
+    opacity: 1;
+    filter: drop-shadow(0 0 22px rgba(166,124,58,.5));
+  }
+
+  /* CAPA PIEDRAS */
+  .piedra-layer { position: absolute; inset: 0; }
+
+  /* Cada piedra */
+  .piedra {
+    position: absolute;
+    background: var(--st);
+    color: #F0EDD8;
+    font-family: var(--G); font-style: italic; font-size: .85rem;
+    line-height: 1.25;
+    padding: 10px 16px;
+    cursor: pointer; user-select: none;
+    text-align: center;
+    transition: transform .75s cubic-bezier(.55,0,.45,1),
+                opacity .75s ease,
+                box-shadow .18s;
+    box-shadow: 0 4px 14px rgba(30,30,40,.28), inset 0 1px 0 rgba(255,255,255,.07);
+  }
+  .piedra:hover {
+    background: var(--stl);
+    box-shadow: 0 7px 22px rgba(30,30,40,.38), inset 0 1px 0 rgba(255,255,255,.1);
+  }
+
+  /* Formas orgánicas */
+  .piedra:nth-child(1) { border-radius: 44% 56% 38% 62% / 52% 44% 56% 48%; }
+  .piedra:nth-child(2) { border-radius: 58% 42% 64% 36% / 46% 58% 42% 54%; }
+  .piedra:nth-child(3) { border-radius: 36% 64% 50% 50% / 60% 40% 60% 40%; }
+  .piedra:nth-child(4) { border-radius: 62% 38% 42% 58% / 48% 62% 38% 52%; }
+  .piedra:nth-child(5) { border-radius: 50% 50% 38% 62% / 40% 60% 40% 60%; }
+  .piedra:nth-child(6) { border-radius: 40% 60% 56% 44% / 54% 46% 54% 46%; }
+  .piedra:nth-child(7) { border-radius: 52% 48% 44% 56% / 58% 42% 58% 42%; }
+  .piedra:nth-child(8) { border-radius: 46% 54% 60% 40% / 44% 56% 44% 56%; }
+
+  /* Posiciones iniciales (sobre la custodia, centrada en la escena) */
+  .piedra[data-idx="0"] { top: 28px;  left: 182px; width: 108px; transform: rotate(-6deg); }
+  .piedra[data-idx="1"] { top: 30px;  left: 298px; width: 102px; transform: rotate(8deg);  }
+  .piedra[data-idx="2"] { top: 98px;  left: 152px; width: 115px; transform: rotate(-11deg);}
+  .piedra[data-idx="3"] { top: 100px; left: 302px; width: 98px;  transform: rotate(5deg);  }
+  .piedra[data-idx="4"] { top: 170px; left: 168px; width: 108px; transform: rotate(-18deg);}
+  .piedra[data-idx="5"] { top: 172px; left: 298px; width: 96px;  transform: rotate(9deg);  }
+  .piedra[data-idx="6"] { top: 244px; left: 155px; width: 126px; transform: rotate(-7deg); }
+  .piedra[data-idx="7"] { top: 245px; left: 300px; width: 98px;  transform: rotate(12deg); }
+
+  /* Posiciones de destino al mover (hacia los lados, fuera del área de la custodia) */
+  .piedra[data-idx="0"].movida { transform: translate(-172px, 28px)  rotate(-22deg) scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+  .piedra[data-idx="1"].movida { transform: translate(148px,  20px)  rotate(18deg)  scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+  .piedra[data-idx="2"].movida { transform: translate(-142px, 30px)  rotate(-9deg)  scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+  .piedra[data-idx="3"].movida { transform: translate(150px,  25px)  rotate(24deg)  scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+  .piedra[data-idx="4"].movida { transform: translate(-158px, 32px)  rotate(-26deg) scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+  .piedra[data-idx="5"].movida { transform: translate(152px,  22px)  rotate(14deg)  scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+  .piedra[data-idx="6"].movida { transform: translate(-145px, 24px)  rotate(-16deg) scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+  .piedra[data-idx="7"].movida { transform: translate(150px,  18px)  rotate(20deg)  scale(.68); opacity: .32; cursor: default; pointer-events: none; }
+
+  /* Mobile: todas caen hacia abajo */
+  @media (max-width: 559px) {
+    .custodia-escena { height: 280px; }
+    .piedra { font-size: .78rem; padding: 8px 12px; }
+    .piedra[data-idx="0"] { top: 18px; left: 95px;  width: 95px;  }
+    .piedra[data-idx="1"] { top: 20px; left: 195px; width: 88px;  }
+    .piedra[data-idx="2"] { top: 80px; left: 75px;  width: 100px; }
+    .piedra[data-idx="3"] { top: 82px; left: 196px; width: 85px;  }
+    .piedra[data-idx="4"] { top: 148px; left: 82px; width: 95px;  }
+    .piedra[data-idx="5"] { top: 150px; left: 192px; width: 84px; }
+    .piedra[data-idx="6"] { top: 212px; left: 70px;  width: 112px;}
+    .piedra[data-idx="7"] { top: 213px; left: 190px; width: 85px; }
+    .piedra[data-idx="0"].movida,
+    .piedra[data-idx="1"].movida,
+    .piedra[data-idx="2"].movida,
+    .piedra[data-idx="3"].movida,
+    .piedra[data-idx="4"].movida,
+    .piedra[data-idx="5"].movida,
+    .piedra[data-idx="6"].movida,
+    .piedra[data-idx="7"].movida {
+      transform: translateY(120px) scale(.55);
+      opacity: .18;
+    }
+    #custodia-svg { width: 180px; height: 260px; }
+  }
+
+  /* Hint bajo la escena */
+  .piedras-hint {
+    font-family: var(--C); font-size: .46rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--ts); opacity: .38;
+    text-align: center; margin-top: 16px;
+    transition: opacity .5s;
+  }
+  .piedras-hint.oculto { opacity: 0; }
+
+  /* Versículo revelado */
+  .vers-reveal {
+    margin-top: 28px; text-align: center;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity 1s ease, transform 1s ease;
+    pointer-events: none;
+  }
+  .vers-reveal.vis { opacity: 1; transform: none; pointer-events: all; }
+  .vers-reveal-deco { display: block; color: var(--rg); font-size: .8rem; margin-bottom: 14px; }
+  .vers-reveal-txt {
+    font-style: italic; font-size: clamp(1.05rem, 3.5vw, 1.35rem);
+    color: var(--nc); line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .vers-reveal-ref {
+    font-family: var(--C); font-size: .44rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--or); opacity: .7;
+  }
+
+  /* ── CUERPO (texto genérico) ── */
+  .cuerpo {
+    font-size: 1.05rem; line-height: 1.9; color: var(--tm);
+    margin-bottom: 28px;
+  }
+  .cuerpo p { margin-bottom: 14px; }
+  .cuerpo p:last-child { margin-bottom: 0; }
+  .cuerpo em { font-style: italic; }
+
+  /* ── FRASE DESTACADA ── */
+  .frase-destacada {
+    border-top: 1px solid var(--rgs);
+    border-bottom: 1px solid var(--rgs);
+    padding: 28px 0; margin: 32px 0; text-align: center;
+  }
+  .frase-destacada p {
+    font-family: var(--G); font-style: italic;
+    font-size: clamp(1.05rem, 3vw, 1.22rem);
+    color: var(--nc); line-height: 1.75;
+  }
+
+  /* ══════════════════════════════════════════
+     LÍNEA DE TIEMPO
+  ══════════════════════════════════════════ */
+  .tl-wrap {
+    position: relative;
+    padding-left: 44px;
+  }
+  /* La línea vertical */
+  .tl-wrap::before {
+    content: '';
+    position: absolute;
+    left: 9px; top: 12px; bottom: 12px;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--rg) 8%, var(--rg) 92%, transparent);
+  }
+
+  .tl-nodo {
+    position: relative;
+    margin-bottom: 28px;
+  }
+  /* El punto en la línea */
+  .tl-nodo::before {
+    content: '';
+    position: absolute;
+    left: -39px; top: 22px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--or);
+    border: 2px solid var(--p);
+    box-shadow: 0 0 0 2px var(--or);
+    transition: box-shadow .3s;
+  }
+  .tl-nodo.abierto::before {
+    box-shadow: 0 0 0 4px rgba(166,124,58,.25);
+  }
+  /* Punto especial para Sophi */
+  .tl-nodo.tl-sophi::before {
+    background: var(--nc);
+    box-shadow: 0 0 0 2px var(--nc);
+  }
+
+  .tl-anio {
+    font-family: var(--C); font-size: .4rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--or); opacity: .7;
+    margin-bottom: 6px;
+  }
+
+  .tl-card {
+    display: flex; align-items: center; gap: 16px;
+    padding: 14px 16px;
+    background: var(--pd); border: 1px solid var(--rgs);
+    border-radius: 2px; cursor: pointer;
+    transition: background .2s, box-shadow .2s;
+  }
+  .tl-card:hover {
+    background: var(--rgs);
+    box-shadow: 0 2px 10px rgba(166,124,58,.12);
+  }
+  .tl-foto {
+    width: 62px; height: 62px; border-radius: 50%;
+    object-fit: cover; object-position: center top;
+    flex-shrink: 0;
+    background: var(--rg);
+    border: 2px solid var(--rgs);
+  }
+  .tl-foto-ph {
+    width: 62px; height: 62px; border-radius: 50%;
+    background: var(--rgs); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--C); color: var(--rg); font-size: .65rem;
+  }
+  .tl-card-txt { flex: 1; }
+  .tl-nombre {
+    font-family: var(--C); font-size: .56rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--nc); margin-bottom: 4px;
+  }
+  .tl-hint-txt {
+    font-family: var(--G); font-style: italic; font-size: .88rem;
+    color: var(--ts); opacity: .6;
+  }
+  .tl-card-arrow {
+    color: var(--or); opacity: .5; font-size: .85rem;
+    transition: transform .3s;
+  }
+  .tl-nodo.abierto .tl-card-arrow { transform: rotate(90deg); opacity: .9; }
+
+  /* Panel expandible */
+  .tl-panel {
+    max-height: 0; overflow: hidden;
+    transition: max-height .6s ease, padding .4s ease;
+    padding: 0 4px;
+  }
+  .tl-nodo.abierto .tl-panel { max-height: 600px; padding: 20px 4px 8px; }
+
+  .tl-titulo-panel {
+    font-family: var(--G); font-style: italic;
+    font-size: 1.02rem; color: var(--nc); line-height: 1.65;
+    margin-bottom: 16px; text-align: center;
+  }
+
+  .tl-video {
+    width: 100%; border-radius: 2px;
+    background: var(--nc);
+    display: block;
+  }
+
+  /* Nodo Sophi — sin video, solo pregunta */
+  .tl-sophi .tl-pregunta {
+    font-family: var(--CD); font-size: clamp(1.1rem, 3.5vw, 1.35rem);
+    color: var(--nc); line-height: 1.6; text-align: center;
+    padding: 8px 0 12px;
+  }
+
+  /* ── ORACIÓN ── */
+  .oracion-enc {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--ts); opacity: .42;
+    text-align: center; margin-bottom: 14px;
+  }
+  .oracion-box { border: 1px solid var(--rgs); border-radius: 2px; overflow: hidden; }
+  .oracion-cab {
+    padding: 16px 24px; text-align: center;
+    border-bottom: 1px solid var(--rgs); background: var(--pd);
+  }
+  .oracion-cab-cruz { font-size: 1rem; color: var(--rg); margin-bottom: 5px; }
+  .oracion-cab-titulo {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ts); opacity: .7;
+  }
+  .oracion-cuerpo { padding: 26px 28px 24px; }
+  .oracion-txt {
+    font-size: 1.05rem; line-height: 2; color: var(--tm);
+    font-style: italic; text-align: center;
+  }
+  .oracion-txt p { margin-bottom: 6px; }
+  .oracion-txt p:last-child { margin-bottom: 0; }
+
+  /* ── BOTÓN FINAL ── */
+  .btn-final-wrap {
+    text-align: center; margin: 44px 0 28px;
+  }
+  #btn-final {
+    font-family: var(--C); font-size: .56rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--p);
+    background: var(--nc); border: none;
+    padding: 16px 36px; cursor: pointer; border-radius: 1px;
+    transition: background .25s, letter-spacing .25s;
+  }
+  #btn-final:hover {
+    background: var(--or); letter-spacing: .3em;
+  }
+
+  /* ── PIE ── */
+  .enc-pie {
+    text-align: center; padding: 20px 0;
+    border-top: 1px solid var(--rgs); margin-top: 28px;
+  }
+  .btn-inicio {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--ts); text-decoration: none;
+    opacity: .4; transition: opacity .2s;
+  }
+  .btn-inicio:hover { opacity: 1; }
+
+  /* ══════════════════════════════════════════
+     OVERLAY FINAL
+  ══════════════════════════════════════════ */
+  #overlay-final {
+    position: fixed; inset: 0;
+    background: rgba(10, 8, 6, .96);
+    z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 1.2s ease;
+  }
+  #overlay-final.vis { opacity: 1; pointer-events: all; }
+
+  .ov-content { text-align: center; padding: 32px; max-width: 520px; }
+  .ov-deco { display: block; color: var(--rg); font-size: .85rem; margin-bottom: 32px; opacity: .5; }
+
+  .ov-vers {
+    font-family: var(--G); font-style: italic;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    color: #F0EDD8; line-height: 1.85; margin-bottom: 20px;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 1.2s ease 1.8s, transform 1.2s ease 1.8s;
+  }
+  #overlay-final.vis .ov-vers { opacity: 1; transform: none; }
+
+  .ov-ref {
+    display: block; font-family: var(--C); font-size: .44rem;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: var(--or); opacity: 0;
+    transition: opacity 1s ease 3.2s;
+    margin-bottom: 44px;
+  }
+  #overlay-final.vis .ov-ref { opacity: .75; }
+
+  .ov-link {
+    display: inline-block; font-family: var(--C); font-size: .5rem;
+    letter-spacing: .28em; text-transform: uppercase;
+    color: rgba(240,237,216,.35); text-decoration: none;
+    opacity: 0; transition: opacity .8s ease 4.8s, color .2s;
+  }
+  #overlay-final.vis .ov-link { opacity: 1; }
+  .ov-link:hover { color: var(--or); }
+
+  /* ── KEY para cerrar overlay ── */
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="nav-sup">← Inicio</a>
+
+<div class="contenedor">
+
+  <!-- ── JPII ── -->
+  <div class="santo-apertura">
+    <div class="santo-img-wrap">
+      <img src="img/san-juanpablo.jpg"
+           onerror="this.style.display='none'"
+           alt="San Juan Pablo II" />
+      <span class="santo-img-ph">†</span>
+    </div>
+    <span class="santo-nombre">San Juan Pablo II</span>
+  </div>
+
+  <!-- ── HEADER ── -->
+  <div class="enc-header">
+    <span class="enc-numero">Decimosexto Encuentro</span>
+    <h1 class="enc-titulo">Para cuando tengas que<br>perdonar a alguien.</h1>
+    <div class="enc-div">
+      <span class="enc-div-l"></span>
+      <span class="enc-div-s">†</span>
+      <span class="enc-div-l"></span>
+    </div>
+  </div>
+
+  <!-- ── INTRO ── -->
+  <div class="intro-txt">
+    <p>Hola, Sophi. Si llegaste a este encuentro, probablemente alguien hirió tus sentimientos.</p>
+    <p class="small-gap">Quizás fue una mentira.</p>
+    <p class="small-gap">Una traición.</p>
+    <p class="small-gap">Un abandono.</p>
+    <p class="small-gap">Una injusticia.</p>
+    <p>Si es así, quiero decirte algo importante antes de continuar:</p>
+    <p>Dios nunca te pide que llames bueno a lo que fue malo. Tampoco que olvides lo que pasó. Y tampoco que ignores la injusticia.</p>
+    <p>El verdadero perdón no empieza sino por reconocer la herida. Enfrentándola con el dolor que esto significa.</p>
+    <p>Muchas veces, si esa herida permanece mucho tiempo sin ser entregada a Dios, fácilmente puede transformarse en ira, resentimiento e incluso deseos de venganza. Y el peso que carga uno con esos sentimientos es completamente agotador. Nos termina esclavizando.</p>
+    <p>Dios no nos creó para ser esclavos. Nos creó para ser libres.</p>
+    <p>La verdadera libertad no consiste en hacer lo que sentimos en cada momento. Consiste en poder elegir el bien incluso cuando el corazón nos empuja en otra dirección.</p>
+    <p>Por eso quiero hablarte con la verdad en este encuentro. Porque el mismo Cristo dijo:</p>
+    <span class="vers-inline">«Y conoceréis la verdad, y la verdad os hará libres.»</span>
+    <p>Así que no te hablaré de la persona que te hirió.</p>
+    <p>Te hablaré de ti.</p>
+    <p>Pues tú no puedes decidir por quien te hirió, pero sí puedes decidir cómo responderás delante de Dios.</p>
+  </div>
+
+  <!-- ── DIVISOR ── -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ PIEDRAS + CUSTODIA ══ -->
+  <span class="enc-label">Las piedras que cargas</span>
+
+  <div class="custodia-escena">
+
+    <!-- Custodia SVG -->
+    <svg id="custodia-svg" viewBox="0 0 220 310"
+         fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g id="custodia-estatica">
+        <!-- Círculo exterior de rayos -->
+        <circle cx="110" cy="120" r="72" stroke="#A67C3A" stroke-width="1.4"/>
+        <!-- Aro host -->
+        <circle cx="110" cy="120" r="40" stroke="#A67C3A" stroke-width="1.9"/>
+        <!-- Interior host -->
+        <circle cx="110" cy="120" r="33"
+                fill="rgba(166,124,58,0.1)" stroke="#A67C3A" stroke-width=".9"/>
+        <!-- Tallo -->
+        <rect x="104" y="192" width="12" height="50" rx="3" fill="#A67C3A"/>
+        <!-- Nudo -->
+        <ellipse cx="110" cy="204" rx="19" ry="10" fill="#A67C3A"/>
+        <ellipse cx="110" cy="204" rx="13" ry="6.5" fill="#C49A52" opacity=".5"/>
+        <!-- Base -->
+        <path d="M 63 258 Q 67 246 110 246 Q 153 246 157 258 L 165 274 Q 128 270 110 270 Q 92 270 55 274 Z"
+              fill="#A67C3A"/>
+        <ellipse cx="110" cy="274" rx="56" ry="8" fill="#A67C3A"/>
+        <ellipse cx="110" cy="274" rx="47" ry="5.5" fill="#C49A52" opacity=".45"/>
+      </g>
+    </svg>
+
+    <!-- Piedras -->
+    <div class="piedra-layer">
+      <div class="piedra" data-idx="0">Injusticia</div>
+      <div class="piedra" data-idx="1">Traición</div>
+      <div class="piedra" data-idx="2">Humillación</div>
+      <div class="piedra" data-idx="3">Mentira</div>
+      <div class="piedra" data-idx="4">Abandono</div>
+      <div class="piedra" data-idx="5">Rencor</div>
+      <div class="piedra" data-idx="6">Deseos de<br>venganza</div>
+      <div class="piedra" data-idx="7">Orgullo</div>
+    </div>
+
+  </div><!-- /custodia-escena -->
+
+  <p class="piedras-hint" id="piedras-hint">Toca cada piedra para soltarla</p>
+
+  <!-- Versículo que se revela -->
+  <div class="vers-reveal" id="vers-reveal">
+    <span class="vers-reveal-deco">†</span>
+    <p class="vers-reveal-txt">«Padre, perdónalos,<br>porque no saben lo que hacen.»</p>
+    <span class="vers-reveal-ref">Lucas 23, 34</span>
+  </div>
+
+  <!-- ── DIVISOR ── -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ── LECCIÓN ── -->
+  <span class="enc-label">Lección</span>
+
+  <div class="cuerpo">
+    <p>Perdonar nunca ha sido decir que no dolió.</p>
+    <p>Perdonar tampoco es volver a confiar inmediatamente. Y muchas veces tampoco significa reconciliarse inmediatamente.</p>
+    <p>Hay heridas que exigen distancia. Hay injusticias que deben repararse. Hay delitos que deben denunciarse.</p>
+    <p>El perdón cristiano no elimina la justicia. La purifica.</p>
+    <p>Perdonar significa algo mucho más profundo: renunciar a que el odio tenga la última palabra sobre tu corazón.</p>
+    <p>Porque cuando Cristo nos mandó perdonar, no estaba defendiendo a quienes hacen el mal. Estaba defendiendo el corazón de quienes lo sufren.</p>
+  </div>
+
+  <!-- ── FRASE ── -->
+  <div class="frase-destacada">
+    <p>El único hombre que podía exigir justicia perfecta<br>eligió ofrecer misericordia perfecta.</p>
+  </div>
+
+  <!-- ── DIVISOR ── -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ LÍNEA DE TIEMPO ══ -->
+  <span class="enc-label">La cadena del perdón</span>
+
+  <div class="tl-wrap">
+
+    <!-- 1. CRISTO -->
+    <div class="tl-nodo" id="tl-0">
+      <p class="tl-anio">33 d.C.</p>
+      <div class="tl-card" onclick="toggleTL(0)">
+        <img class="tl-foto" src="img/enc16-cristo.jpg"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+             alt="Cristo"/>
+        <div class="tl-foto-ph" style="display:none">†</div>
+        <div class="tl-card-txt">
+          <p class="tl-nombre">Cristo</p>
+          <p class="tl-hint-txt" id="th-0">Toca para conocer su historia</p>
+        </div>
+        <span class="tl-card-arrow">›</span>
+      </div>
+      <div class="tl-panel">
+        <p class="tl-titulo-panel">Desde la cruz, perdonó a quienes lo crucificaban.</p>
+        <video class="tl-video" controls preload="none" playsinline
+               src="video/enc16-cristo.mp4"
+               onerror="this.style.display='none'"></video>
+      </div>
+    </div>
+
+    <!-- 2. SAN ESTEBAN -->
+    <div class="tl-nodo" id="tl-1">
+      <p class="tl-anio">~36 d.C.</p>
+      <div class="tl-card" onclick="toggleTL(1)">
+        <img class="tl-foto" src="img/enc16-esteban.jpg"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+             alt="San Esteban"/>
+        <div class="tl-foto-ph" style="display:none">†</div>
+        <div class="tl-card-txt">
+          <p class="tl-nombre">San Esteban</p>
+          <p class="tl-hint-txt" id="th-1">Toca para conocer su historia</p>
+        </div>
+        <span class="tl-card-arrow">›</span>
+      </div>
+      <div class="tl-panel">
+        <p class="tl-titulo-panel">Mientras lo apedreaban, perdonó a sus asesinos como Cristo lo hizo.</p>
+        <video class="tl-video" controls preload="none" playsinline
+               src="video/enc16-esteban.mp4"
+               onerror="this.style.display='none'"></video>
+      </div>
+    </div>
+
+    <!-- 3. SANTA MARÍA GORETTI -->
+    <div class="tl-nodo" id="tl-2">
+      <p class="tl-anio">1902</p>
+      <div class="tl-card" onclick="toggleTL(2)">
+        <img class="tl-foto" src="img/enc16-goretti.jpg"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+             alt="Santa María Goretti"/>
+        <div class="tl-foto-ph" style="display:none">†</div>
+        <div class="tl-card-txt">
+          <p class="tl-nombre">Santa María Goretti</p>
+          <p class="tl-hint-txt" id="th-2">Toca para conocer su historia</p>
+        </div>
+        <span class="tl-card-arrow">›</span>
+      </div>
+      <div class="tl-panel">
+        <p class="tl-titulo-panel">A sus once años, le ofreció el perdón al hombre que la hirió de muerte.</p>
+        <video class="tl-video" controls preload="none" playsinline
+               src="video/enc16-goretti.mp4"
+               onerror="this.style.display='none'"></video>
+      </div>
+    </div>
+
+    <!-- 4. SAN JUAN PABLO II -->
+    <div class="tl-nodo" id="tl-3">
+      <p class="tl-anio">1983</p>
+      <div class="tl-card" onclick="toggleTL(3)">
+        <img class="tl-foto" src="img/enc16-jpii.jpg"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+             alt="San Juan Pablo II"/>
+        <div class="tl-foto-ph" style="display:none">†</div>
+        <div class="tl-card-txt">
+          <p class="tl-nombre">San Juan Pablo II</p>
+          <p class="tl-hint-txt" id="th-3">Toca para conocer su historia</p>
+        </div>
+        <span class="tl-card-arrow">›</span>
+      </div>
+      <div class="tl-panel">
+        <p class="tl-titulo-panel">Fue a la cárcel a dar personalmente el perdón al hombre que intentó matarlo.</p>
+        <video class="tl-video" controls preload="none" playsinline
+               src="video/enc16-jpii.mp4"
+               onerror="this.style.display='none'"></video>
+      </div>
+    </div>
+
+    <!-- 5. BRANDT JEAN -->
+    <div class="tl-nodo" id="tl-4">
+      <p class="tl-anio">2019</p>
+      <div class="tl-card" onclick="toggleTL(4)">
+        <img class="tl-foto" src="img/enc16-brandt.jpg"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+             alt="Brandt Jean"/>
+        <div class="tl-foto-ph" style="display:none">†</div>
+        <div class="tl-card-txt">
+          <p class="tl-nombre">Brandt Jean</p>
+          <p class="tl-hint-txt" id="th-4">Toca para conocer su historia</p>
+        </div>
+        <span class="tl-card-arrow">›</span>
+      </div>
+      <div class="tl-panel">
+        <p class="tl-titulo-panel">Joven fue al juicio de la asesina de su hermano y la perdonó.</p>
+        <video class="tl-video" controls preload="none" playsinline
+               src="video/enc16-brandt.mp4"
+               onerror="this.style.display='none'"></video>
+      </div>
+    </div>
+
+    <!-- 6. SOPHI -->
+    <div class="tl-nodo tl-sophi" id="tl-5">
+      <p class="tl-anio">Hoy</p>
+      <div class="tl-card" onclick="toggleTL(5)">
+        <img class="tl-foto" src="img/sophi.jpg"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+             alt="Sophi"/>
+        <div class="tl-foto-ph" style="display:none">†</div>
+        <div class="tl-card-txt">
+          <p class="tl-nombre">Sophi</p>
+          <p class="tl-hint-txt" id="th-5">Toca para continuar</p>
+        </div>
+        <span class="tl-card-arrow">›</span>
+      </div>
+      <div class="tl-panel">
+        <p class="tl-pregunta">¿A quién Dios te está dando la oportunidad de perdonar hoy?</p>
+      </div>
+    </div>
+
+  </div><!-- /tl-wrap -->
+
+  <!-- ── DIVISOR ── -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ── ORACIÓN ── -->
+  <p class="oracion-enc">Oremos</p>
+  <div class="oracion-box">
+    <div class="oracion-cab">
+      <p class="oracion-cab-cruz">†</p>
+      <p class="oracion-cab-titulo">Oración por el perdón</p>
+    </div>
+    <div class="oracion-cuerpo">
+      <div class="oracion-txt">
+        <p>Señor,</p>
+        <p>Tú conoces las heridas que todavía guardo en mi corazón.</p>
+        <p>No te pido que borres mi memoria.<br>
+        Te pido que sanes aquello que aún no he sabido entregarte.</p>
+        <p>Enséñame a perdonar como Tú me perdonas.<br>
+        No porque el mal haya sido pequeño,<br>
+        sino porque tu misericordia es infinitamente más grande.</p>
+        <p>Haz que nunca permita que el resentimiento<br>
+        ocupe el lugar que solo a Ti te pertenece.</p>
+        <p>Amén.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BOTÓN FINAL ── -->
+  <div class="btn-final-wrap">
+    <button id="btn-final" onclick="finalizarEncuentro()">
+      Déjalo a los pies de Cristo
+    </button>
+  </div>
+
+  <!-- ── PIE ── -->
+  <div class="enc-pie">
+    <a href="index.html" class="btn-inicio">← Volver al inicio</a>
+  </div>
+
+</div><!-- /contenedor -->
+
+<!-- ── OVERLAY FINAL ── -->
+<div id="overlay-final">
+  <div class="ov-content">
+    <span class="ov-deco">†</span>
+    <p class="ov-vers">
+      «Vengan a mí todos los que están<br>
+      cansados y agobiados,<br>
+      y yo los aliviaré.»
+    </p>
+    <span class="ov-ref">Mt 11, 28</span>
+    <a href="index.html" class="ov-link">← Volver al inicio</a>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   GENERAR RAYOS DE LA CUSTODIA
+═══════════════════════════════════════════ */
+(function() {
+  const svg    = document.getElementById('custodia-svg');
+  const base   = document.getElementById('custodia-estatica');
+  const ns     = 'http://www.w3.org/2000/svg';
+  const cx = 110, cy = 120;
+  const innerR = 42, numRays = 24;
+
+  for (let i = 0; i < numRays; i++) {
+    const angle  = (i / numRays) * Math.PI * 2 - Math.PI / 2;
+    const isLong = i % 2 === 0;
+    const outerR = isLong ? 105 : 72;
+    const sw     = isLong ? 2.3 : 1.5;
+
+    const x1 = cx + Math.cos(angle) * innerR;
+    const y1 = cy + Math.sin(angle) * innerR;
+    const x2 = cx + Math.cos(angle) * outerR;
+    const y2 = cy + Math.sin(angle) * outerR;
+
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', x1.toFixed(1));
+    line.setAttribute('y1', y1.toFixed(1));
+    line.setAttribute('x2', x2.toFixed(1));
+    line.setAttribute('y2', y2.toFixed(1));
+    line.setAttribute('stroke', '#A67C3A');
+    line.setAttribute('stroke-width', sw);
+    svg.insertBefore(line, base);
+  }
+})();
+
+/* ═══════════════════════════════════════════
+   LÓGICA DE PIEDRAS
+═══════════════════════════════════════════ */
+const TOTAL   = 8;
+let movidas   = 0;
+const custSVG = document.getElementById('custodia-svg');
+const hint    = document.getElementById('piedras-hint');
+const versRev = document.getElementById('vers-reveal');
+
+document.querySelectorAll('.piedra').forEach(piedra => {
+  piedra.addEventListener('click', () => {
+    if (piedra.classList.contains('movida')) return;
+    piedra.classList.add('movida');
+    movidas++;
+
+    if (movidas === 1) hint.classList.add('oculto');
+
+    // Custodia se va revelando
+    const prog = movidas / TOTAL;
+    custSVG.style.opacity = (0.06 + prog * 0.85).toFixed(3);
+
+    // Al mover todas: custodia completa + verso
+    if (movidas === TOTAL) {
+      setTimeout(() => {
+        custSVG.classList.add('revelada');
+        versRev.classList.add('vis');
+      }, 750);
+    }
+  });
+});
+
+/* ═══════════════════════════════════════════
+   LÍNEA DE TIEMPO
+═══════════════════════════════════════════ */
+let tlAbierto = null;
+
+function toggleTL(idx) {
+  const nodo = document.getElementById('tl-' + idx);
+
+  // Si este ya está abierto, cerrar
+  if (tlAbierto === idx) {
+    nodo.classList.remove('abierto');
+    tlAbierto = null;
+    // Pausar video si existe
+    const vid = nodo.querySelector('video');
+    if (vid) { vid.pause(); }
+    return;
+  }
+
+  // Cerrar el anterior
+  if (tlAbierto !== null) {
+    const prev = document.getElementById('tl-' + tlAbierto);
+    if (prev) {
+      prev.classList.remove('abierto');
+      const prevVid = prev.querySelector('video');
+      if (prevVid) { prevVid.pause(); }
+    }
+  }
+
+  nodo.classList.add('abierto');
+  tlAbierto = idx;
+}
+
+/* ═══════════════════════════════════════════
+   BOTÓN FINAL
+═══════════════════════════════════════════ */
+function finalizarEncuentro() {
+  // Mover las piedras que quedaron (por si no las movió todas)
+  document.querySelectorAll('.piedra:not(.movida)').forEach(p => {
+    p.classList.add('movida');
+  });
+
+  // Custodia al máximo
+  custSVG.classList.add('revelada');
+
+  // Overlay tras un breve silencio
+  setTimeout(() => {
+    document.getElementById('overlay-final').classList.add('vis');
+  }, 900);
+}
+
+// ESC cierra el overlay
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.getElementById('overlay-final').classList.remove('vis');
+  }
+});
+</script>
+
+</body>
+</html>
