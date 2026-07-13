@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para cuando quieras recordar quién eres — 18 Encuentros</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+  :root {
+    --p:   #FDFBF7;
+    --pd:  #F5EDD8;
+    --or:  #A67C3A;
+    --ors: #C49A52;
+    --ord: #6B4E1A;
+    --ort: rgba(166,124,58,.08);
+    --nc:  #2C1A06;
+    --t:   #1C1917;
+    --tm:  #3D3830;
+    --ts:  #6B645A;
+    --rg:  #D4C4A0;
+    --rgs: #E8DECA;
+    --G:   'EB Garamond', Georgia, serif;
+    --C:   'Cinzel', serif;
+    --CD:  'Cinzel Decorative', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--p);
+    font-family: var(--G);
+    color: var(--t);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  .nav-sup {
+    display: block; padding: 22px 28px 0;
+    font-family: var(--C); font-size: .54rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--ts); text-decoration: none;
+    opacity: .45; transition: opacity .2s;
+  }
+  .nav-sup:hover { opacity: 1; }
+
+  /* ── CONTENEDOR ── */
+  .contenedor {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 28px 80px;
+  }
+
+  /* ── HEADER ── */
+  .enc-header {
+    text-align: center;
+    padding: 48px 0 40px;
+  }
+  .enc-numero {
+    font-family: var(--C); font-size: .54rem; letter-spacing: .4em;
+    text-transform: uppercase; color: var(--or); opacity: .7;
+    margin-bottom: 16px; display: block;
+  }
+  .enc-titulo {
+    font-family: var(--CD); font-size: clamp(1.3rem, 4vw, 1.9rem);
+    font-weight: 400; color: var(--nc); line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .enc-div {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .enc-div-l { flex: 1; height: 1px; background: var(--rgs); }
+  .enc-div-s { color: var(--or); font-size: .75rem; opacity: .6; }
+
+  /* ── CUERPO TEXT ── */
+  .cuerpo {
+    font-size: 1.05rem; line-height: 1.88; color: var(--tm);
+    margin-bottom: 28px;
+  }
+  .cuerpo p { margin-bottom: 14px; }
+  .cuerpo p:last-child { margin-bottom: 0; }
+  .cuerpo em { font-style: italic; }
+
+  /* ── PREGUNTA GRANDE ── */
+  .pregunta-grande {
+    font-family: var(--CD);
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+    font-weight: 400; color: var(--nc);
+    text-align: center; line-height: 1.4;
+    margin: 36px 0;
+  }
+
+  /* ── TRES MIRADAS ── */
+  .miradas {
+    border-left: 2px solid var(--or);
+    padding-left: 22px;
+    margin: 24px 0 28px;
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .mirada-item {
+    font-family: var(--C); font-size: .9rem; letter-spacing: .1em;
+    color: var(--nc); padding: 7px 0; opacity: .85;
+  }
+  .mirada-item:not(:last-child) {
+    border-bottom: 1px solid var(--rgs);
+  }
+
+  /* ── DIVISOR ── */
+  .divisor {
+    display: flex; align-items: center; gap: 16px;
+    margin: 44px 0;
+  }
+  .divisor-l { flex: 1; height: 1px; background: var(--rgs); }
+  .divisor-s { color: var(--rg); font-size: .7rem; }
+
+  /* ── VERSÍCULO BOX ── */
+  .vers-box {
+    background: var(--ort);
+    border: 1px solid rgba(166,124,58,.2);
+    border-radius: 2px;
+    padding: 26px 28px;
+    margin: 36px 0;
+    text-align: center;
+  }
+  .vers-box-signo { font-size: .75rem; color: var(--or); opacity: .5; margin-bottom: 10px; }
+  .vers-box-txt {
+    font-style: italic; font-size: 1.08rem; color: var(--tm);
+    line-height: 1.75; margin-bottom: 12px;
+  }
+  .vers-box-ref {
+    font-family: var(--C); font-size: .44rem; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--or); opacity: .7;
+  }
+
+  /* ── CARTAS AUDIO ── */
+  .cartas-section {
+    margin: 0 0 8px;
+    display: flex; flex-direction: column; gap: 32px;
+  }
+
+  .carta-audio {
+    border: 1px solid var(--rgs); border-radius: 3px;
+    overflow: hidden; background: var(--p);
+    box-shadow: 0 2px 18px rgba(166,124,58,.07);
+  }
+
+  .carta-head {
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid var(--rgs);
+    display: flex; align-items: center; gap: 14px;
+    background: var(--pd);
+  }
+  .carta-signo {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid var(--rg); background: var(--p);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem; color: var(--or); flex-shrink: 0;
+  }
+  .carta-meta { flex: 1; }
+  .carta-numero {
+    display: block; font-family: var(--C); font-size: .44rem;
+    letter-spacing: .3em; text-transform: uppercase; color: var(--or);
+    opacity: .7; margin-bottom: 2px;
+  }
+  .carta-titulo {
+    display: block; font-family: var(--CD); font-size: 1rem;
+    font-weight: 400; color: var(--nc); line-height: 1.3;
+  }
+  .carta-palabra {
+    font-family: var(--C); font-size: .46rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--or); opacity: .5;
+    flex-shrink: 0;
+  }
+
+  .carta-foto {
+    width: 100%; aspect-ratio: 4/3;
+    overflow: hidden; background: var(--pd);
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .carta-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .carta-foto-ph {
+    position: absolute; font-family: var(--C); font-size: 1.2rem;
+    color: var(--rg); opacity: .4; pointer-events: none;
+  }
+
+  .carta-player {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; background: var(--pd);
+    border-top: 1px solid var(--rgs);
+  }
+  .audio-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid var(--or); background: transparent;
+    color: var(--or); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .8rem; flex-shrink: 0;
+    transition: background .2s, color .2s;
+  }
+  .audio-btn:hover, .audio-btn.playing { background: var(--or); color: var(--p); }
+  .audio-prog-wrap {
+    flex: 1; height: 3px; background: var(--rg);
+    border-radius: 2px; cursor: pointer; position: relative;
+  }
+  .audio-prog-fill {
+    height: 100%; background: var(--or); border-radius: 2px;
+    width: 0; pointer-events: none;
+  }
+  .audio-time {
+    font-family: var(--C); font-size: .44rem; letter-spacing: .08em;
+    color: var(--ts); flex-shrink: 0; min-width: 72px; text-align: right;
+  }
+
+  /* ── PUENTE ── */
+  .puente {
+    font-size: 1.05rem; line-height: 1.9; color: var(--tm);
+  }
+  .puente p { margin-bottom: 14px; }
+  .puente p:last-child { margin-bottom: 0; }
+  .puente em { font-style: italic; }
+  .nombre-destacado {
+    font-family: var(--C); font-size: .95rem; letter-spacing: .06em; color: var(--nc);
+  }
+  .fuente-el {
+    display: block; text-align: center; margin-top: 22px;
+    font-family: var(--CD); font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 400; color: var(--or); line-height: 1.5;
+  }
+
+  /* ── VIDEO ── */
+  .video-section { margin: 0; }
+  .video-enc {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--ts); opacity: .45;
+    text-align: center; margin-bottom: 14px;
+  }
+  .video-wrap {
+    width: 100%; aspect-ratio: 16/9;
+    background: #0D1821; border: 1px solid var(--rgs);
+    border-radius: 2px; overflow: hidden; position: relative;
+  }
+  .video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .video-ph {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px;
+  }
+  .video-ph-signo { font-size: 1.2rem; color: rgba(255,255,255,.22); }
+  .video-ph-txt {
+    font-family: var(--C); font-size: .48rem; letter-spacing: .24em;
+    text-transform: uppercase; color: rgba(255,255,255,.28);
+  }
+  .video-caption {
+    font-style: italic; font-size: .95rem; color: var(--ts);
+    text-align: center; margin-top: 16px; line-height: 1.7;
+  }
+
+  /* ── ESPEJO ── */
+  .espejo-section {
+    text-align: center;
+    padding: 52px 0 44px;
+  }
+  .espejo-invite {
+    display: block;
+    font-family: var(--C); font-size: .52rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ts); opacity: .65;
+    margin-bottom: 38px;
+  }
+  .espejo-grande {
+    width: 130px; height: 185px;
+    border-radius: 65px 65px 48px 48px;
+    border: 1.5px solid var(--rg);
+    background: linear-gradient(150deg, rgba(255,255,255,.75) 0%, var(--pd) 52%, rgba(255,255,255,.45) 100%);
+    box-shadow:
+      inset 0 4px 16px rgba(255,255,255,.9),
+      0 0 0 6px var(--p), 0 0 0 7px var(--rgs),
+      0 10px 36px rgba(166,124,58,.1);
+    margin: 0 auto;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: transform .35s, box-shadow .35s, opacity .6s;
+    animation: pulso-espejo 3.5s 2.5s ease-in-out infinite;
+  }
+  .espejo-grande:hover {
+    transform: scale(1.06);
+    box-shadow:
+      inset 0 4px 16px rgba(255,255,255,.9),
+      0 0 0 6px var(--p), 0 0 0 7.5px var(--ors),
+      0 16px 48px rgba(166,124,58,.2);
+  }
+  @keyframes pulso-espejo {
+    0%,100%{ box-shadow: inset 0 4px 16px rgba(255,255,255,.9), 0 0 0 6px var(--p), 0 0 0 7px var(--rgs), 0 10px 36px rgba(166,124,58,.08); }
+    50%{ box-shadow: inset 0 4px 16px rgba(255,255,255,.9), 0 0 0 6px var(--p), 0 0 0 7px var(--ors), 0 10px 48px rgba(166,124,58,.2); }
+  }
+  /* Silueta dentro del espejo */
+  .espejo-grande::before {
+    content:''; position:absolute;
+    width:26px; height:26px; border-radius:50%;
+    background:var(--rg); opacity:.28;
+    top:52px; left:50%; transform:translateX(-50%);
+  }
+  .espejo-grande::after {
+    content:''; position:absolute;
+    width:38px; height:62px;
+    border-radius:19px 19px 9px 9px;
+    background:var(--rg); opacity:.22;
+    top:89px; left:50%; transform:translateX(-50%);
+  }
+
+  .espejo-hint {
+    display: block; margin-top: 14px;
+    font-family: var(--C); font-size: .46rem; letter-spacing: .26em;
+    text-transform: uppercase; color: var(--ts);
+    animation: parpadeo 3s 4s ease-in-out infinite;
+  }
+  @keyframes parpadeo { 0%,100%{opacity:.18} 50%{opacity:.52} }
+
+  /* Versículo revelado */
+  .vers-revelado {
+    margin-top: 44px;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .9s ease, transform .9s ease;
+    pointer-events: none;
+  }
+  .vers-revelado.vis { opacity: 1; transform: none; pointer-events: all; }
+
+  .vers-grande {
+    font-family: var(--G); font-style: italic;
+    font-size: clamp(1.2rem, 3.8vw, 1.55rem);
+    color: var(--nc); line-height: 1.85; text-align: center;
+    margin-bottom: 14px;
+  }
+  .vers-grande-ref {
+    display: block; font-family: var(--C); font-size: .48rem;
+    letter-spacing: .25em; text-transform: uppercase;
+    color: var(--or); opacity: .75; text-align: center;
+  }
+
+  /* ── CARTA DE ANDRÉ ── */
+  .carta-andre {
+    margin: 0 0 44px;
+    background: #FAF3E4;
+    border: 1px solid var(--rg);
+    border-radius: 2px;
+    padding: 34px 32px 28px;
+    position: relative;
+    box-shadow: 0 3px 22px rgba(166,124,58,.09), 3px 3px 0 var(--rgs);
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .carta-andre.vis { opacity: 1; }
+  .carta-andre-label {
+    position: absolute; top: -10px; left: 24px;
+    background: #FAF3E4; padding: 0 8px;
+    font-family: var(--C); font-size: .44rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--or); opacity: .7;
+  }
+  .carta-andre-txt {
+    font-size: 1.05rem; line-height: 1.9; color: var(--tm); font-style: italic;
+  }
+  .carta-andre-txt p { margin-bottom: 12px; }
+  .carta-andre-txt p:last-child { margin-bottom: 0; }
+
+  /* ── PIE ── */
+  .enc-pie {
+    text-align: center; padding: 20px 0;
+    border-top: 1px solid var(--rgs);
+  }
+  .btn-inicio {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--ts); text-decoration: none;
+    opacity: .4; transition: opacity .2s;
+  }
+  .btn-inicio:hover { opacity: 1; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 560px) {
+    .contenedor { padding: 0 18px 60px; }
+    .carta-head { gap: 10px; }
+    .carta-palabra { display: none; }
+    .carta-andre { padding: 28px 22px 22px; }
+  }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="nav-sup">← Inicio</a>
+
+<div class="contenedor">
+
+  <!-- ══ HEADER ══ -->
+  <div class="enc-header">
+    <span class="enc-numero">Decimoctavo Encuentro</span>
+    <h1 class="enc-titulo">Para cuando quieras recordar<br>quién eres.</h1>
+    <div class="enc-div">
+      <span class="enc-div-l"></span>
+      <span class="enc-div-s">✦</span>
+      <span class="enc-div-l"></span>
+    </div>
+  </div>
+
+  <!-- ══ INTRODUCCIÓN ══ -->
+  <div class="cuerpo">
+    <p>Hola, Sophi. Este encuentro está hecho para situaciones en las que quieras recordar quién eres. Es un encuentro muy especial y el último de los dieciocho. Independientemente el motivo que te trajo hasta aquí, espero que sea de mucha bendición.</p>
+    <p>Empecemos con una de las preguntas más profundas del cristianismo.</p>
+  </div>
+
+  <p class="pregunta-grande">¿Quién eres?</p>
+
+  <div class="cuerpo">
+    <p>¿Quién eres cuando estás sola en tu cuarto y no hay aplausos ni hay gente mirándote? O aún una pregunta más fundamental, ¿Qué eres?</p>
+    <p>Aún no respondas.</p>
+    <p>Esto no es una entrevista de trabajo.<br>
+    No se responde leyendo un currículum.</p>
+    <p>Como dicen por ahí: <em>«primero lo primero»</em>. En lo que concierne a ti o a mí, ¿qué fue primero?</p>
+    <p>En definitiva, primero fue Dios pensando en ti, pensando en mí. Amándonos. Deseando nuestra existencia y pensando que sería buena.</p>
+    <p>Me parece que lo que hace distinto este encuentro de los otros diecisiete es que este no habla de situaciones particulares. Habla de identidad.</p>
+    <p>Y en la antropología católica, la identidad no nace de cómo me siento, ni tan siquiera de lo que yo podría creer de mí. Sino que nace de la verdad.</p>
+    <p>Y la verdad sobre una persona la conocen, en diferentes grados, tres miradas:</p>
+  </div>
+
+  <div class="miradas">
+    <span class="mirada-item">Dios.</span>
+    <span class="mirada-item">La Iglesia.</span>
+    <span class="mirada-item">Quienes la han amado de verdad.</span>
+  </div>
+
+  <div class="cuerpo">
+    <p>Probablemente cuando te pregunté <em>«¿Quién eres?»</em> no supiste responder con claridad. Y eso está bien. Para eso está este encuentro.</p>
+    <p>Quizás pensaste en tu profesión.<br>
+    En tus errores.<br>
+    En tus logros.<br>
+    En tus momentos más difíciles.<br>
+    En cosas que otros dijeron de ti.</p>
+    <p>Y en algún sentido es lógico responder por ahí, pero se queda corto ante tan grande pregunta.</p>
+    <p>Hoy me gustaría invitarte a hacer algo distinto.</p>
+    <p>Hoy no vas a escuchar mi voz.</p>
+    <p>Prefiero dejar la voz de personas que estuvieron para ti y te amaron desde antes que nacieras. Probablemente personas que estuvieron para ti sin tener nada que ganar, y cuando nadie los estaba viendo. Personas que conocen prácticamente tu historia completa.</p>
+    <p>La idea no es descubrir cosas nuevas.<br>
+    Sino recordar cosas que quizás nos olvidamos.</p>
+  </div>
+
+  <!-- Versículo Deuteronomio -->
+  <div class="vers-box">
+    <p class="vers-box-signo">†</p>
+    <p class="vers-box-txt">«En boca de dos o tres testigos<br>quedará firme toda palabra.»</p>
+    <span class="vers-box-ref">Deuteronomio 19, 15</span>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ LAS TRES CARTAS ══ -->
+  <div class="cartas-section">
+
+    <!-- Primera: Mamá -->
+    <div class="carta-audio" id="carta-0">
+      <div class="carta-head">
+        <div class="carta-signo">♡</div>
+        <div class="carta-meta">
+          <span class="carta-numero">Primera carta</span>
+          <span class="carta-titulo">Quien te dio la vida.</span>
+        </div>
+        <span class="carta-palabra">Amor</span>
+      </div>
+      <div class="carta-foto">
+        <img src="img/sophi-mama.jpg" onerror="this.style.display='none'" alt="Sophi y su mamá"/>
+        <span class="carta-foto-ph">✦</span>
+      </div>
+      <div class="carta-player">
+        <button class="audio-btn" aria-label="Reproducir">▶</button>
+        <div class="audio-prog-wrap">
+          <div class="audio-prog-fill"></div>
+        </div>
+        <span class="audio-time">0:00</span>
+        <audio src="audio/enc18-mama.mp3" preload="metadata"></audio>
+      </div>
+    </div>
+
+    <!-- Segunda: Abuela -->
+    <div class="carta-audio" id="carta-1">
+      <div class="carta-head">
+        <div class="carta-signo">†</div>
+        <div class="carta-meta">
+          <span class="carta-numero">Segunda carta</span>
+          <span class="carta-titulo">Quien te vio crecer.</span>
+        </div>
+        <span class="carta-palabra">Raíces</span>
+      </div>
+      <div class="carta-foto">
+        <img src="img/sophi-abuela.jpg" onerror="this.style.display='none'" alt="Sophi y su abuela"/>
+        <span class="carta-foto-ph">✦</span>
+      </div>
+      <div class="carta-player">
+        <button class="audio-btn" aria-label="Reproducir">▶</button>
+        <div class="audio-prog-wrap">
+          <div class="audio-prog-fill"></div>
+        </div>
+        <span class="audio-time">0:00</span>
+        <audio src="audio/enc18-abuela.mp3" preload="metadata"></audio>
+      </div>
+    </div>
+
+    <!-- Tercera: Primo -->
+    <div class="carta-audio" id="carta-2">
+      <div class="carta-head">
+        <div class="carta-signo">✦</div>
+        <div class="carta-meta">
+          <span class="carta-numero">Tercera carta</span>
+          <span class="carta-titulo">Quien ha caminado contigo.</span>
+        </div>
+        <span class="carta-palabra">Camino</span>
+      </div>
+      <div class="carta-foto">
+        <img src="img/sophi-primo.jpg" onerror="this.style.display='none'" alt="Sophi y su primo"/>
+        <span class="carta-foto-ph">✦</span>
+      </div>
+      <div class="carta-player">
+        <button class="audio-btn" aria-label="Reproducir">▶</button>
+        <div class="audio-prog-wrap">
+          <div class="audio-prog-fill"></div>
+        </div>
+        <span class="audio-time">0:00</span>
+        <audio src="audio/enc18-primo.mp3" preload="metadata"></audio>
+      </div>
+    </div>
+
+  </div><!-- /cartas-section -->
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ EL PUENTE ══ -->
+  <div class="puente">
+    <p>Quizás ahora mismo estás pensando <em>«qué lindo lo que dicen de mí»</em> o <em>«ellos me aman»</em>.</p>
+    <p>Y es cierto. Muy cierto.</p>
+    <p>Pero quiero que veamos algo que es aún más grande.</p>
+    <p>Ninguna de estas personas inventó tu valor, sino que con amor lo reconocen.</p>
+    <p>Porque mucho antes de que tu madre alabara tu inteligencia...<br>
+    Mucho antes de que <span class="nombre-destacado">Yolita</span> alabara tu fortaleza...<br>
+    Mucho antes de que <span class="nombre-destacado">Sergio</span> alabara tu perseverancia...</p>
+    <p>Dios ya te había amado.</p>
+    <p>Y fuiste creada a su imagen y semejanza.</p>
+    <p>Ellos descubrieron un reflejo.<span class="fuente-el">La fuente siempre fue Él.</span></p>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ VIDEO BAUTISMO ══ -->
+  <div class="video-section">
+    <p class="video-enc">El Bautismo de Cristo</p>
+    <div class="video-wrap">
+      <video id="enc18-video" controls playsinline>
+        <source src="video/enc18-bautismo.mp4" type="video/mp4"/>
+      </video>
+      <div class="video-ph" id="video-ph">
+        <span class="video-ph-signo">✦</span>
+        <span class="video-ph-txt">Video del Bautismo de Cristo</span>
+      </div>
+    </div>
+    <p class="video-caption">Dios Padre se complace en su Hijo, Jesús,<br>pero también en nosotros que, por adopción, también lo somos.</p>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ ESPEJO ══ -->
+  <div class="espejo-section">
+    <span class="espejo-invite">Ahora escucha la voz que más importa.</span>
+
+    <div class="espejo-grande" id="espejo-btn" role="button" tabindex="0" aria-label="Toca el espejo"></div>
+    <span class="espejo-hint" id="espejo-hint">Toca el espejo</span>
+
+    <div class="vers-revelado" id="vers-revelado">
+      <p class="vers-grande">«Miren cuánto amor nos ha tenido el Padre<br>para llamarnos hijos de Dios,<br>¡pues lo somos!»</p>
+      <span class="vers-grande-ref">1 Juan 3, 1</span>
+    </div>
+  </div>
+
+  <!-- ══ DIVISOR (aparece con la carta) ══ -->
+  <div class="divisor" id="div-carta" style="opacity:0;transition:opacity .9s ease">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ CARTA DE ANDRÉ ══ -->
+  <div class="carta-andre" id="carta-andre">
+    <span class="carta-andre-label">André</span>
+    <div class="carta-andre-txt">
+      <p>Sophi...</p>
+      <p>Podría pasar horas diciéndote quién creo que eres.</p>
+      <p>Pero mi opinión, por mucho que te ame, nunca será la más importante.<br>
+      Tampoco la de tu mamá.<br>
+      Ni la de tu abuela.<br>
+      Ni la de tu primo.</p>
+      <p>Si algún día todas nuestras voces se apagaran...<br>
+      seguiría quedando una.</p>
+      <p>La de Aquel que te creó.</p>
+      <p>Y mientras Él siga llamándote hija,<br>
+      nunca tendrás que preguntarte quién eres.</p>
+    </div>
+  </div>
+
+  <!-- PIE -->
+  <div class="enc-pie">
+    <a href="index.html" class="btn-inicio">← Volver al inicio</a>
+  </div>
+
+</div><!-- /contenedor -->
+
+<script>
+/* ── AUDIO PLAYERS ── */
+function fmt(s) {
+  if (!s || isNaN(s)) return '0:00';
+  const m = Math.floor(s / 60);
+  const sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function initPlayer(card) {
+  const audio    = card.querySelector('audio');
+  const btn      = card.querySelector('.audio-btn');
+  const fill     = card.querySelector('.audio-prog-fill');
+  const timeEl   = card.querySelector('.audio-time');
+  const progWrap = card.querySelector('.audio-prog-wrap');
+
+  audio.addEventListener('loadedmetadata', () => {
+    timeEl.textContent = '0:00 / ' + fmt(audio.duration);
+  });
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) {
+      // pausa los demás
+      document.querySelectorAll('.carta-audio audio').forEach(a => {
+        if (a !== audio) { a.pause(); }
+      });
+      document.querySelectorAll('.audio-btn').forEach(b => {
+        if (b !== btn) { b.innerHTML = '▶'; b.classList.remove('playing'); }
+      });
+      audio.play();
+      btn.innerHTML = '⏸';
+      btn.classList.add('playing');
+    } else {
+      audio.pause();
+      btn.innerHTML = '▶';
+      btn.classList.remove('playing');
+    }
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration) {
+      fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+      timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    }
+  });
+
+  audio.addEventListener('ended', () => {
+    btn.innerHTML = '▶';
+    btn.classList.remove('playing');
+    fill.style.width = '100%';
+  });
+
+  progWrap.addEventListener('click', e => {
+    const rect  = progWrap.getBoundingClientRect();
+    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    if (audio.duration) audio.currentTime = ratio * audio.duration;
+  });
+}
+
+document.querySelectorAll('.carta-audio').forEach(initPlayer);
+
+/* ── VIDEO PLACEHOLDER ── */
+const vid18 = document.getElementById('enc18-video');
+const ph18  = document.getElementById('video-ph');
+if (vid18) {
+  vid18.addEventListener('loadedmetadata', () => { ph18.style.display = 'none'; });
+  vid18.load();
+}
+
+/* ── ESPEJO ── */
+const espejoBtn   = document.getElementById('espejo-btn');
+const espejoHint  = document.getElementById('espejo-hint');
+const versRev     = document.getElementById('vers-revelado');
+const divCarta    = document.getElementById('div-carta');
+const cartaAndre  = document.getElementById('carta-andre');
+
+let abierto = false;
+
+function abrirEspejo() {
+  if (abierto) return;
+  abierto = true;
+
+  espejoHint.style.display = 'none';
+  espejoBtn.style.transition = 'transform .4s ease, opacity .6s ease';
+  espejoBtn.style.transform = 'scale(1.12)';
+
+  setTimeout(() => {
+    espejoBtn.style.opacity = '0';
+    espejoBtn.style.pointerEvents = 'none';
+  }, 200);
+
+  setTimeout(() => {
+    versRev.classList.add('vis');
+  }, 520);
+
+  setTimeout(() => {
+    divCarta.style.opacity = '1';
+    cartaAndre.classList.add('vis');
+    cartaAndre.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 1500);
+}
+
+espejoBtn.addEventListener('click', abrirEspejo);
+espejoBtn.addEventListener('keydown', e => {
+  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirEspejo(); }
+});
+</script>
+
+</body>
+</html>
