@@ -362,6 +362,82 @@
   .carta-andre-txt p { margin-bottom: 12px; }
   .carta-andre-txt p:last-child { margin-bottom: 0; }
 
+  /* ── SAN AGUSTÍN ── */
+  .santo-figura {
+    text-align: center;
+    padding: 8px 0 36px;
+  }
+  .santo-img-wrap {
+    width: 130px; height: 170px;
+    margin: 0 auto 14px;
+    border: 1px solid var(--rg); border-radius: 2px;
+    overflow: hidden; background: var(--pd);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .santo-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .santo-img-ph { font-family: var(--C); font-size: .9rem; color: var(--rg); opacity: .4; }
+  .santo-nombre {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .32em;
+    text-transform: uppercase; color: var(--nc); opacity: .65;
+    display: block; margin-bottom: 10px;
+  }
+  .santo-cita {
+    font-style: italic; font-size: .95rem; color: var(--ts);
+    line-height: 1.7; max-width: 380px; margin: 0 auto;
+  }
+
+  /* ── ORACIÓN ── */
+  .oracion-section { margin: 0 0 44px; }
+  .oracion-enc {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--ts); opacity: .45;
+    text-align: center; margin-bottom: 14px;
+  }
+  .oracion-box {
+    border: 1px solid var(--rgs); border-radius: 2px; overflow: hidden;
+  }
+  .oracion-cab {
+    padding: 16px 24px; text-align: center;
+    border-bottom: 1px solid var(--rgs); background: var(--pd);
+  }
+  .oracion-cab-cruz { font-size: 1rem; color: var(--rg); margin-bottom: 5px; }
+  .oracion-cab-titulo {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ts); opacity: .7;
+  }
+  .oracion-cuerpo { padding: 26px 28px 22px; background: var(--p); }
+  .oracion-txt {
+    font-size: 1.05rem; line-height: 1.9; color: var(--tm);
+    font-style: italic; text-align: center;
+  }
+  .oracion-txt p { margin-bottom: 8px; }
+  .oracion-txt p:last-child { margin-bottom: 0; }
+
+  /* ── CIERRE FINAL ── */
+  .cierre-final {
+    margin: 0 0 44px;
+    padding: 32px 28px;
+    border-top: 1px solid var(--rgs);
+    border-bottom: 1px solid var(--rgs);
+    text-align: center;
+  }
+  .cierre-final-label {
+    font-family: var(--C); font-size: .48rem; letter-spacing: .32em;
+    text-transform: uppercase; color: var(--or); opacity: .6;
+    display: block; margin-bottom: 20px;
+  }
+  .cierre-final-txt {
+    font-size: 1rem; line-height: 1.85; color: var(--tm); font-style: italic;
+    max-width: 460px; margin: 0 auto;
+  }
+  .cierre-final-txt p { margin-bottom: 10px; }
+  .cierre-final-txt p:last-child { margin-bottom: 0; }
+  .cierre-final-firma {
+    display: block; margin-top: 22px;
+    font-family: var(--C); font-size: .5rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--or); opacity: .65;
+  }
+
   /* ── PIE ── */
   .enc-pie {
     text-align: center; padding: 20px 0;
@@ -398,6 +474,22 @@
       <span class="enc-div-s">✦</span>
       <span class="enc-div-l"></span>
     </div>
+  </div>
+
+  <!-- ══ SAN AGUSTÍN ══ -->
+  <div class="santo-figura">
+    <div class="santo-img-wrap">
+      <img src="img/san-agustin.jpg" onerror="this.style.display='none'" alt="San Agustín de Hipona"/>
+      <span class="santo-img-ph">†</span>
+    </div>
+    <span class="santo-nombre">San Agustín de Hipona</span>
+    <p class="santo-cita">«Nos hiciste, Señor, para ti,<br>y nuestro corazón está inquieto<br>hasta que descanse en ti.»</p>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
   </div>
 
   <!-- ══ INTRODUCCIÓN ══ -->
@@ -614,6 +706,49 @@
       <p>Y mientras Él siga llamándote hija,<br>
       nunca tendrás que preguntarte quién eres.</p>
     </div>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ ORACIÓN ══ -->
+  <div class="oracion-section">
+    <p class="oracion-enc">Una oración</p>
+    <div class="oracion-box">
+      <div class="oracion-cab">
+        <p class="oracion-cab-cruz">†</p>
+        <p class="oracion-cab-titulo">San Agustín de Hipona</p>
+      </div>
+      <div class="oracion-cuerpo">
+        <div class="oracion-txt">
+          <p>En el nombre del Padre,<br>del Hijo y del Espíritu Santo.</p>
+          <p>Haz, Señor,<br>
+          que te conozca a ti,<br>
+          para entonces conocerme a mí.</p>
+          <p>Amén.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- ══ CIERRE FINAL ══ -->
+  <div class="cierre-final">
+    <span class="cierre-final-label">Para terminar</span>
+    <div class="cierre-final-txt">
+      <p>Los 18 encuentros iniciaron con el pensamiento más famoso de San Agustín y terminaron con el anhelo más grande de su vida: conocer a Dios.</p>
+      <p>Espero te sirvan y vuelvas a leerlos cada vez que los necesites.</p>
+      <p>Con amor,</p>
+    </div>
+    <span class="cierre-final-firma">André</span>
   </div>
 
   <!-- PIE -->
