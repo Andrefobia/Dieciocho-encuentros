@@ -147,22 +147,43 @@
   .cielo-seccion { margin: 0 0 8px; }
 
   .cielo-wrap {
-    position: relative; width: 100%; height: 230px;
+    position: relative; width: 100%; height: 290px;
     border-radius: 3px; overflow: hidden; margin-bottom: 0;
   }
 
   .cielo-bg {
     position: absolute; inset: 0;
-    background: linear-gradient(to bottom, #5BA3C9 0%, #89C4E1 55%, #B8DCEE 100%);
+    background: linear-gradient(to bottom, #4A91BF 0%, #7DC2E0 50%, #C2DFF0 100%);
   }
   .cielo-bg::after {
     content: '';
     position: absolute; inset: 0;
     background: linear-gradient(to bottom, #070B1A 0%, #0D1B3E 55%, #142040 100%);
     opacity: 0;
-    transition: opacity 3.5s ease;
+    transition: opacity 4s ease;
   }
   .cielo-bg.oscureciendo::after { opacity: 1; }
+
+  /* SOL */
+  .cielo-sol {
+    position: absolute;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #FFFBE0 20%, #FFD84A 52%, rgba(255,200,50,0) 100%);
+    box-shadow: 0 0 28px rgba(255,228,80,.95), 0 0 80px rgba(255,200,50,.35);
+    top: 250px; left: calc(50% - 23px);
+    opacity: 0; z-index: 3; pointer-events: none;
+  }
+  @keyframes sol-cruzar {
+    0%   { transform: translate(-340px,   0px); opacity: 0; }
+    4%   { opacity: 1; }
+    50%  { transform: translate(   0px,-210px); opacity: 1; }
+    92%  { opacity: 1; }
+    100% { transform: translate( 340px,   0px); opacity: 0; }
+  }
+  .cielo-sol.saliendo {
+    animation: sol-cruzar 10s ease-in-out forwards;
+  }
 
   .estrellas-layer {
     position: absolute; inset: 0;
@@ -178,7 +199,7 @@
   }
 
   .cielo-texto {
-    position: absolute; inset: 0; z-index: 3;
+    position: absolute; inset: 0; z-index: 4;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     gap: 10px; padding: 20px;
@@ -194,7 +215,8 @@
   .ct-linea.vis { opacity: 1; transform: none; }
 
   @media (max-width: 559px) {
-    .cielo-wrap { height: 180px; }
+    .cielo-wrap { height: 220px; }
+    .cielo-sol { top: 185px; width: 36px; height: 36px; left: calc(50% - 18px); }
   }
 
   /* ══════════════════════════════════════
@@ -221,53 +243,14 @@
   .cuerpo .p-corto { margin-bottom: 4px; }
   .cuerpo em { font-style: italic; }
 
-  /* Celda CSS */
-  .celda-ilustracion {
-    width: min(300px, 90%); height: 190px;
-    background: #252018;
-    border-radius: 3px;
-    position: relative; overflow: hidden;
-    margin: 28px auto;
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 4px 20px rgba(0,0,0,0.2);
+  /* Celda imagen */
+  .celda-img-wrap {
+    width: 100%; border: 1px solid var(--rgs); border-radius: 2px;
+    overflow: hidden; background: var(--pd);
+    position: relative; margin: 28px 0 0;
   }
-  .celda-ilustracion::before {
-    content: '';
-    position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,.016) 28px, rgba(255,255,255,.016) 29px),
-      repeating-linear-gradient(90deg, transparent, transparent 44px, rgba(255,255,255,.01) 44px, rgba(255,255,255,.01) 45px);
-  }
-  .celda-ventana {
-    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
-    width: 44px; height: 58px;
-    background: rgba(220,190,100,.18);
-    border: 2px solid #4A3A20;
-  }
-  .celda-ventana::before {
-    content: ''; position: absolute;
-    left: 50%; transform: translateX(-50%);
-    top: 0; bottom: 0; width: 2px; background: #4A3A20;
-  }
-  .celda-ventana::after {
-    content: ''; position: absolute;
-    top: 40%; transform: translateY(-50%);
-    left: 0; right: 0; height: 2px; background: #4A3A20;
-  }
-  .celda-haz {
-    position: absolute; top: 78px; left: calc(50% - 36px);
-    width: 72px; height: 90px;
-    background: linear-gradient(to bottom, rgba(220,190,100,.14), transparent);
-    clip-path: polygon(16px 0, 56px 0, 72px 90px, 0 90px);
-  }
-  .celda-libro {
-    position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
-    width: 30px; height: 5px; background: #4A3420; border-radius: 1px 2px 2px 1px;
-  }
-  .celda-libro::before {
-    content: ''; position: absolute;
-    top: -3px; right: -1px; width: 2px; height: 11px;
-    background: #3A2818; border-radius: 0 1px 1px 0;
-  }
+  .celda-img-wrap img { width: 100%; height: auto; display: block; }
+  .celda-img-ph { position: absolute; font-family: var(--C); color: var(--rg); opacity: .35; font-size: 1rem; top: 50%; left: 50%; transform: translate(-50%,-50%); }
   .celda-caption {
     font-family: var(--C); font-size: .42rem; letter-spacing: .2em;
     text-transform: uppercase; color: var(--ts); opacity: .35;
@@ -443,21 +426,6 @@
 
 <div class="contenedor">
 
-  <!-- APERTURA: SAN JUAN + VERSO -->
-  <div class="santo-apertura">
-    <div class="santo-img-wrap">
-      <img src="img/enc3-sanjuan.jpg"
-           onerror="this.style.display='none'"
-           alt="San Juan de la Cruz" />
-      <span class="santo-img-ph">†</span>
-    </div>
-    <span class="santo-nombre-top">San Juan de la Cruz</span>
-    <div class="santo-cita-top">
-      <span class="santo-cita-top-txt">«Dios mío, Dios mío, ¿por qué me has abandonado?»</span>
-      <span class="santo-cita-top-ref">Salmo 22, 1 — rezado por Cristo en la cruz</span>
-    </div>
-  </div>
-
   <!-- HEADER -->
   <div class="enc-header">
     <span class="enc-numero">Tercer Encuentro</span>
@@ -467,6 +435,21 @@
       <span class="enc-div-s">†</span>
       <span class="enc-div-l"></span>
     </div>
+  </div>
+
+  <!-- VERSO + IMAGEN SANTO -->
+  <div class="santo-apertura">
+    <div class="santo-cita-top">
+      <span class="santo-cita-top-txt">«Dios mío, Dios mío, ¿por qué me has abandonado?»</span>
+      <span class="santo-cita-top-ref">Salmo 22, 1 — rezado por Cristo en la cruz</span>
+    </div>
+    <div class="santo-img-wrap">
+      <img src="img/enc3-sanjuan.jpg"
+           onerror="this.style.display='none'"
+           alt="San Juan de la Cruz" />
+      <span class="santo-img-ph">†</span>
+    </div>
+    <span class="santo-nombre-top">San Juan de la Cruz</span>
   </div>
 
   <!-- INTRO -->
@@ -524,6 +507,7 @@
     <span class="enc-label">Mira.</span>
     <div class="cielo-wrap" id="cielo-wrap">
       <div class="cielo-bg" id="cielo-bg"></div>
+      <div class="cielo-sol" id="cielo-sol"></div>
       <div class="estrellas-layer" id="estrellas-layer"></div>
       <div class="cielo-texto">
         <p class="ct-linea" id="ct-1">Estaban ahí todo el tiempo.</p>
@@ -551,13 +535,12 @@
       <p>Y precisamente allí escribió algunas de las páginas más profundas sobre la vida espiritual.</p>
     </div>
 
-    <!-- CELDA CSS -->
-    <div class="celda-ilustracion">
-      <div class="celda-ventana">
-        <!-- Barras CSS via pseudoelementos -->
-      </div>
-      <div class="celda-haz"></div>
-      <div class="celda-libro"></div>
+    <!-- CELDA IMAGEN -->
+    <div class="celda-img-wrap">
+      <img src="img/enc3-celda.jpg"
+           onerror="this.style.display='none'"
+           alt="Celda de San Juan de la Cruz, Toledo" />
+      <span class="celda-img-ph">†</span>
     </div>
     <p class="celda-caption">Toledo, 1577</p>
   </div>
@@ -716,6 +699,7 @@
 (function() {
   const wrap    = document.getElementById('cielo-wrap');
   const bg      = document.getElementById('cielo-bg');
+  const sol     = document.getElementById('cielo-sol');
   const layer   = document.getElementById('estrellas-layer');
   const ct1     = document.getElementById('ct-1');
   const ct2     = document.getElementById('ct-2');
@@ -723,16 +707,16 @@
 
   /* Generar estrellas */
   function generarEstrellas() {
-    for (let i = 0; i < 90; i++) {
+    for (let i = 0; i < 95; i++) {
       const s = document.createElement('div');
       s.className = 'estrella';
-      const sz = 1 + Math.random() * 2.2;
+      const sz = 1 + Math.random() * 2.4;
       s.style.cssText = [
         'left:'   + (Math.random() * 100) + '%',
         'top:'    + (Math.random() * 100) + '%',
         'width:'  + sz + 'px',
         'height:' + sz + 'px',
-        '--op:'   + (0.5 + Math.random() * 0.5)
+        '--op:'   + (0.45 + Math.random() * 0.55)
       ].join(';');
       layer.appendChild(s);
     }
@@ -743,18 +727,21 @@
     if (activado) return;
     activado = true;
 
-    /* 1. Oscurecer cielo */
-    bg.classList.add('oscureciendo');
+    /* 1. Sol sale del este (izq) y se pone en el oeste (der) — 10s */
+    sol.classList.add('saliendo');
 
-    /* 2. Estrellas aparecen escalonadas */
+    /* 2. Cielo oscurece cuando el sol se está poniendo */
+    setTimeout(() => bg.classList.add('oscureciendo'), 8500);
+
+    /* 3. Estrellas aparecen escalonadas tras el oscurecer */
     const estrellas = layer.querySelectorAll('.estrella');
     estrellas.forEach((s, i) => {
-      setTimeout(() => s.classList.add('visible'), 2000 + i * 38);
+      setTimeout(() => s.classList.add('visible'), 10500 + i * 40);
     });
 
-    /* 3. Texto */
-    setTimeout(() => ct1.classList.add('vis'), 5000);
-    setTimeout(() => ct2.classList.add('vis'), 6800);
+    /* 4. Texto: primera línea a los 15s, segunda a los 17.5s */
+    setTimeout(() => ct1.classList.add('vis'), 15000);
+    setTimeout(() => ct2.classList.add('vis'), 17500);
   }
 
   /* IntersectionObserver */
@@ -763,7 +750,7 @@
       activarCielo();
       obs.disconnect();
     }
-  }, { threshold: 0.4 });
+  }, { threshold: 0.35 });
   obs.observe(wrap);
 })();
 
