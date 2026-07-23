@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para cuando sientas que Dios está lejos — 18 Encuentros</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+  :root {
+    --p:   #FDFBF7;
+    --pd:  #F0EAD8;
+    --or:  #A67C3A;
+    --ors: #C49A52;
+    --ort: rgba(166,124,58,.08);
+    --nc:  #0D1B3E;
+    --t:   #1C1917;
+    --tm:  #3D3830;
+    --ts:  #6B645A;
+    --rg:  #D4C4A0;
+    --rgs: #E8DECA;
+    --noche:  #0D1B3E;
+    --noches: #1E2D5A;
+    --nochet: rgba(13,27,62,.07);
+    --G:  'EB Garamond', Georgia, serif;
+    --C:  'Cinzel', serif;
+    --CD: 'Cinzel Decorative', serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--p); font-family: var(--G); color: var(--t); -webkit-font-smoothing: antialiased; }
+
+  /* ── NAV ── */
+  .nav-sup {
+    display: block; padding: 22px 28px 0;
+    font-family: var(--C); font-size: .54rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--ts); text-decoration: none;
+    opacity: .45; transition: opacity .2s;
+  }
+  .nav-sup:hover { opacity: 1; }
+
+  .contenedor { max-width: 600px; margin: 0 auto; padding: 0 28px 80px; }
+
+  /* ── APERTURA SANTO ── */
+  .santo-apertura { margin: 30px 0 0; }
+  .santo-img-wrap {
+    width: 100%; border: 1px solid var(--rgs); border-radius: 2px;
+    overflow: hidden; background: var(--pd);
+    position: relative; margin-bottom: 0;
+  }
+  .santo-img-wrap img { width: 100%; height: auto; display: block; }
+  .santo-img-ph { position: absolute; font-family: var(--C); color: var(--rg); opacity: .35; font-size: 1rem; }
+  .santo-nombre-top {
+    display: block; font-family: var(--C); font-size: .52rem;
+    letter-spacing: .32em; text-transform: uppercase;
+    color: #1C1917; opacity: .55; text-align: center;
+    padding: 14px 0 0;
+  }
+  .santo-cita-top {
+    text-align: center; padding: 18px 20px 0;
+  }
+  .santo-cita-top-txt {
+    font-style: italic; font-size: clamp(1rem, 3vw, 1.15rem);
+    color: var(--tm); line-height: 1.75; display: block; margin-bottom: 8px;
+  }
+  .santo-cita-top-ref {
+    font-family: var(--C); font-size: .42rem; letter-spacing: .22em;
+    text-transform: uppercase; color: var(--or); opacity: .7;
+  }
+
+  /* ── HEADER ── */
+  .enc-header { text-align: center; padding: 44px 0 32px; }
+  .enc-numero {
+    display: block; font-family: var(--C); font-size: .54rem;
+    letter-spacing: .4em; text-transform: uppercase;
+    color: var(--or); opacity: .7; margin-bottom: 14px;
+  }
+  .enc-titulo {
+    font-family: var(--CD); font-size: clamp(1.3rem, 4vw, 1.85rem);
+    font-weight: 400; color: #1C1917; line-height: 1.4; margin-bottom: 22px;
+  }
+  .enc-div { display: flex; align-items: center; gap: 14px; }
+  .enc-div-l { flex: 1; height: 1px; background: var(--rgs); }
+  .enc-div-s { color: var(--rg); font-size: .75rem; }
+
+  /* ── DIVISOR ── */
+  .divisor { display: flex; align-items: center; gap: 14px; margin: 40px 0; }
+  .divisor-l { flex: 1; height: 1px; background: var(--rgs); }
+  .divisor-s { color: var(--rg); font-size: .75rem; }
+
+  /* ── LABEL ── */
+  .enc-label {
+    display: block; font-family: var(--C); font-size: .52rem;
+    letter-spacing: .35em; text-transform: uppercase;
+    color: var(--ts); opacity: .42; text-align: center; margin-bottom: 24px;
+  }
+
+  /* ── INTRO ── */
+  .intro-txt { font-size: 1.05rem; line-height: 1.9; color: var(--tm); margin-bottom: 28px; }
+  .intro-txt p { margin-bottom: 12px; }
+  .intro-txt p:last-child { margin-bottom: 0; }
+  .intro-txt em { font-style: italic; }
+  .intro-txt .p-corto { margin-bottom: 4px; }
+
+  /* Pares corazón / Cristo */
+  .pares { display: flex; flex-direction: column; gap: 20px; margin: 32px 0; }
+  .par {
+    background: var(--pd); border-radius: 2px;
+    border-left: 2px solid var(--or); padding: 18px 20px;
+  }
+  .par-corazon {
+    font-family: var(--C); font-size: .42rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ts); opacity: .65;
+    margin-bottom: 5px;
+  }
+  .par-corazon-txt {
+    font-style: italic; font-size: 1rem; color: var(--tm);
+    margin-bottom: 12px; line-height: 1.55;
+  }
+  .par-cristo {
+    font-family: var(--C); font-size: .42rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--or); margin-bottom: 5px;
+  }
+  .par-cristo-txt {
+    font-style: italic; font-size: 1.05rem; color: #1C1917;
+    line-height: 1.55; margin-bottom: 6px;
+  }
+  .par-ref {
+    font-family: var(--C); font-size: .4rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--or); opacity: .7;
+  }
+
+  .fe-nota {
+    font-size: 1.05rem; line-height: 1.9; color: var(--tm);
+    border-top: 1px solid var(--rgs); padding-top: 28px; margin-top: 28px;
+  }
+  .fe-nota p { margin-bottom: 10px; }
+  .fe-nota p:last-child { margin-bottom: 0; }
+
+  /* ══════════════════════════════════════
+     CIELO DÍA → NOCHE
+  ══════════════════════════════════════ */
+  .cielo-seccion { margin: 0 0 8px; }
+
+  .cielo-wrap {
+    position: relative; width: 100%; height: 230px;
+    border-radius: 3px; overflow: hidden; margin-bottom: 0;
+  }
+
+  .cielo-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, #5BA3C9 0%, #89C4E1 55%, #B8DCEE 100%);
+  }
+  .cielo-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, #070B1A 0%, #0D1B3E 55%, #142040 100%);
+    opacity: 0;
+    transition: opacity 3.5s ease;
+  }
+  .cielo-bg.oscureciendo::after { opacity: 1; }
+
+  .estrellas-layer {
+    position: absolute; inset: 0;
+    z-index: 2; pointer-events: none;
+  }
+  .estrella {
+    position: absolute; border-radius: 50%;
+    background: #F8F4E8; opacity: 0;
+  }
+  .estrella.visible {
+    transition: opacity 1.2s ease;
+    opacity: var(--op);
+  }
+
+  .cielo-texto {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px; padding: 20px;
+  }
+  .ct-linea {
+    font-family: var(--G); font-style: italic;
+    font-size: clamp(1rem, 3.5vw, 1.25rem);
+    color: #F8F4E8; line-height: 1.55; text-align: center;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+  }
+  .ct-linea.vis { opacity: 1; transform: none; }
+
+  @media (max-width: 559px) {
+    .cielo-wrap { height: 180px; }
+  }
+
+  /* ══════════════════════════════════════
+     SAN JUAN / CELDA
+  ══════════════════════════════════════ */
+  .sanjuan-section { margin-bottom: 0; }
+  .sanjuan-img-wrap {
+    width: 100%; border: 1px solid var(--rgs); border-radius: 2px;
+    overflow: hidden; background: var(--pd);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; margin-bottom: 14px;
+  }
+  .sanjuan-img-wrap img { width: 100%; height: auto; display: block; }
+  .sanjuan-img-ph { position: absolute; font-family: var(--C); color: var(--rg); opacity: .35; }
+  .sanjuan-nombre {
+    display: block; font-family: var(--C); font-size: .52rem;
+    letter-spacing: .32em; text-transform: uppercase;
+    color: #1C1917; opacity: .55; text-align: center; margin-bottom: 28px;
+  }
+
+  .cuerpo { font-size: 1.05rem; line-height: 1.9; color: var(--tm); margin-bottom: 28px; }
+  .cuerpo p { margin-bottom: 12px; }
+  .cuerpo p:last-child { margin-bottom: 0; }
+  .cuerpo .p-corto { margin-bottom: 4px; }
+  .cuerpo em { font-style: italic; }
+
+  /* Celda CSS */
+  .celda-ilustracion {
+    width: min(300px, 90%); height: 190px;
+    background: #252018;
+    border-radius: 3px;
+    position: relative; overflow: hidden;
+    margin: 28px auto;
+    box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 4px 20px rgba(0,0,0,0.2);
+  }
+  .celda-ilustracion::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(255,255,255,.016) 28px, rgba(255,255,255,.016) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 44px, rgba(255,255,255,.01) 44px, rgba(255,255,255,.01) 45px);
+  }
+  .celda-ventana {
+    position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+    width: 44px; height: 58px;
+    background: rgba(220,190,100,.18);
+    border: 2px solid #4A3A20;
+  }
+  .celda-ventana::before {
+    content: ''; position: absolute;
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 2px; background: #4A3A20;
+  }
+  .celda-ventana::after {
+    content: ''; position: absolute;
+    top: 40%; transform: translateY(-50%);
+    left: 0; right: 0; height: 2px; background: #4A3A20;
+  }
+  .celda-haz {
+    position: absolute; top: 78px; left: calc(50% - 36px);
+    width: 72px; height: 90px;
+    background: linear-gradient(to bottom, rgba(220,190,100,.14), transparent);
+    clip-path: polygon(16px 0, 56px 0, 72px 90px, 0 90px);
+  }
+  .celda-libro {
+    position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%);
+    width: 30px; height: 5px; background: #4A3420; border-radius: 1px 2px 2px 1px;
+  }
+  .celda-libro::before {
+    content: ''; position: absolute;
+    top: -3px; right: -1px; width: 2px; height: 11px;
+    background: #3A2818; border-radius: 0 1px 1px 0;
+  }
+  .celda-caption {
+    font-family: var(--C); font-size: .42rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ts); opacity: .35;
+    text-align: center; margin-top: -16px; margin-bottom: 28px;
+  }
+
+  /* ══════════════════════════════════════
+     POEMA
+  ══════════════════════════════════════ */
+  .poema-seccion {
+    background: var(--nochet); border: 1px solid rgba(13,27,62,.1);
+    border-radius: 2px; padding: 36px 28px; margin: 32px 0;
+    text-align: center;
+  }
+  .poema-titulo {
+    font-family: var(--C); font-size: .46rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--noche); opacity: .6;
+    margin-bottom: 32px;
+  }
+  .poema-estrofa { margin-bottom: 32px; }
+  .poema-estrofa:last-of-type { margin-bottom: 0; }
+  .poema-num {
+    display: block; font-family: var(--C); font-size: .36rem;
+    letter-spacing: .3em; color: var(--or); opacity: .6; margin-bottom: 10px;
+  }
+  .poema-verso {
+    font-style: italic; font-size: 1.05rem; line-height: 2;
+    color: #1C1917; display: block;
+  }
+  .poema-separador {
+    width: 40px; height: 1px; background: var(--rg);
+    margin: 28px auto; opacity: .5;
+  }
+  .poema-atribucion {
+    font-family: var(--C); font-size: .4rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--ts); opacity: .45;
+    display: block; margin-top: 28px;
+  }
+
+  /* Video poema */
+  .video-label {
+    font-family: var(--C); font-size: .46rem; letter-spacing: .25em;
+    text-transform: uppercase; color: var(--ts); opacity: .42;
+    text-align: center; margin: 28px 0 12px;
+  }
+  .video-poema {
+    width: 100%; border-radius: 2px;
+    background: var(--noche); display: block;
+  }
+
+  /* ── FRASE DESTACADA ── */
+  .frase-destacada {
+    border-top: 1px solid var(--rgs); border-bottom: 1px solid var(--rgs);
+    padding: 26px 0; margin: 32px 0; text-align: center;
+  }
+  .frase-destacada p {
+    font-style: italic; font-size: clamp(1rem, 3vw, 1.18rem);
+    color: #1C1917; line-height: 1.75;
+  }
+  .frase-destacada cite {
+    display: block; font-family: var(--C); font-size: .42rem;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--or); opacity: .7; font-style: normal; margin-top: 12px;
+  }
+
+  /* ── SANTÍSIMO ── */
+  .santisimo-seccion { margin-bottom: 0; }
+  .santisimo-txt {
+    font-size: 1.05rem; line-height: 1.95; color: var(--tm);
+    margin-bottom: 28px;
+  }
+  .santisimo-txt p { margin-bottom: 4px; }
+  .santisimo-txt .p-separado { margin-bottom: 14px; }
+  .santisimo-txt em { font-style: italic; }
+  .santisimo-final {
+    font-style: italic; font-size: 1.1rem; color: #1C1917;
+    text-align: center; margin-top: 18px;
+    border-top: 1px solid var(--rgs); padding-top: 18px;
+  }
+
+  /* ── ORACIÓN ── */
+  .oracion-enc {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .35em;
+    text-transform: uppercase; color: var(--ts); opacity: .42;
+    text-align: center; margin-bottom: 14px;
+  }
+  .oracion-box { border: 1px solid var(--rgs); border-radius: 2px; overflow: hidden; }
+  .oracion-cab {
+    padding: 16px 24px; text-align: center;
+    border-bottom: 1px solid var(--rgs); background: var(--pd);
+  }
+  .oracion-cab-cruz { font-size: 1rem; color: var(--rg); margin-bottom: 5px; }
+  .oracion-cab-titulo {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--ts); opacity: .7;
+  }
+  .oracion-cuerpo { padding: 26px 28px 24px; }
+  .oracion-txt {
+    font-size: 1.05rem; line-height: 2; color: var(--tm);
+    font-style: italic; text-align: center;
+  }
+  .oracion-txt p { margin-bottom: 6px; }
+  .oracion-txt p:last-child { margin-bottom: 0; }
+
+  /* ── TIMER ── */
+  .timer-seccion { text-align: center; margin: 44px 0 28px; }
+  .timer-invitacion {
+    font-size: 1.02rem; line-height: 1.85; color: var(--tm);
+    font-style: italic; margin-bottom: 28px;
+  }
+  .timer-invitacion p { margin-bottom: 4px; }
+  .timer-invitacion .p-sep { margin-bottom: 14px; }
+  #btn-timer {
+    font-family: var(--C); font-size: .56rem; letter-spacing: .24em;
+    text-transform: uppercase; color: var(--p);
+    background: var(--noche); border: none;
+    padding: 16px 36px; cursor: pointer; border-radius: 1px;
+    transition: background .25s, letter-spacing .25s;
+  }
+  #btn-timer:hover { background: var(--noches); letter-spacing: .3em; }
+
+  /* ── PIE ── */
+  .enc-pie {
+    text-align: center; padding: 20px 0;
+    border-top: 1px solid var(--rgs); margin-top: 28px;
+  }
+  .btn-inicio {
+    font-family: var(--C); font-size: .52rem; letter-spacing: .28em;
+    text-transform: uppercase; color: var(--ts); text-decoration: none;
+    opacity: .4; transition: opacity .2s;
+  }
+  .btn-inicio:hover { opacity: 1; }
+
+  /* ══════════════════════════════════════
+     OVERLAY SILENCIO
+  ══════════════════════════════════════ */
+  #overlay-silencio {
+    position: fixed; inset: 0; z-index: 999;
+    opacity: 0; pointer-events: none;
+    transition: opacity 1.8s ease;
+  }
+  #overlay-silencio.vis { opacity: 1; pointer-events: all; }
+
+  .ov-foto {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    display: block;
+  }
+  .ov-velo {
+    position: absolute; inset: 0;
+    background: rgba(5, 4, 3, .38);
+  }
+  #ov-timer-txt {
+    position: absolute; top: 22px; right: 26px;
+    font-family: var(--C); font-size: .7rem; letter-spacing: .3em;
+    color: rgba(240,237,216,.65);
+    transition: opacity 2.5s ease;
+  }
+  #ov-link {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    font-family: var(--C); font-size: .5rem; letter-spacing: .28em;
+    text-transform: uppercase; color: rgba(240,237,216,.3);
+    text-decoration: none; opacity: 0; transition: opacity 1s ease, color .2s;
+  }
+  #ov-link.vis { opacity: 1; }
+  #ov-link:hover { color: var(--or); }
+  </style>
+</head>
+<body>
+
+<a href="index.html" class="nav-sup">← Inicio</a>
+
+<div class="contenedor">
+
+  <!-- APERTURA: SAN JUAN + VERSO -->
+  <div class="santo-apertura">
+    <div class="santo-img-wrap">
+      <img src="img/enc3-sanjuan.jpg"
+           onerror="this.style.display='none'"
+           alt="San Juan de la Cruz" />
+      <span class="santo-img-ph">†</span>
+    </div>
+    <span class="santo-nombre-top">San Juan de la Cruz</span>
+    <div class="santo-cita-top">
+      <span class="santo-cita-top-txt">«Dios mío, Dios mío, ¿por qué me has abandonado?»</span>
+      <span class="santo-cita-top-ref">Salmo 22, 1 — rezado por Cristo en la cruz</span>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="enc-header">
+    <span class="enc-numero">Tercer Encuentro</span>
+    <h1 class="enc-titulo">Para cuando sientas<br>que Dios está lejos.</h1>
+    <div class="enc-div">
+      <span class="enc-div-l"></span>
+      <span class="enc-div-s">†</span>
+      <span class="enc-div-l"></span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro-txt">
+    <p>Hola, Sophi.</p>
+    <p>Si estás leyendo esto, probablemente sientes que Dios está lejos de ti.</p>
+    <p>Antes de continuar quiero decirte algo.</p>
+    <p>Este es quizá el único encuentro de toda la página sobre el que no puedo hablar desde mi propia experiencia. Llevo alrededor de dos años recorriendo el camino hacia la fe católica. Antes fui evangélico. Siempre fui creyente y, siendo sincero, nunca sentí que Dios estuviera lejos de mí.</p>
+    <p>Lo más parecido que experimenté fue algo distinto: sentir que mis acciones iban en dirección contraria a la voluntad de Dios.</p>
+    <p>Eso podría representarse como una persona corriendo en dirección opuesta... Pero Dios no es un punto fijo del que uno pueda alejarse caminando. Él está presente sosteniendo nuestra existencia a cada instante.</p>
+    <p>Por eso no quiero hablarte de algo que nunca viví. Prefiero hacer algo mejor.</p>
+    <p>Quiero dejar que te hablen quienes caminaron por esa noche mucho antes que nosotros.</p>
+    <p>Muchas veces la vida cristiana consiste en decidir a quién creerle: a nuestros sentimientos... o a Cristo.</p>
+  </div>
+
+  <!-- PARES CORAZÓN / CRISTO -->
+  <div class="pares">
+    <div class="par">
+      <p class="par-corazon">El corazón dice</p>
+      <p class="par-corazon-txt">«Estoy sola.»</p>
+      <p class="par-cristo">Cristo dice</p>
+      <p class="par-cristo-txt">«Yo estoy con ustedes todos los días hasta el fin del mundo.»</p>
+      <span class="par-ref">Mateo 28, 20</span>
+    </div>
+    <div class="par">
+      <p class="par-corazon">El corazón dice</p>
+      <p class="par-corazon-txt">«Dios me abandonó.»</p>
+      <p class="par-cristo">Cristo dice</p>
+      <p class="par-cristo-txt">«No te dejaré huérfana.»</p>
+      <span class="par-ref">Juan 14, 18</span>
+    </div>
+    <div class="par">
+      <p class="par-corazon">El corazón dice</p>
+      <p class="par-corazon-txt">«Nada tiene sentido.»</p>
+      <p class="par-cristo">Dios responde</p>
+      <p class="par-cristo-txt">«Mis pensamientos no son tus pensamientos.»</p>
+      <span class="par-ref">Isaías 55, 8</span>
+    </div>
+  </div>
+
+  <div class="fe-nota">
+    <p>La fe no es un sentimiento. Los sentimientos no son constantes.</p>
+    <p>En cambio, la fe es un don dado por Dios que consiste en la capacidad de decidir creer en las cosas que Él nos prometió.</p>
+  </div>
+
+  <!-- DIVISOR -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- CIELO DÍA → NOCHE -->
+  <div class="cielo-seccion">
+    <span class="enc-label">Mira.</span>
+    <div class="cielo-wrap" id="cielo-wrap">
+      <div class="cielo-bg" id="cielo-bg"></div>
+      <div class="estrellas-layer" id="estrellas-layer"></div>
+      <div class="cielo-texto">
+        <p class="ct-linea" id="ct-1">Estaban ahí todo el tiempo.</p>
+        <p class="ct-linea" id="ct-2">Dios tampoco se fue.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVISOR -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- SAN JUAN DE LA CRUZ -->
+  <div class="sanjuan-section">
+    <div class="cuerpo">
+      <p>Hace más de cuatro siglos vivió un fraile español llamado Juan de la Cruz.</p>
+      <p class="p-corto">Fue encarcelado.</p>
+      <p class="p-corto">Pasó meses en una celda diminuta.</p>
+      <p class="p-corto">Sufrió hambre.</p>
+      <p class="p-corto">Humillaciones.</p>
+      <p class="p-corto">Oscuridad.</p>
+      <p>Y precisamente allí escribió algunas de las páginas más profundas sobre la vida espiritual.</p>
+    </div>
+
+    <!-- CELDA CSS -->
+    <div class="celda-ilustracion">
+      <div class="celda-ventana">
+        <!-- Barras CSS via pseudoelementos -->
+      </div>
+      <div class="celda-haz"></div>
+      <div class="celda-libro"></div>
+    </div>
+    <p class="celda-caption">Toledo, 1577</p>
+  </div>
+
+  <!-- LA NOCHE OSCURA -->
+  <div class="cuerpo">
+    <p>Hay un malentendido muy común sobre lo que San Juan llamó <em>Noche Oscura del Alma</em>. No es simplemente sentirse triste, o sentir que Dios está lejos.</p>
+    <p>En San Juan es algo más profundo: una purificación por la que Dios despega al alma de los consuelos sensibles para unirla más plenamente a Él. No todas las sequedades espirituales son esa experiencia en el sentido estricto que él describe.</p>
+    <p>Pero sí descubrió algo que nos sirve a todos:</p>
+    <p><em>A veces Dios no guarda silencio para alejarnos. A veces guarda silencio para enseñarnos a amarlo por Él mismo. No por los consuelos que puede darnos.</em></p>
+  </div>
+
+  <!-- POEMA -->
+  <div class="poema-seccion">
+    <p class="poema-titulo">Noche Oscura del Alma</p>
+
+    <div class="poema-estrofa">
+      <span class="poema-num">I</span>
+      <span class="poema-verso">En una noche oscura,</span>
+      <span class="poema-verso">con ansias en amores inflamada,</span>
+      <span class="poema-verso">¡oh dichosa ventura!,</span>
+      <span class="poema-verso">salí sin ser notada,</span>
+      <span class="poema-verso">estando ya mi casa sosegada.</span>
+    </div>
+
+    <div class="poema-separador"></div>
+
+    <div class="poema-estrofa">
+      <span class="poema-num">III</span>
+      <span class="poema-verso">En la noche dichosa,</span>
+      <span class="poema-verso">en secreto, que nadie me veía,</span>
+      <span class="poema-verso">ni yo miraba cosa,</span>
+      <span class="poema-verso">sin otra luz y guía</span>
+      <span class="poema-verso">sino la que en el corazón ardía.</span>
+    </div>
+
+    <div class="poema-separador"></div>
+
+    <div class="poema-estrofa">
+      <span class="poema-num">V</span>
+      <span class="poema-verso">¡Oh noche que guiaste!</span>
+      <span class="poema-verso">¡oh noche amable más que la alborada!:</span>
+      <span class="poema-verso">¡oh noche que juntaste</span>
+      <span class="poema-verso">Amado con amada,</span>
+      <span class="poema-verso">amada en el Amado transformada!</span>
+    </div>
+
+    <span class="poema-atribucion">— San Juan de la Cruz (fragmento)</span>
+  </div>
+
+  <!-- VIDEO -->
+  <p class="video-label">Escúchalo recitado</p>
+  <video class="video-poema" controls preload="none" playsinline
+         src="video/enc3-poema.mp4"
+         onerror="this.parentElement.style.display='none'"></video>
+
+  <!-- PUENTE -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <div class="cuerpo">
+    <p>Quizá hoy no entiendes lo que Dios está haciendo.</p>
+    <p>Quizá yo tampoco lo entendería si estuviera en tu lugar.</p>
+    <p>Pero si un santo que atravesó esa oscuridad desde una celda pudo seguir confiando...</p>
+    <p>quizá nosotros también podamos hacerlo.</p>
+  </div>
+
+  <!-- CITA FINAL SAN JUAN -->
+  <div class="frase-destacada">
+    <p>«Dios conduce muchas veces al alma por caminos que ella no comprende para llevarla a una unión más profunda con Él.»</p>
+    <cite>San Juan de la Cruz</cite>
+  </div>
+
+  <!-- DIVISOR -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">†</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <!-- EL SANTÍSIMO -->
+  <span class="enc-label">Una invitación</span>
+
+  <div class="santisimo-txt">
+    <p>Si alguna vez sientes que Dios está lejos...</p>
+    <p>entra a una iglesia.</p>
+    <p>Siéntate frente al Sagrario.</p>
+    <p class="p-separado">Y aunque no sientas absolutamente nada...</p>
+    <p>quédate.</p>
+    <p class="p-separado">Porque la verdad no cambia con nuestros sentimientos.</p>
+    <p class="santisimo-final">Él está ahí.</p>
+  </div>
+
+  <!-- ORACIÓN -->
+  <div class="divisor">
+    <span class="divisor-l"></span>
+    <span class="divisor-s">✦</span>
+    <span class="divisor-l"></span>
+  </div>
+
+  <p class="oracion-enc">Oremos</p>
+  <div class="oracion-box">
+    <div class="oracion-cab">
+      <p class="oracion-cab-cruz">†</p>
+      <p class="oracion-cab-titulo">En la oscuridad</p>
+    </div>
+    <div class="oracion-cuerpo">
+      <div class="oracion-txt">
+        <p>Señor,</p>
+        <p>no siempre te siento.</p>
+        <p>A veces el silencio pesa.<br>A veces la oscuridad no cede.</p>
+        <p>Pero tú dijiste que estarías.</p>
+        <p>Y elijo creer lo que dijiste<br>sobre lo que siento.</p>
+        <p>Quédate conmigo<br>aunque no pueda sentirte.</p>
+        <p>Amén.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TIMER -->
+  <div class="timer-seccion">
+    <div class="timer-invitacion">
+      <p>Cinco minutos.</p>
+      <p>Nada más.</p>
+      <p class="p-sep">Quédate con Él.</p>
+    </div>
+    <button id="btn-timer" onclick="iniciarSilencio()">
+      Quedarme con Él
+    </button>
+  </div>
+
+  <!-- PIE -->
+  <div class="enc-pie">
+    <a href="index.html" class="btn-inicio">← Volver al inicio</a>
+  </div>
+
+</div><!-- /contenedor -->
+
+<!-- OVERLAY SILENCIO -->
+<div id="overlay-silencio">
+  <img class="ov-foto" src="img/enc3-sagrario.jpg"
+       onerror="this.style.background='#0D1B3E'; this.style.display='block';"
+       alt="Santísimo Sacramento" />
+  <div class="ov-velo"></div>
+  <span id="ov-timer-txt">5:00</span>
+  <a href="index.html" id="ov-link">← Volver al inicio</a>
+</div>
+
+<script>
+/* ══════════════════════════════════════
+   ANIMACIÓN CIELO DÍA → NOCHE
+══════════════════════════════════════ */
+(function() {
+  const wrap    = document.getElementById('cielo-wrap');
+  const bg      = document.getElementById('cielo-bg');
+  const layer   = document.getElementById('estrellas-layer');
+  const ct1     = document.getElementById('ct-1');
+  const ct2     = document.getElementById('ct-2');
+  let activado  = false;
+
+  /* Generar estrellas */
+  function generarEstrellas() {
+    for (let i = 0; i < 90; i++) {
+      const s = document.createElement('div');
+      s.className = 'estrella';
+      const sz = 1 + Math.random() * 2.2;
+      s.style.cssText = [
+        'left:'   + (Math.random() * 100) + '%',
+        'top:'    + (Math.random() * 100) + '%',
+        'width:'  + sz + 'px',
+        'height:' + sz + 'px',
+        '--op:'   + (0.5 + Math.random() * 0.5)
+      ].join(';');
+      layer.appendChild(s);
+    }
+  }
+  generarEstrellas();
+
+  function activarCielo() {
+    if (activado) return;
+    activado = true;
+
+    /* 1. Oscurecer cielo */
+    bg.classList.add('oscureciendo');
+
+    /* 2. Estrellas aparecen escalonadas */
+    const estrellas = layer.querySelectorAll('.estrella');
+    estrellas.forEach((s, i) => {
+      setTimeout(() => s.classList.add('visible'), 2000 + i * 38);
+    });
+
+    /* 3. Texto */
+    setTimeout(() => ct1.classList.add('vis'), 5000);
+    setTimeout(() => ct2.classList.add('vis'), 6800);
+  }
+
+  /* IntersectionObserver */
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      activarCielo();
+      obs.disconnect();
+    }
+  }, { threshold: 0.4 });
+  obs.observe(wrap);
+})();
+
+/* ══════════════════════════════════════
+   TIMER 5 MINUTOS
+══════════════════════════════════════ */
+let timerInterval = null;
+let timerSeg = 300;
+
+function iniciarSilencio() {
+  const overlay = document.getElementById('overlay-silencio');
+  overlay.classList.add('vis');
+  document.body.style.overflow = 'hidden';
+
+  actualizarTimer();
+  timerInterval = setInterval(() => {
+    timerSeg--;
+    actualizarTimer();
+
+    /* Difuminar timer a los 30s */
+    if (timerSeg === 270) {
+      document.getElementById('ov-timer-txt').style.opacity = '.12';
+    }
+
+    if (timerSeg <= 0) {
+      clearInterval(timerInterval);
+      finalizarTimer();
+    }
+  }, 1000);
+}
+
+function actualizarTimer() {
+  const m = Math.floor(timerSeg / 60);
+  const s = timerSeg % 60;
+  document.getElementById('ov-timer-txt').textContent =
+    m + ':' + String(s).padStart(2, '0');
+}
+
+function finalizarTimer() {
+  document.getElementById('ov-timer-txt').style.display = 'none';
+  setTimeout(() => {
+    document.getElementById('ov-link').classList.add('vis');
+  }, 1200);
+}
+
+/* ESC para salir del overlay */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('overlay-silencio').classList.contains('vis')) {
+    clearInterval(timerInterval);
+    document.getElementById('overlay-silencio').classList.remove('vis');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+
+</body>
+</html>
