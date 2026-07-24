@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undécimo Encuentro — Para cuando tengas una decisión difícil</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #F3EDE3;
+      --text:   #1A2438;
+      --accent: #2D4060;
+      --gold:   #9A7820;
+      --border: #BBA870;
+      --cream:  #EBE2D0;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.13rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── PÁGINAS ── */
+    .pagina { display: none; }
+    .pagina.activa { display: block; animation: aparecer .55s ease forwards; }
+    @keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ── HEADERS ── */
+    .enc-header {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+    }
+    .enc-numero {
+      font-family: 'Cinzel', serif;
+      font-size: .82rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .enc-titulo {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.75rem);
+      color: var(--accent);
+      font-weight: 400;
+      line-height: 1.35;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .enc-header-mini {
+      text-align: center;
+      padding: 1.8rem 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+    }
+    .seccion-label-pag {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── CONTENIDO ── */
+    .contenido { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── INTRO P1 ── */
+    .intro { padding: 2.5rem 0 1.5rem; }
+    .intro p { margin-bottom: .85rem; line-height: 1.85; }
+
+    /* ── IGNACIO ENTRADA ── */
+    .ignacio-entrada {
+      text-align: center;
+      padding: 1.5rem 0 .5rem;
+      border-top: 1px solid var(--border);
+    }
+    .ignacio-nombre {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: .14em;
+      color: var(--accent);
+      margin-bottom: .3rem;
+    }
+    .ignacio-fechas {
+      font-family: 'Cinzel', serif;
+      font-size: .73rem;
+      letter-spacing: .16em;
+      color: var(--gold);
+      opacity: .8;
+    }
+
+    /* ── NARRACIÓN ── */
+    .narracion { padding: 2rem 0 1.5rem; text-align: center; }
+    .ln { font-size: 1.08rem; line-height: 2.1; font-style: italic; }
+    .ln.esp { height: .5rem; display: block; }
+    .ln.dest { font-style: normal; color: var(--accent); font-size: 1.15rem; }
+
+    .pregunta-cierre {
+      text-align: center;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--accent);
+      padding: 1rem 0 2.5rem;
+    }
+
+    /* ── BOTONES ── */
+    .btn-nav {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 3rem;
+      padding: .8rem 2.8rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-family: 'Cinzel', serif;
+      font-size: .82rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-nav:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── PREP P2 ── */
+    .pausa { display: block; height: .7rem; }
+    .prep-texto { padding: 2.5rem 0; text-align: center; }
+    .prep-texto p { font-size: 1.1rem; line-height: 2; margin-bottom: .05rem; font-style: italic; }
+
+    /* ── FRASE PREVIA ── */
+    .pantalla-frase {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .frase-discern {
+      font-style: italic;
+      font-size: clamp(1.05rem, 3vw, 1.3rem);
+      color: var(--accent);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      border: 1px solid var(--border);
+      padding: 2rem 2.4rem;
+      border-radius: 6px;
+      background: rgba(187,168,112,.07);
+    }
+    .btn-comenzar {
+      font-family: 'Cinzel', serif;
+      font-size: .82rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 99px;
+      padding: .8rem 2.5rem;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-comenzar:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── PREGUNTA FULLSCREEN ── */
+    .pregunta-pantalla {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+    }
+    .preg-numero {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: .24em;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      text-transform: uppercase;
+    }
+    .preg-texto {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 4.5vw, 2.1rem);
+      color: var(--text);
+      max-width: 680px;
+      line-height: 1.55;
+      transition: opacity .8s ease;
+    }
+
+    /* ── RELOJ ── */
+    .reloj-bloque {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      animation: aparecer .6s ease forwards;
+    }
+    .reloj-mensaje {
+      font-size: .9rem;
+      font-style: italic;
+      color: var(--text);
+      opacity: .62;
+      max-width: 320px;
+      line-height: 1.75;
+    }
+    .btn-sig {
+      margin-top: 1.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: .8rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 99px;
+      padding: .7rem 2.2rem;
+      cursor: pointer;
+      transition: all .25s;
+      animation: aparecer .5s ease forwards;
+    }
+    .btn-sig:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── PÁGINA 3 ── */
+    .santo-apertura-p3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(45,64,96,.06) 0%, transparent 100%);
+    }
+    .santo-img {
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(0,0,0,.15);
+      margin-bottom: 1.1rem;
+    }
+    .santo-nombre-p3 {
+      font-family: 'Cinzel', serif;
+      font-size: .8rem;
+      letter-spacing: .16em;
+      color: var(--gold);
+    }
+
+    .seccion { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+    .seccion-label {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .seccion p { margin-bottom: .9rem; line-height: 1.85; }
+    .linea-antes {
+      font-style: italic;
+      color: var(--accent);
+      text-align: center;
+      display: block;
+      margin-bottom: .3rem !important;
+    }
+
+    .oracion-bloque {
+      background: linear-gradient(135deg, rgba(45,64,96,.05) 0%, rgba(187,168,112,.1) 100%);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem 2.2rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      line-height: 1.9;
+    }
+
+    .cierre-texto {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0 1rem;
+      line-height: 1.85;
+    }
+    .cierre-texto p { margin-bottom: .9rem; }
+
+    .btn-volver {
+      display: block;
+      width: fit-content;
+      margin: 2.5rem auto 0;
+      padding: .75rem 2.5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-family: 'Cinzel', serif;
+      font-size: .8rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: all .25s;
+    }
+    .btn-volver:hover { background: var(--accent); color: var(--bg); }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      color: var(--border);
+      font-size: .82rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ PÁGINA 1: ANTES DE DECIDIR ══════════════ -->
+<div class="pagina activa" id="p1">
+
+  <header class="enc-header">
+    <div class="enc-numero">Undécimo Encuentro</div>
+    <h1 class="enc-titulo">Para cuando tengas una decisión difícil</h1>
+  </header>
+
+  <div class="contenido">
+    <div class="seccion-label-pag" style="padding-top:2rem; text-align:center;">I · Antes de decidir</div>
+
+    <div class="intro">
+      <p>Hola Sophi,</p>
+      <p>Si estás aquí probablemente te encuentras frente a una decisión importante.</p>
+      <p>Quizás esperas que te diga qué hacer.</p>
+      <p>Pero Dios no me dio esa misión.</p>
+      <p>No te preocupes, te ofrezco enseñarte algo aún mejor.</p>
+      <p>Cómo buscar Su voluntad.</p>
+    </div>
+
+    <div class="ignacio-entrada">
+      <p class="ignacio-nombre">San Ignacio de Loyola</p>
+      <p class="ignacio-fechas">1491 — 1556</p>
+    </div>
+
+    <div class="narracion">
+      <p class="ln">Imagina lo siguiente:</p>
+      <span class="ln esp"></span>
+      <p class="ln">Un caballero.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Herido por una bala de cañón.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Meses inmóvil.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Sin poder hacer nada.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Aburrido.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Empieza a leer vidas de santos porque no había otra cosa.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Y descubre algo extraño.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Cuando imaginaba una vida de fama...</p>
+      <p class="ln dest">la alegría desaparecía rápidamente.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Cuando imaginaba seguir a Cristo...</p>
+      <p class="ln dest">la paz permanecía.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Ahí comenzó todo.</p>
+      <span class="ln esp"></span>
+      <p class="ln">No porque Dios le hablara con una voz.</p>
+      <span class="ln esp"></span>
+      <p class="ln">Sino porque aprendió a escuchar</p>
+      <p class="ln">los movimientos de su corazón.</p>
+    </div>
+
+    <p class="pregunta-cierre">¿Cómo te suena?</p>
+
+    <button class="btn-nav" onclick="irPagina(2)">Continuar →</button>
+  </div>
+</div>
+
+<!-- ══════════════ PÁGINA 2: LA EXPERIENCIA ══════════════ -->
+<div class="pagina" id="p2">
+
+  <!-- ESTADO A: preparación -->
+  <div id="estado-prep">
+    <header class="enc-header-mini">
+      <div class="seccion-label-pag">II · La experiencia</div>
+    </header>
+    <div class="contenido">
+      <div class="prep-texto">
+        <p>Te invito a que con paciencia y total confianza</p>
+        <p>respondas honestamente las siguientes preguntas.</p>
+        <span class="pausa"></span>
+        <p>Antes de continuar...</p>
+        <p>quiero pedirte algo.</p>
+        <span class="pausa"></span>
+        <p>Ve por un lápiz y una hoja.</p>
+        <span class="pausa"></span>
+        <p>No escribas tus respuestas aquí.</p>
+        <p>Escríbelas con tu propia mano.</p>
+        <span class="pausa"></span>
+        <p>Este encuentro no fue hecho para responder rápido,</p>
+        <p>sino para pensar despacio.</p>
+        <span class="pausa"></span>
+        <p>Yo te espero.</p>
+      </div>
+      <button class="btn-nav" onclick="mostrarFrase()">Ya tengo papel y lápiz</button>
+    </div>
+  </div>
+
+  <!-- ESTADO B0: frase antes de preguntas -->
+  <div id="estado-frase" style="display:none">
+    <div class="pantalla-frase">
+      <p class="frase-discern">«No respondas para justificar la decisión que ya tomaste en tu interior. Responde para descubrir cuál es la voluntad de Dios.»</p>
+      <button class="btn-comenzar" onclick="iniciarPreguntas()">Comenzar →</button>
+    </div>
+  </div>
+
+  <!-- ESTADO B: preguntas fullscreen -->
+  <div id="estado-preguntas" style="display:none">
+    <div class="pregunta-pantalla">
+      <p class="preg-numero" id="pregNumero">1 / 7</p>
+      <p class="preg-texto" id="pregTexto"></p>
+      <div id="relojContenedor"></div>
+      <button id="btnSiguiente" class="btn-sig" style="display:none" onclick="siguientePregunta()">
+        Siguiente →
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════ PÁGINA 3: CIERRE ══════════════ -->
+<div class="pagina" id="p3">
+
+  <header class="enc-header-mini">
+    <div class="seccion-label-pag">III · Para terminar</div>
+  </header>
+
+  <div class="santo-apertura-p3">
+    <img class="santo-img" src="img/enc11-ignacio.jpg" alt="San Ignacio de Loyola"
+         onerror="this.style.display='none'">
+    <p class="santo-nombre-p3">San Ignacio de Loyola</p>
+  </div>
+
+  <div class="contenido">
+
+    <div class="seccion" style="border-top:none; padding-top:2.5rem;">
+      <p>San Ignacio descubrió que Dios muchas veces guía el corazón sin obligarlo.</p>
+      <p>Por eso enseñó que las decisiones importantes no deben tomarse dominados por el miedo, la ira o la desesperación.</p>
+      <p style="margin-bottom:.3rem">Antes de decidir...</p>
+      <span class="linea-antes">reza.</span>
+      <span class="linea-antes">Busca consejo.</span>
+      <span class="linea-antes">Examina tus intenciones.</span>
+      <p style="margin-top:1rem">Y recuerda que la voluntad de Dios nunca contradice el Evangelio.</p>
+    </div>
+
+    <div class="seccion">
+      <div class="seccion-label">Oración de San Ignacio</div>
+      <div class="oracion-bloque">
+        Toma, Señor, y recibe toda mi libertad, mi memoria, mi entendimiento y toda mi voluntad; todo mi haber y mi poseer. Tú me lo diste, a Ti, Señor, lo retorno. Todo es Tuyo: dispón de ello según Tu Voluntad. Dame Tu Amor y Gracia, que éstas me bastan. Amén.
+      </div>
+    </div>
+
+    <div class="cierre-texto">
+      <p>Este encuentro no puede terminar delante de una pantalla.</p>
+      <p>Te recomiendo que antes de tomar una decisión seria vayas frente al Santísimo y pienses bien sobre cuál es la voluntad de Dios para ti respecto a dicha circunstancia.</p>
+    </div>
+
+    <a class="btn-volver" href="index.html">← Volver al inicio</a>
+
+  </div>
+
+  <footer>Es necesario que Él crezca y que yo disminuya. — Jn 3:30</footer>
+
+</div>
+
+<!-- ══════════════ SCRIPT ══════════════ -->
+<script>
+  /* Navegación */
+  function irPagina(n) {
+    document.querySelectorAll('.pagina').forEach(p => p.classList.remove('activa'));
+    document.getElementById('p' + n).classList.add('activa');
+    window.scrollTo(0, 0);
+  }
+
+  /* Preguntas */
+  const PREGUNTAS = [
+    '¿Qué es lo que verdaderamente quieres con esta decisión... más allá de lo que los demás esperan de ti?',
+    '¿Cuál de las opciones imaginas que le daría más gloria a Dios?',
+    'Imagina que han pasado diez años. ¿Cuál de las opciones crees que agradecerías haber tomado?',
+    '¿Qué te dice tu corazón cuando oras sobre esto en silencio, lejos de la presión del momento?',
+    '¿Hay miedo, orgullo o apego desordenado influyendo en esta decisión? ¿Cuáles?',
+    'Si una persona muy sabia y santa te conociera profundamente... ¿qué crees que te aconsejaría?',
+    'Al final de tu vida, frente a Dios, ¿cuál de las opciones crees que lamentarías no haber elegido?'
+  ];
+
+  let preguntaActual = 0;
+  let timerPreg = null;
+
+  function mostrarFrase() {
+    document.getElementById('estado-prep').style.display = 'none';
+    document.getElementById('estado-frase').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function iniciarPreguntas() {
+    document.getElementById('estado-frase').style.display = 'none';
+    document.getElementById('estado-preguntas').style.display = 'block';
+    preguntaActual = 0;
+    mostrarPregunta(0);
+    window.scrollTo(0, 0);
+  }
+
+  function relojHTML() {
+    return `<div class="reloj-bloque">
+      <svg viewBox="0 0 50 82" width="50" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <clipPath id="cup"><polygon points="3,3 47,3 25,41 25,41"/></clipPath>
+          <clipPath id="cdn"><polygon points="25,41 25,41 3,79 47,79"/></clipPath>
+        </defs>
+        <line x1="3"  y1="3"  x2="47" y2="3"  stroke="#9A7820" stroke-width="2"/>
+        <line x1="3"  y1="79" x2="47" y2="79" stroke="#9A7820" stroke-width="2"/>
+        <line x1="3"  y1="3"  x2="25" y2="41" stroke="#9A7820" stroke-width="1.5"/>
+        <line x1="47" y1="3"  x2="25" y2="41" stroke="#9A7820" stroke-width="1.5"/>
+        <line x1="25" y1="41" x2="3"  y2="79" stroke="#9A7820" stroke-width="1.5"/>
+        <line x1="25" y1="41" x2="47" y2="79" stroke="#9A7820" stroke-width="1.5"/>
+        <rect x="0" y="3" width="50" height="38" fill="#BBA870" opacity="0.8" clip-path="url(#cup)">
+          <animate attributeName="height" from="38" to="0"  dur="20s" begin="0s" fill="freeze"/>
+          <animate attributeName="y"      from="3"  to="41" dur="20s" begin="0s" fill="freeze"/>
+        </rect>
+        <circle cx="25" cy="43" r="2" fill="#9A7820">
+          <animate attributeName="cy"      values="41;46;41" dur="0.38s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0;0.9;0"  dur="0.38s" repeatCount="indefinite"/>
+        </circle>
+        <rect x="0" y="79" width="50" height="0" fill="#BBA870" opacity="0.8" clip-path="url(#cdn)">
+          <animate attributeName="height" from="0"  to="38" dur="20s" begin="0s" fill="freeze"/>
+          <animate attributeName="y"      from="79" to="41" dur="20s" begin="0s" fill="freeze"/>
+        </rect>
+      </svg>
+      <p class="reloj-mensaje">Toma tu tiempo para pensar bien.<br>Escribe tu respuesta con calma y paciencia.<br>No tienes que terminar todo hoy.</p>
+    </div>`;
+  }
+
+  function mostrarPregunta(idx) {
+    const textoEl = document.getElementById('pregTexto');
+    const numEl   = document.getElementById('pregNumero');
+    const relojEl = document.getElementById('relojContenedor');
+    const btnSig  = document.getElementById('btnSiguiente');
+
+    clearTimeout(timerPreg);
+    relojEl.innerHTML = '';
+    btnSig.style.display = 'none';
+
+    numEl.textContent = (idx + 1) + ' / ' + PREGUNTAS.length;
+    textoEl.style.opacity = '0';
+    textoEl.textContent = PREGUNTAS[idx];
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      textoEl.style.opacity = '1';
+    }));
+
+    timerPreg = setTimeout(() => {
+      relojEl.innerHTML = relojHTML();
+      btnSig.style.display = 'inline-block';
+    }, 20000);
+  }
+
+  function siguientePregunta() {
+    preguntaActual++;
+    if (preguntaActual >= PREGUNTAS.length) {
+      irPagina(3);
+    } else {
+      mostrarPregunta(preguntaActual);
+    }
+  }
+</script>
+
+</body>
+</html>
