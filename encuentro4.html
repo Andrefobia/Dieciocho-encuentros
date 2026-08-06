@@ -24,7 +24,7 @@
   -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    emailjs.init('TU_PUBLIC_KEY');
+    emailjs.init('TYJYvigzHdqlQNBwV');
   </script>
 
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
@@ -213,6 +213,29 @@
     }
     #sorpresa-reveal.visible { opacity: 1; }
 
+    .cargando-texto {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--accent);
+      opacity: 0;
+      animation: fadein-cargando .6s ease forwards;
+    }
+    @keyframes fadein-cargando {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .puntos::after {
+      content: '';
+      animation: puntos 1.5s steps(4, end) infinite;
+    }
+    @keyframes puntos {
+      0%  { content: ''; }
+      25% { content: '.'; }
+      50% { content: '..'; }
+      75% { content: '...'; }
+    }
+
     .correo-texto {
       font-family: 'Cinzel Decorative', serif;
       font-size: clamp(1.3rem, 4vw, 2rem);
@@ -388,6 +411,10 @@
         </button>
       </div>
 
+      <div id="sorpresa-cargando" style="display:none">
+        <p class="cargando-texto">preparando una carta para ti<span class="puntos"></span></p>
+      </div>
+
       <div id="sorpresa-reveal" style="display:none">
         <p class="correo-texto">Revisa tu correo.</p>
         <p class="correo-sub">No dejes pasar mucho tiempo en leerlo.</p>
@@ -446,62 +473,63 @@
     CONFIGURA ESTOS TRES VALORES:
     ══════════════════════════════════════════
     */
-    const EMAILJS_SERVICE_ID  = 'TU_SERVICE_ID';
-    const EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID';
-    const SOPHI_EMAIL         = 'CORREO_DE_SOPHI@ejemplo.com';
+    const EMAILJS_SERVICE_ID  = 'service_ejf365m';
+    const EMAILJS_TEMPLATE_ID = 'template_ezrt2k9';
+    const SOPHI_EMAIL         = 'sophiaiguaro16@gmail.com';
     /*
     ══════════════════════════════════════════
     */
 
     /* 12 variantes de email — selección aleatoria cada vez */
+    /* Formato fijo: REMITENTE → HOY → ———— → mensaje        */
     const VARIANTES = [
       {
-        asunto: 'Hoy solo quería caminar un rato contigo.',
-        cuerpo: `Hola, Sophi.\n\nSi estás leyendo esto...\nes porque hoy abriste el encuentro de la soledad.\n\nNo sé qué habrá pasado hoy.\nNo sé qué estarás sintiendo exactamente.\nPero sí sé una cosa.\n\nHoy alguien pensó en ti.\n\nY mientras yo escribía esta página, recé para que, si algún día llegabas hasta aquí, Dios te regalara la paz que yo no puedo darte.\n\nCuando termines de leer este correo...\nhazme un favor.\nLevanta un momento la mirada.\n\nCristo sigue caminando contigo.\nY mientras Dios me lo permita...\nyo también intentaré hacerlo.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Oscar\nHoy\n————————————————\n\nSiempre estaré feliz de escucharte. No importa cuándo leas esto.`
       },
       {
-        asunto: 'Solo quería que supieras que no estás sola.',
-        cuerpo: `Hola, Sophi.\n\nAbriste este encuentro hoy.\nNo sé por qué exactamente.\nPero me alegra que lo hayas hecho.\n\nPorque significa que en algún lugar del mundo,\nalguien está pensando en ti.\nEse alguien soy yo.\n\nQuizás en este momento estoy dormido.\nO trabajando. O estudiando.\nPero algo de mí sigue contigo.\nEso no cambia con la distancia.\n\nCuando cierres este correo...\nrecuerda: hay alguien que, desde lejos, sigue eligiendo caminar contigo.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Oscar\nHoy\n————————————————\n\nSi te llegó este mensaje, espero que el Señor te conceda la paz.`
       },
       {
-        asunto: 'No sé qué pasó hoy. Pero pensé en ti.',
-        cuerpo: `Hola, Sophi.\n\nNo hace falta que me cuentes qué pasó.\nNo tienes que explicar nada.\n\nSolo quiero que sepas que en el momento en que abriste este encuentro,\nel mundo no era tan silencioso como parecía.\n\nAlguien tenía tu nombre en el corazón.\nY ese alguien soy yo.\n\nCuídate mucho.\nY recuerda: Cristo nunca sale a caminar sin compañía.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Santo Cura de Ars\nHoy\n————————————————\n\n«Es en la soledad donde Dios nos habla.»`
       },
       {
-        asunto: 'Desde donde sea que estés leyendo esto...',
-        cuerpo: `Hola, Sophi.\n\nNo sé si estás en tu cuarto.\nEn un café. En el transporte.\nNo sé si hay ruido alrededor o silencio.\n\nPero sí sé que estás leyendo esto.\nY eso me es suficiente para recordarte:\nno estás sola.\n\nHay un Dios que te conoce por nombre,\nque cuenta tus pasos,\nque nunca aparta la mirada.\n\nY hay alguien que, aunque no esté físicamente,\neligió hace tiempo ser parte de tu camino.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Santa Teresa de Jesús\nHoy\n————————————————\n\n«Nada te turbe, nada te espante… quien a Dios tiene, nada le falta: solo Dios basta.»`
       },
       {
-        asunto: 'Hoy el silencio no tiene la última palabra.',
-        cuerpo: `Hola, Sophi.\n\nA veces el silencio puede sentirse muy pesado.\nComo si la ausencia de ruido fuera también ausencia de presencia.\n\nPero no lo es.\n\nEl silencio también puede ser el espacio donde Dios habla más claro.\nY también el espacio donde yo me acuerdo más de ti.\n\nEspero que hoy puedas escuchar algo de eso.\n\nTe pienso.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Santa Teresa de Jesús\nHoy\n————————————————\n\n«Jesús es mi único amigo… y en Él encuentro todo lo que mi corazón necesita.»`
       },
       {
-        asunto: 'Kilómetros entre nosotros. Pero te pienso igual.',
-        cuerpo: `Hola, Sophi.\n\nHay kilómetros entre nosotros.\nEso sigue siendo cierto hoy, como siempre.\n\nPero también es cierto esto:\nen algún punto del día de hoy, me acordé de ti.\nNo porque me lo propuse.\nSino porque así funciona cuando alguien importa.\n\nEspero que ese pequeño detalle te acompañe un rato.\n\nCristo lleva mucho más tiempo haciéndolo que yo.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `San Agustín de Hipona\nHoy\n————————————————\n\n«Tú nos hiciste, Señor, para ti, y nuestro corazón estará inquieto hasta que descanse en ti.»`
       },
       {
-        asunto: 'Este correo llega porque alguien quiso que llegara.',
-        cuerpo: `Hola, Sophi.\n\nEste correo no es accidente.\nLo preparé con tiempo, pensando en que algún día lo leerías.\nY ese día es hoy.\n\nNo sé si fue un día difícil.\nPero sé que lo que sientes es válido.\nY sé que no tiene que durar para siempre.\n\nLevanta la cabeza un momento.\nEl que camina contigo es más grande que lo que sientes ahora.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `San Juan de la Cruz\nHoy\n————————————————\n\n«En la soledad, el alma se encuentra con el Amado.»`
       },
       {
-        asunto: 'Justo hoy. Justo cuando lo necesitabas.',
-        cuerpo: `Hola, Sophi.\n\nAlguien mucho más sabio que yo organizó que recibieras este correo justo hoy.\nNo yo.\nYo solo escribí las palabras.\nPero Él sabía cuándo las necesitarías.\n\nConfía en eso.\n\nY recuerda que incluso el camino de Emaús,\nque empezó con dos discípulos tristes y solos,\nterminó con los corazones ardiendo.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Rey David\nHoy\n————————————————\n\n«El Señor está cerca de los quebrantados de corazón, y salva a los abatidos de espíritu.»`
       },
       {
-        asunto: 'Sigues siendo amada. Aunque hoy no lo parezca.',
-        cuerpo: `Hola, Sophi.\n\nHay días en los que el amor de Dios parece lejano.\nY días en los que el mío también puede parecerlo, dada la distancia.\n\nPero ninguno de los dos cambió.\n\nEl amor que no se siente no es amor que desapareció.\nEs amor que espera ser encontrado de nuevo.\n\nBusca ese amor hoy.\nEstá ahí.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Jesús a través de Juan el Apóstol\nHoy\n————————————————\n\n«No os dejaré huérfanos, volveré a vosotros.»`
       },
       {
-        asunto: 'Te escribo desde el otro lado del mundo.',
-        cuerpo: `Hola, Sophi.\n\nEn este momento, hay kilómetros entre nosotros.\nQuizás un océano. Quizás una diferencia horaria.\n\nPero algo que no cambia: tú me importas.\n\nEsta página la hice pensando en que algún día llegarías aquí.\nY me alegra que así sea.\n\nQue este correo llegue como lo que es:\nun pequeño "aquí estoy" desde lejos.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Dios a través del profeta Isaías\nHoy\n————————————————\n\n«No temas, porque yo estoy contigo; no te angusties, porque yo soy tu Dios. Te fortalezco, te auxilio, te sostengo con mi diestra victoriosa.»`
       },
       {
-        asunto: 'Abre este correo despacio.',
-        cuerpo: `Hola, Sophi.\n\nNo lo leas rápido.\nTómate un momento.\nEste correo no tiene apuro.\n\nSolo quería recordarte, con calma,\nque no estás sola.\nQue hay Alguien que nunca se va.\nY que hay alguien que, aunque lejos,\nsigue pensando en ti con mucho cariño.\n\nAsí. Sin más.\n\nEspero que te acompañe un rato.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Rey David\nHoy\n————————————————\n\n«Si mi padre y mi madre me abandonan, el Señor me recogerá.»`
       },
       {
-        asunto: 'Solo una cosa para hoy.',
-        cuerpo: `Hola, Sophi.\n\nHoy solo quiero decirte una cosa:\n\nCristo sigue caminando contigo.\nY mientras me sea posible...\nyo también.\n\n— André`
+        asunto: 'para cuando te sientas sola',
+        cuerpo: `Oscar\nHoy\n————————————————\n\n«El silencio, el orden y la soledad son la combinación perfecta para escuchar la voz de quien nos creó. Así que si te sientes sola, te recomiendo que ordenes tu habitación, apagues el ruido y le reces con esperanza y alegría.»`
       }
     ];
 
@@ -519,15 +547,20 @@
         message:  v.cuerpo
       }).catch(() => { /* silencioso — la experiencia no se interrumpe */ });
 
-      /* 2 segundos de silencio, luego revela */
+      /* Muestra "preparando una carta para ti..." */
+      document.getElementById('sorpresa-btn-wrap').style.display = 'none';
+      const cargando = document.getElementById('sorpresa-cargando');
+      cargando.style.display = 'block';
+
+      /* Después de 2.5s, cambia a "Revisa tu correo." */
       setTimeout(() => {
-        document.getElementById('sorpresa-btn-wrap').style.display = 'none';
+        cargando.style.display = 'none';
         const reveal = document.getElementById('sorpresa-reveal');
         reveal.style.display = 'block';
         requestAnimationFrame(() => requestAnimationFrame(() => {
           reveal.classList.add('visible');
         }));
-      }, 2000);
+      }, 2500);
     }
   </script>
 
