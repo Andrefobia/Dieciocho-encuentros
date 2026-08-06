@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuarto Encuentro — Para cuando te sientas sola</title>
+
+  <!--
+  ══════════════════════════════════════════════════
+  EMAILJS — CONFIGURACIÓN (5 minutos una sola vez)
+  ══════════════════════════════════════════════════
+  1. Ve a https://www.emailjs.com y crea cuenta gratis
+  2. En "Email Services" conecta tu Gmail (o el que uses)
+  3. En "Email Templates" crea una plantilla con:
+       Subject: {{subject}}
+       Content: {{message}}
+       To:      {{to_email}}
+  4. Copia tu Public Key (Account → API Keys)
+  5. Reemplaza los tres valores de abajo:
+       TU_PUBLIC_KEY   → tu Public Key
+       TU_SERVICE_ID   → ID del servicio (ej: service_abc123)
+       TU_TEMPLATE_ID  → ID de la plantilla (ej: template_xyz789)
+  ══════════════════════════════════════════════════
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init('TU_PUBLIC_KEY');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #EEE9E2;
+      --text:   #1C2A38;
+      --accent: #3B5068;
+      --gold:   #8A7030;
+      --border: #BBAA80;
+      --cream:  #E8E0D0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.13rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    .enc-header {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+    }
+    .enc-numero {
+      font-family: 'Cinzel', serif;
+      font-size: .82rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .enc-titulo {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.2rem, 4vw, 1.85rem);
+      color: var(--accent);
+      font-weight: 400;
+      line-height: 1.35;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── CONTENIDO ── */
+    .contenido {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── INTRO ── */
+    .intro { padding: 3rem 0 1.5rem; }
+    .intro p { margin-bottom: .85rem; line-height: 1.85; }
+
+    .verso-inline { font-style: italic; color: var(--accent); }
+    .cita-ref { font-size: .85rem; color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: .06em; }
+
+    .cadena {
+      padding: 1.2rem 0 .5rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+    .cadena p {
+      font-size: 1.05rem;
+      line-height: 1.95;
+      font-style: italic;
+      margin-bottom: .1rem;
+    }
+    .cadena .acento { color: var(--accent); font-style: normal; }
+
+    .puente {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--accent);
+      padding: 2rem 0 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── AUDIO ── */
+    .seccion-audio {
+      padding: 1.5rem 0 2.5rem;
+    }
+    .seccion-label {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+    .audio-wrap {
+      background: linear-gradient(135deg, rgba(59,80,104,.06) 0%, rgba(187,170,128,.12) 100%);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem 2rem;
+      text-align: center;
+    }
+    .audio-nota {
+      font-size: .9rem;
+      font-style: italic;
+      color: var(--text);
+      opacity: .65;
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+    audio {
+      width: 100%;
+      max-width: 460px;
+      accent-color: var(--accent);
+    }
+
+    /* ── MENSAJE PERSONAL ── */
+    .seccion-carta {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .carta-img {
+      width: 100%;
+      max-width: 480px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: 0 6px 28px rgba(0,0,0,.18);
+      border: 1px solid var(--border);
+    }
+    /* Alternativa video — descomenta si prefieres el video
+    .video-personal {
+      width: 100%;
+      max-width: 480px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 6px;
+      box-shadow: 0 6px 28px rgba(0,0,0,.18);
+    }
+    */
+
+    /* ── SORPRESA ── */
+    .seccion-sorpresa {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .sorpresa-label {
+      font-family: 'Cinzel', serif;
+      font-size: .74rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+    .btn-sorpresa {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 99px;
+      padding: .9rem 3rem;
+      cursor: pointer;
+      transition: all .3s ease;
+      letter-spacing: .02em;
+    }
+    .btn-sorpresa:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-sorpresa:disabled {
+      opacity: .35;
+      cursor: default;
+      transform: none;
+    }
+
+    #sorpresa-reveal {
+      opacity: 0;
+      transition: opacity 1.4s ease;
+    }
+    #sorpresa-reveal.visible { opacity: 1; }
+
+    .correo-texto {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.3rem, 4vw, 2rem);
+      color: var(--accent);
+      margin-bottom: .8rem;
+    }
+    .correo-sub {
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--text);
+      opacity: .6;
+    }
+
+    /* ── KOLBE ── */
+    .seccion {
+      padding: 2.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .santo-mini {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1.8rem;
+    }
+    .santo-mini-img {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 16px rgba(0,0,0,.15);
+      margin-bottom: .8rem;
+    }
+    .santo-mini-nombre {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .16em;
+      color: var(--gold);
+    }
+    .seccion p { margin-bottom: .9rem; line-height: 1.85; }
+    .seccion .en-cursiva { font-style: italic; color: var(--accent); }
+
+    /* ── ORACIÓN ── */
+    .oracion-bloque {
+      background: linear-gradient(135deg, rgba(59,80,104,.05) 0%, rgba(187,170,128,.1) 100%);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2rem 2.2rem;
+      margin: .5rem 0;
+      font-style: italic;
+      line-height: 1.95;
+    }
+
+    /* ── FINAL ── */
+    .seccion-final {
+      padding: 3rem 0 1rem;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .pregunta-final {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+      color: var(--accent);
+      line-height: 1.4;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ── VOLVER ── */
+    .btn-volver {
+      display: block;
+      width: fit-content;
+      margin: 3rem auto 0;
+      padding: .75rem 2.5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-family: 'Cinzel', serif;
+      font-size: .8rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: all .25s;
+    }
+    .btn-volver:hover { background: var(--accent); color: var(--bg); }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      color: var(--border);
+      font-size: .82rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="enc-header">
+    <div class="enc-numero">Cuarto Encuentro</div>
+    <h1 class="enc-titulo">Para cuando te sientas sola</h1>
+  </header>
+
+  <div class="contenido">
+
+    <!-- ── I. INTRO ── -->
+    <div class="intro">
+      <p>Hola, Sophi.</p>
+      <p>Si estás leyendo este encuentro, quizás hoy te sientes sola.</p>
+      <p>Quizás sí hay personas a tu alrededor, pero sientes que ninguna termina de acompañarte.</p>
+      <p>O quizás simplemente hoy no hay nadie a tu lado y extrañas caminar junto a alguien.</p>
+      <p>A veces pasa.</p>
+      <p>Y está bien reconocerlo.</p>
+      <p>Pero antes de continuar, quiero recordarte una promesa que Cristo mismo nos hizo:</p>
+      <p><span class="verso-inline">«Yo estoy con ustedes todos los días hasta el fin del mundo.»</span> <span class="cita-ref">Mt 28:20</span></p>
+    </div>
+
+    <div class="cadena">
+      <p>Qué mayor consuelo que saber que nuestro Creador nunca nos abandona.</p>
+      <p>Qué mayor compañía que Aquél que nos conoce mejor que nosotros mismos.</p>
+      <p>Qué mayor motivo de esperanza que saber que Aquel que nos creó también nos ama.</p>
+      <br>
+      <p>Muchas veces nuestros sentidos no alcanzan a percibir toda la realidad.</p>
+      <p>Vemos solamente aquello que es material.</p>
+      <p>Pero fuimos creados para mucho más que lo visible.</p>
+      <br>
+      <p>Dios no deja de estar presente simplemente porque nuestros ojos no puedan verlo.</p>
+      <br>
+      <p class="acento">Él permanece.</p>
+      <p class="acento">Siempre acompaña.</p>
+      <p class="acento">Siempre sostiene.</p>
+      <p class="acento">Siempre llama.</p>
+      <br>
+      <p>Porque Aquel que es Amor nunca abandona a quienes ama.</p>
+    </div>
+
+    <!-- ── II. AUDIO ── -->
+    <p class="puente">Quiero contarte una historia.</p>
+
+    <div class="seccion-audio">
+      <div class="seccion-label">El Evangelio de Emaús</div>
+      <div class="audio-wrap">
+        <p class="audio-nota">Escucha este evangelio.<br>Dos discípulos que caminaban solos y tristes... hasta que alguien se unió a ellos.</p>
+        <audio controls preload="none">
+          <source src="audio/enc4-emaus.mp3" type="audio/mpeg">
+          Tu navegador no soporta audio.
+        </audio>
+      </div>
+    </div>
+
+    <!-- ── III. MENSAJE PERSONAL ── -->
+    <div class="seccion-carta">
+      <div class="seccion-label">Una carta</div>
+
+      <!-- OPCIÓN A: Foto de carta a mano (activa) -->
+      <!-- Guarda la foto de tu carta como: img/enc4-carta.jpg -->
+      <img class="carta-img" src="img/enc4-carta.jpg" alt="Carta de André"
+           onerror="this.style.display='none'">
+
+      <!-- OPCIÓN B: Video (descomenta si prefieres el video)
+      <video class="video-personal" controls preload="none">
+        <source src="video/enc4-mensaje.mp4" type="video/mp4">
+      </video>
+      -->
+    </div>
+
+    <!-- ── IV. LA SORPRESA ── -->
+    <div class="seccion-sorpresa">
+      <p class="sorpresa-label">IV · La sorpresa</p>
+
+      <div id="sorpresa-btn-wrap">
+        <button class="btn-sorpresa" id="btnSorpresa" onclick="enviarSorpresa()">
+          ¿Me dejas acompañarte hoy?
+        </button>
+      </div>
+
+      <div id="sorpresa-reveal" style="display:none">
+        <p class="correo-texto">Revisa tu correo.</p>
+        <p class="correo-sub">No dejes pasar mucho tiempo en leerlo.</p>
+      </div>
+    </div>
+
+    <!-- ── V. SAN MAXIMILIANO KOLBE ── -->
+    <div class="seccion">
+      <div class="santo-mini">
+        <img class="santo-mini-img" src="img/enc4-kolbe.jpg" alt="San Maximiliano Kolbe"
+             onerror="this.style.display='none'">
+        <span class="santo-mini-nombre">San Maximiliano Kolbe · 1894 — 1941</span>
+      </div>
+      <div class="seccion-label">El que eligió no dejar solo a otro</div>
+
+      <p>En 1941, en el campo de concentración de Auschwitz, las autoridades seleccionaron diez prisioneros para morir de hambre en un búnker subterráneo.</p>
+      <p>Uno de los seleccionados lloró. Tenía esposa, tenía hijos.</p>
+      <p>En ese momento, el sacerdote franciscano Maximiliano Kolbe se adelantó.</p>
+      <p class="en-cursiva">«Quiero tomar el lugar de ese hombre. Soy sacerdote. No tengo mujer ni hijos.»</p>
+      <p>Las autoridades aceptaron.</p>
+      <p>Los testigos que sobrevivieron contaron que Kolbe transformó aquel lugar de desesperación en un lugar de oración. Los prisioneros rezaban juntos. Cantaban. Consolaban a los que agonizaban.</p>
+      <p>No porque el lugar hubiera cambiado.</p>
+      <p>Sino porque alguien decidió no dejar solos a los demás.</p>
+      <p>Incluso en el lugar más oscuro... alguien eligió caminar contigo hasta el final.</p>
+    </div>
+
+    <!-- ── VI. ORACIÓN ── -->
+    <div class="seccion">
+      <div class="seccion-label">Oración</div>
+      <div class="oracion-bloque">
+        Señor,<br><br>
+        cuando me sienta sola,<br>
+        recuérdame que Tú nunca dejas de caminar conmigo.<br><br>
+        Abre mis ojos para descubrir tu presencia<br>
+        incluso cuando no la perciba.<br><br>
+        Y hazme también capaz de acompañar<br>
+        a quienes hoy se sienten solos.<br><br>
+        Amén.
+      </div>
+    </div>
+
+    <!-- ── VII. FINAL ── -->
+    <div class="seccion-final">
+      <p class="pregunta-final">¿A quién podrías acompañar tú hoy?</p>
+    </div>
+
+    <a class="btn-volver" href="index.html">← Volver al inicio</a>
+
+  </div>
+
+  <footer></footer>
+
+  <script>
+    /*
+    ══════════════════════════════════════════
+    CONFIGURA ESTOS TRES VALORES:
+    ══════════════════════════════════════════
+    */
+    const EMAILJS_SERVICE_ID  = 'TU_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'TU_TEMPLATE_ID';
+    const SOPHI_EMAIL         = 'CORREO_DE_SOPHI@ejemplo.com';
+    /*
+    ══════════════════════════════════════════
+    */
+
+    /* 12 variantes de email — selección aleatoria cada vez */
+    const VARIANTES = [
+      {
+        asunto: 'Hoy solo quería caminar un rato contigo.',
+        cuerpo: `Hola, Sophi.\n\nSi estás leyendo esto...\nes porque hoy abriste el encuentro de la soledad.\n\nNo sé qué habrá pasado hoy.\nNo sé qué estarás sintiendo exactamente.\nPero sí sé una cosa.\n\nHoy alguien pensó en ti.\n\nY mientras yo escribía esta página, recé para que, si algún día llegabas hasta aquí, Dios te regalara la paz que yo no puedo darte.\n\nCuando termines de leer este correo...\nhazme un favor.\nLevanta un momento la mirada.\n\nCristo sigue caminando contigo.\nY mientras Dios me lo permita...\nyo también intentaré hacerlo.\n\n— André`
+      },
+      {
+        asunto: 'Solo quería que supieras que no estás sola.',
+        cuerpo: `Hola, Sophi.\n\nAbriste este encuentro hoy.\nNo sé por qué exactamente.\nPero me alegra que lo hayas hecho.\n\nPorque significa que en algún lugar del mundo,\nalguien está pensando en ti.\nEse alguien soy yo.\n\nQuizás en este momento estoy dormido.\nO trabajando. O estudiando.\nPero algo de mí sigue contigo.\nEso no cambia con la distancia.\n\nCuando cierres este correo...\nrecuerda: hay alguien que, desde lejos, sigue eligiendo caminar contigo.\n\n— André`
+      },
+      {
+        asunto: 'No sé qué pasó hoy. Pero pensé en ti.',
+        cuerpo: `Hola, Sophi.\n\nNo hace falta que me cuentes qué pasó.\nNo tienes que explicar nada.\n\nSolo quiero que sepas que en el momento en que abriste este encuentro,\nel mundo no era tan silencioso como parecía.\n\nAlguien tenía tu nombre en el corazón.\nY ese alguien soy yo.\n\nCuídate mucho.\nY recuerda: Cristo nunca sale a caminar sin compañía.\n\n— André`
+      },
+      {
+        asunto: 'Desde donde sea que estés leyendo esto...',
+        cuerpo: `Hola, Sophi.\n\nNo sé si estás en tu cuarto.\nEn un café. En el transporte.\nNo sé si hay ruido alrededor o silencio.\n\nPero sí sé que estás leyendo esto.\nY eso me es suficiente para recordarte:\nno estás sola.\n\nHay un Dios que te conoce por nombre,\nque cuenta tus pasos,\nque nunca aparta la mirada.\n\nY hay alguien que, aunque no esté físicamente,\neligió hace tiempo ser parte de tu camino.\n\n— André`
+      },
+      {
+        asunto: 'Hoy el silencio no tiene la última palabra.',
+        cuerpo: `Hola, Sophi.\n\nA veces el silencio puede sentirse muy pesado.\nComo si la ausencia de ruido fuera también ausencia de presencia.\n\nPero no lo es.\n\nEl silencio también puede ser el espacio donde Dios habla más claro.\nY también el espacio donde yo me acuerdo más de ti.\n\nEspero que hoy puedas escuchar algo de eso.\n\nTe pienso.\n\n— André`
+      },
+      {
+        asunto: 'Kilómetros entre nosotros. Pero te pienso igual.',
+        cuerpo: `Hola, Sophi.\n\nHay kilómetros entre nosotros.\nEso sigue siendo cierto hoy, como siempre.\n\nPero también es cierto esto:\nen algún punto del día de hoy, me acordé de ti.\nNo porque me lo propuse.\nSino porque así funciona cuando alguien importa.\n\nEspero que ese pequeño detalle te acompañe un rato.\n\nCristo lleva mucho más tiempo haciéndolo que yo.\n\n— André`
+      },
+      {
+        asunto: 'Este correo llega porque alguien quiso que llegara.',
+        cuerpo: `Hola, Sophi.\n\nEste correo no es accidente.\nLo preparé con tiempo, pensando en que algún día lo leerías.\nY ese día es hoy.\n\nNo sé si fue un día difícil.\nPero sé que lo que sientes es válido.\nY sé que no tiene que durar para siempre.\n\nLevanta la cabeza un momento.\nEl que camina contigo es más grande que lo que sientes ahora.\n\n— André`
+      },
+      {
+        asunto: 'Justo hoy. Justo cuando lo necesitabas.',
+        cuerpo: `Hola, Sophi.\n\nAlguien mucho más sabio que yo organizó que recibieras este correo justo hoy.\nNo yo.\nYo solo escribí las palabras.\nPero Él sabía cuándo las necesitarías.\n\nConfía en eso.\n\nY recuerda que incluso el camino de Emaús,\nque empezó con dos discípulos tristes y solos,\nterminó con los corazones ardiendo.\n\n— André`
+      },
+      {
+        asunto: 'Sigues siendo amada. Aunque hoy no lo parezca.',
+        cuerpo: `Hola, Sophi.\n\nHay días en los que el amor de Dios parece lejano.\nY días en los que el mío también puede parecerlo, dada la distancia.\n\nPero ninguno de los dos cambió.\n\nEl amor que no se siente no es amor que desapareció.\nEs amor que espera ser encontrado de nuevo.\n\nBusca ese amor hoy.\nEstá ahí.\n\n— André`
+      },
+      {
+        asunto: 'Te escribo desde el otro lado del mundo.',
+        cuerpo: `Hola, Sophi.\n\nEn este momento, hay kilómetros entre nosotros.\nQuizás un océano. Quizás una diferencia horaria.\n\nPero algo que no cambia: tú me importas.\n\nEsta página la hice pensando en que algún día llegarías aquí.\nY me alegra que así sea.\n\nQue este correo llegue como lo que es:\nun pequeño "aquí estoy" desde lejos.\n\n— André`
+      },
+      {
+        asunto: 'Abre este correo despacio.',
+        cuerpo: `Hola, Sophi.\n\nNo lo leas rápido.\nTómate un momento.\nEste correo no tiene apuro.\n\nSolo quería recordarte, con calma,\nque no estás sola.\nQue hay Alguien que nunca se va.\nY que hay alguien que, aunque lejos,\nsigue pensando en ti con mucho cariño.\n\nAsí. Sin más.\n\nEspero que te acompañe un rato.\n\n— André`
+      },
+      {
+        asunto: 'Solo una cosa para hoy.',
+        cuerpo: `Hola, Sophi.\n\nHoy solo quiero decirte una cosa:\n\nCristo sigue caminando contigo.\nY mientras me sea posible...\nyo también.\n\n— André`
+      }
+    ];
+
+    function enviarSorpresa() {
+      const btn = document.getElementById('btnSorpresa');
+      btn.disabled = true;
+
+      /* Selecciona una variante aleatoria */
+      const v = VARIANTES[Math.floor(Math.random() * VARIANTES.length)];
+
+      /* Envía el correo */
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        to_email: SOPHI_EMAIL,
+        subject:  v.asunto,
+        message:  v.cuerpo
+      }).catch(() => { /* silencioso — la experiencia no se interrumpe */ });
+
+      /* 2 segundos de silencio, luego revela */
+      setTimeout(() => {
+        document.getElementById('sorpresa-btn-wrap').style.display = 'none';
+        const reveal = document.getElementById('sorpresa-reveal');
+        reveal.style.display = 'block';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          reveal.classList.add('visible');
+        }));
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
