@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duodécimo Encuentro — Para cuando estés enferma</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #EAE5DC;
+      --text:   #1C2820;
+      --accent: #2A5040;
+      --gold:   #8A7030;
+      --border: #B8A870;
+      --cream:  #E0D8C8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.13rem;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ── PÁGINAS ── */
+    .pagina { display: none; opacity: 0; transition: opacity .5s ease; }
+    .pagina.activa { display: block; opacity: 1; }
+
+    /* ── HEADER ── */
+    .enc-header {
+      text-align: center;
+      padding: 3.5rem 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--cream) 0%, var(--bg) 100%);
+    }
+    .enc-numero {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .75rem;
+    }
+    .enc-titulo {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      color: var(--accent);
+      font-weight: 400;
+      line-height: 1.35;
+      margin: 0 auto .9rem;
+      max-width: 640px;
+    }
+    .enc-frase {
+      font-family: 'Cinzel', serif;
+      font-size: .9rem;
+      letter-spacing: .14em;
+      color: var(--gold);
+    }
+
+    /* ── SANTO ── */
+    .santo-apertura {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.5rem 1.5rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .santo-img {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      box-shadow: 0 6px 24px rgba(0,0,0,.15);
+      margin-bottom: .9rem;
+    }
+    .santo-nombre {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .18em;
+      color: var(--gold);
+      text-align: center;
+    }
+
+    /* ── CONTENIDO ── */
+    .contenido {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .intro { padding: 2.8rem 0 1.5rem; }
+    .intro p { margin-bottom: .9rem; line-height: 1.85; }
+
+    .promesa {
+      border-left: 3px solid var(--gold);
+      padding: .8rem 1.4rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--accent);
+    }
+
+    /* ── SEPARADOR ── */
+    .sep {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* ── PUENTE HACIA EL CUADRO ── */
+    .texto-puente {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.08rem;
+      color: var(--accent);
+      padding: 1.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── CUADRO INTERACTIVO ── */
+    .cuadro-wrap {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      background: linear-gradient(135deg, rgba(42,80,64,.04) 0%, rgba(138,112,48,.06) 100%);
+      margin-bottom: 2.5rem;
+    }
+    .cuadro-hero { text-align: center; margin-bottom: 1.5rem; }
+    .cuadro-numero {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 3.5rem;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .cuadro-sub {
+      font-size: .88rem;
+      color: var(--text);
+      opacity: .6;
+      margin-top: .3rem;
+    }
+    .cuadro-frase {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--accent);
+      margin-top: .9rem;
+    }
+    .cuadro-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .stat-chip {
+      background: rgba(42,80,64,.07);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .7rem;
+      text-align: center;
+    }
+    .stat-num { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--accent); }
+    .stat-label { font-size: .75rem; color: var(--text); opacity: .6; margin-top: 2px; }
+    .stat-desc { font-size: .7rem; color: var(--text); opacity: .45; margin-top: 3px; }
+
+    .cuadro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .cuadro-columna { }
+    .cuadro-cat-label {
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .fila-sanacion {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 5px;
+      gap: 8px;
+      transition: background .15s;
+      border-bottom: 1px solid rgba(138,112,48,.15);
+    }
+    .fila-sanacion:last-child { border-bottom: none; }
+    .fila-sanacion:hover { background: rgba(42,80,64,.07); }
+    .fila-sanacion.activo { background: rgba(42,80,64,.12); }
+    .fila-nom { font-size: .88rem; color: var(--text); }
+    .fila-ref { font-size: .72rem; color: var(--gold); white-space: nowrap; flex-shrink: 0; }
+
+    .cuadro-multitudes { margin-bottom: 14px; }
+    .multitudes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .mult-chip {
+      background: rgba(42,80,64,.05);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .mult-chip:hover { background: rgba(42,80,64,.10); }
+    .mult-chip.activo { background: rgba(42,80,64,.14); }
+    .mult-nom { font-size: .88rem; color: var(--text); }
+    .mult-ref { font-size: .72rem; color: var(--gold); margin-top: 2px; }
+
+    /* Panel de detalle */
+    #detalle-sanacion {
+      background: rgba(42,80,64,.06);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 1.2rem 1.4rem;
+      margin-top: 14px;
+      display: none;
+    }
+    #detalle-sanacion.visible { display: block; }
+    .det-img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .det-badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      background: rgba(42,80,64,.12);
+      color: var(--accent);
+      padding: 3px 10px;
+      border-radius: 99px;
+      margin-bottom: 10px;
+    }
+    .det-nombre { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--accent); margin-bottom: 3px; }
+    .det-ref { font-family: 'Cinzel', serif; font-size: .72rem; color: var(--gold); margin-bottom: 12px; }
+    .det-contexto { font-size: .92rem; color: var(--text); line-height: 1.75; margin-bottom: 14px; opacity: .85; }
+    .det-verso {
+      border-left: 3px solid var(--gold);
+      padding: 8px 14px;
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--accent);
+      line-height: 1.75;
+      background: rgba(138,112,48,.06);
+      border-radius: 0 5px 5px 0;
+    }
+
+    /* ── PREGUNTA ── */
+    .seccion-pregunta {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .pregunta-intro {
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text);
+      opacity: .65;
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .pregunta-grande {
+      text-align: center;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      color: var(--accent);
+      line-height: 1.5;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+    .respuesta p { margin-bottom: .9rem; line-height: 1.85; }
+
+    /* ── BOTÓN CONTINUAR ── */
+    .btn-continuar {
+      display: block;
+      width: fit-content;
+      margin: 3rem auto;
+      padding: .85rem 3rem;
+      background: transparent;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: 'Cinzel', serif;
+      font-size: .8rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-continuar:hover { background: var(--accent); color: var(--bg); }
+
+    /* ── PÁGINA 2 ── */
+    .seccion { padding: 2.5rem 0; border-top: 1px solid var(--border); }
+    .seccion-label {
+      font-family: 'Cinzel', serif;
+      font-size: .74rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+    .seccion p { margin-bottom: .9rem; line-height: 1.85; }
+    .acento { font-style: italic; color: var(--accent); }
+
+    /* ── ORACIÓN ── */
+    .oracion-invitacion {
+      font-style: italic;
+      color: var(--text);
+      opacity: .7;
+      text-align: center;
+      font-size: 1rem;
+      margin-bottom: 1.4rem;
+    }
+    .oracion-area {
+      width: 100%;
+      min-height: 140px;
+      background: rgba(42,80,64,.04);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--text);
+      line-height: 1.8;
+      resize: vertical;
+      outline: none;
+    }
+    .oracion-area::placeholder { color: var(--text); opacity: .3; font-style: italic; }
+    .oracion-area:focus { border-color: var(--accent); }
+    .oracion-final {
+      margin-top: 1.5rem;
+      padding: .9rem 1.4rem;
+      border-left: 3px solid var(--gold);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--accent);
+      line-height: 1.85;
+    }
+
+    /* ── CIERRE ── */
+    .cierre { padding: 2.5rem 0 1rem; border-top: 1px solid var(--border); }
+    .cierre p { margin-bottom: .9rem; line-height: 1.85; }
+    .cita-final {
+      text-align: center;
+      padding: 2rem 0 1rem;
+    }
+    .cita-texto {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1rem, 3vw, 1.35rem);
+      color: var(--accent);
+      line-height: 1.5;
+      max-width: 520px;
+      margin: 0 auto .8rem;
+      font-style: italic;
+      font-weight: 400;
+    }
+    .cita-fuente {
+      font-family: 'Cinzel', serif;
+      font-size: .75rem;
+      letter-spacing: .14em;
+      color: var(--gold);
+    }
+
+    /* ── VOLVER ── */
+    .btn-volver {
+      display: block;
+      width: fit-content;
+      margin: 2.5rem auto 0;
+      padding: .75rem 2.5rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      border-radius: 99px;
+      text-decoration: none;
+      transition: all .25s;
+    }
+    .btn-volver:hover { background: var(--accent); color: var(--bg); }
+
+    footer { padding: 3rem 1.5rem 4rem; }
+
+    @media (max-width: 520px) {
+      .cuadro-grid { grid-template-columns: 1fr; }
+      .cuadro-stats { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════ PÁGINA 1 ══════════════════ -->
+  <div class="pagina activa" id="p1">
+
+    <header class="enc-header">
+      <div class="enc-numero">Duodécimo Encuentro</div>
+      <h1 class="enc-titulo">Para cuando estés enferma</h1>
+      <div class="enc-frase">Dios sana</div>
+    </header>
+
+    <div class="santo-apertura">
+      <img class="santo-img" src="img/enc12-rafael.jpg" alt="San Rafael Arcángel"
+           onerror="this.style.display='none'">
+      <div class="santo-nombre">San Rafael Arcángel<br><span style="letter-spacing:.08em;opacity:.7;">"Dios ha sanado"</span></div>
+    </div>
+
+    <div class="contenido">
+
+      <!-- INTRO -->
+      <div class="intro">
+        <p>Hola, Sophi.</p>
+        <p>Si estás leyendo esto es probablemente porque no te encuentras bien.</p>
+        <p>Qué bueno que estés aquí, puesto que escribí esto con el propósito de contarte cosas muy importantes referentes a la enfermedad.</p>
+        <p>Quizás es algo pasajero. Quizás ya vas varios días así.</p>
+        <p>O quizás es algo mucho más serio.</p>
+        <p>No sé por cuál de estas cosas estés atravesando en este momento.</p>
+        <p>Así que no te puedo prometer que mañana estarás sana.</p>
+        <p>Pero hay algo que sí te puedo prometer:</p>
+        <div class="promesa">Que no tienes que atravesarlo sola.</div>
+        <p>Porque Cristo no está solo cuando nos sentimos bien y estamos fuertes.</p>
+        <p>Sino también en estos momentos.</p>
+      </div>
+
+      <hr class="sep">
+
+      <!-- PUENTE AL CUADRO -->
+      <p class="texto-puente">«Jesús nunca trató el sufrimiento humano como algo que no importara.»</p>
+      <p style="margin-bottom:1.4rem;">Los Evangelios están repletos de enfermos que se acercaron a Él.</p>
+
+      <!-- CUADRO INTERACTIVO -->
+      <div class="cuadro-wrap">
+        <div class="cuadro-hero">
+          <div class="cuadro-numero">26+</div>
+          <div class="cuadro-sub">encuentros de sanación en los Evangelios</div>
+          <div class="cuadro-frase">En ninguno de ellos, Jesús dijo que no.</div>
+        </div>
+
+        <div class="cuadro-stats">
+          <div class="stat-chip">
+            <div class="stat-num">9</div>
+            <div class="stat-label">directos</div>
+            <div class="stat-desc">El enfermo acudió por sí mismo</div>
+          </div>
+          <div class="stat-chip">
+            <div class="stat-num">13</div>
+            <div class="stat-label">indirectos</div>
+            <div class="stat-desc">Llevados o intercedidos</div>
+          </div>
+          <div class="stat-chip">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">multitudes</div>
+            <div class="stat-desc">Sanaciones masivas</div>
+          </div>
+        </div>
+
+        <div class="cuadro-grid">
+          <div class="cuadro-columna">
+            <div class="cuadro-cat-label">Directos</div>
+            <div id="col-directos"></div>
+          </div>
+          <div class="cuadro-columna">
+            <div class="cuadro-cat-label">Indirectos</div>
+            <div id="col-indirectos"></div>
+          </div>
+        </div>
+
+        <div class="cuadro-multitudes">
+          <div class="cuadro-cat-label">Multitudes</div>
+          <div class="multitudes-grid" id="col-multitudes"></div>
+        </div>
+
+        <div id="detalle-sanacion">
+          <img class="det-img" id="det-img" src="" alt="" onerror="this.style.display='none'">
+          <div class="det-badge" id="det-badge"></div>
+          <div class="det-nombre" id="det-nombre"></div>
+          <div class="det-ref" id="det-ref"></div>
+          <div class="det-contexto" id="det-contexto"></div>
+          <div class="det-verso" id="det-verso"></div>
+        </div>
+      </div>
+
+      <!-- DESPUÉS DEL CUADRO -->
+      <p>Y cuando no se concede inmediatamente la curación que alguien pide, nunca deja de amar a esa persona.</p>
+      <p>Y creo que esto es el fundamento de este encuentro.</p>
+
+      <!-- PREGUNTA -->
+      <div class="seccion-pregunta">
+        <p class="pregunta-intro">A pesar de todo esto, podrías estarte preguntando algo muy lógico:</p>
+        <p class="pregunta-grande">Si Dios puede curarme,<br>¿por qué permite que esté enferma?</p>
+        <div class="respuesta">
+          <p>No tenemos una respuesta completa para cada sufrimiento concreto.</p>
+          <p>Pero tenemos una respuesta completa acerca de quién está contigo mientras sufres.</p>
+          <p style="text-align:center; font-family:'Cinzel', serif; font-size:1.1rem; color:var(--accent); letter-spacing:.06em; padding: .5rem 0;">Cristo.</p>
+        </div>
+      </div>
+
+      <button class="btn-continuar" onclick="irPagina2()">Continuar →</button>
+
+    </div>
+    <footer></footer>
+  </div>
+
+  <!-- ══════════════════ PÁGINA 2 ══════════════════ -->
+  <div class="pagina" id="p2">
+
+    <header class="enc-header">
+      <div class="enc-numero">Duodécimo Encuentro</div>
+      <h1 class="enc-titulo">Para cuando estés enferma</h1>
+      <div class="enc-frase">Dios sana</div>
+    </header>
+
+    <div class="contenido">
+
+      <!-- UNCIÓN -->
+      <div class="seccion" style="padding-top:3rem;">
+        <div class="seccion-label">La Unción de los Enfermos</div>
+        <p>Si algún día la enfermedad fuera grave, recuerda que la Iglesia no te abandona junto a una cama.</p>
+        <p>Cristo ha dejado a su Iglesia un sacramento para los enfermos.</p>
+        <p><span class="acento">La Unción de los Enfermos.</span></p>
+        <p>No es simplemente "el sacramento de los moribundos".</p>
+        <p>Es un sacramento de fortaleza, paz y unión con Cristo para quien atraviesa una enfermedad grave.</p>
+        <p>Si algún día necesitas recibirla, pídela.</p>
+        <p>No necesitas esperar nada.</p>
+      </div>
+
+      <!-- ORACIÓN -->
+      <div class="seccion">
+        <div class="seccion-label">Oración</div>
+        <p class="oracion-invitacion">Aquí te invito a hablar con Dios y contarle lo que desees.</p>
+        <textarea class="oracion-area" placeholder="Puedes escribir aquí lo que tengas en el corazón..."></textarea>
+        <div class="oracion-final">
+          …Y si no quieres quitarme este sufrimiento,<br>
+          dame la gracia de atravesarlo contigo.
+        </div>
+      </div>
+
+      <!-- CIERRE -->
+      <div class="cierre">
+        <p>No sé cuánto durará esta enfermedad.</p>
+        <p>No sé qué traerá mañana.</p>
+        <p>Pero sé quién estará contigo mañana.</p>
+        <div class="cita-final">
+          <p class="cita-texto">«Mi gracia te basta, porque mi poder se manifiesta en la debilidad.»</p>
+          <div class="cita-fuente">2 Corintios 12, 9</div>
+        </div>
+      </div>
+
+      <a class="btn-volver" href="index.html">← Volver al inicio</a>
+
+    </div>
+    <footer></footer>
+  </div>
+
+  <script>
+    /* ── NAVEGACIÓN ── */
+    function irPagina2() {
+      const p1 = document.getElementById('p1');
+      const p2 = document.getElementById('p2');
+      p1.style.opacity = '0';
+      setTimeout(() => {
+        p1.classList.remove('activa');
+        p2.classList.add('activa');
+        requestAnimationFrame(() => requestAnimationFrame(() => { p2.style.opacity = '1'; }));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 400);
+    }
+
+    /* ── DATOS SANACIONES ── */
+    const DIRECTOS = [
+      { nombre:'El leproso', ref:'Mt 8:2–3', img:'img/enc12-leproso.jpg',
+        contexto:'Los leprosos eran excluidos de toda vida social. Debían mantenerse alejados y avisar a los demás. Este hombre rompió todas las reglas para arrodillarse ante Jesús.',
+        verso:'«Señor, si quieres, puedes limpiarme.» Jesús extendió la mano, lo tocó y dijo: «Quiero, queda limpio.»' },
+      { nombre:'La mujer con flujo de sangre', ref:'Mt 9:20–22', img:'img/enc12-flujo-sangre.jpg',
+        contexto:'Doce años enferma, había gastado todo en médicos sin mejorar. Tocó en secreto el borde del manto de Jesús entre la multitud, creyendo que con eso bastaría.',
+        verso:'«Si solo toco su manto, quedaré sana.» Jesús se volvió: «Hija, tu fe te ha salvado.»' },
+      { nombre:'El hombre con la mano seca', ref:'Mt 12:10–13', img:'img/enc12-mano-seca.jpg',
+        contexto:'Era día de reposo. Los fariseos vigilaban para acusar a Jesús si sanaba. Él los desafió y sanó al hombre delante de todos.',
+        verso:'«Extiende la mano.» La extendió, y quedó tan sana como la otra.' },
+      { nombre:'La mujer encorvada', ref:'Lc 13:11–13', img:'img/enc12-mujer-encorvada.jpg',
+        contexto:'Dieciocho años sin poder enderezarse. Jesús la vio en la sinagoga, la llamó y le impuso las manos sin que ella lo pidiera.',
+        verso:'«Mujer, quedas libre de tu enfermedad.» Al instante se enderezó y glorificaba a Dios.' },
+      { nombre:'El hombre con hidropesía', ref:'Lc 14:1–4', img:'img/enc12-hidropesia.jpg',
+        contexto:'Estaba en la casa de un fariseo en día de reposo. Jesús preguntó si era lícito curar. Nadie respondió. Entonces lo sanó.',
+        verso:'Tomándolo, lo sanó y lo despidió.' },
+      { nombre:'Los diez leprosos', ref:'Lc 17:12–19', img:'img/enc12-diez-leprosos.jpg',
+        contexto:'Gritaron desde lejos sin atreverse a acercarse. Jesús no los tocó: les dijo que fueran ante los sacerdotes. Quedaron limpios en el camino. Solo uno volvió a dar gracias.',
+        verso:'«¿No fueron diez los que quedaron limpios? ¿Dónde están los otros nueve?»' },
+      { nombre:'El ciego Bartimeo', ref:'Mc 10:46–52', img:'img/enc12-bartimeo.jpg',
+        contexto:'Bartimeo gritaba desde el borde del camino. La multitud intentaba callarlo. Jesús se detuvo, lo mandó llamar y le preguntó qué quería.',
+        verso:'«¿Qué quieres que haga por ti?» «Maestro, que recobre la vista.» «Tu fe te ha salvado.»' },
+      { nombre:'El paralítico de Betesda', ref:'Jn 5:1–9', img:'img/enc12-betesda.jpg',
+        contexto:'Treinta y ocho años enfermo, esperando junto al estanque ser el primero en entrar al agua. Jesús fue a él, no al revés.',
+        verso:'«¿Quieres quedar sano?» «Levántate, toma tu camilla y anda.» Y al instante quedó sano.' },
+      { nombre:'El ciego de nacimiento', ref:'Jn 9:1–7', img:'img/enc12-ciego-nacimiento.jpg',
+        contexto:'Los discípulos preguntaron quién había pecado. Jesús rechazó esa lógica: usó barro hecho con su saliva para sanar.',
+        verso:'«Ni él pecó, ni sus padres, sino para que se manifiesten en él las obras de Dios.»' },
+    ];
+
+    const INDIRECTOS = [
+      { nombre:'El siervo del centurión', ref:'Mt 8:5–13', img:'img/enc12-centurion.jpg',
+        contexto:'Un oficial romano vino a pedir por su sirviente. Era el "enemigo". Le dijo a Jesús que no era digno de recibirlo bajo su techo.',
+        verso:'«Ni en Israel encontré tanta fe.» El siervo quedó sano en aquella misma hora.' },
+      { nombre:'La suegra de Pedro', ref:'Mt 8:14–15', img:'img/enc12-suegra-pedro.jpg',
+        contexto:'Al llegar a casa, Jesús la vio en cama con fiebre. No hubo palabras largas. Solo un gesto: tomó su mano.',
+        verso:'La tomó de la mano y la fiebre la dejó. Ella se levantó y comenzó a servirles.' },
+      { nombre:'El paralítico del techo', ref:'Mc 2:3–12', img:'img/enc12-paralitico-techo.jpg',
+        contexto:'Cuatro amigos no pudieron entrar por la puerta. Subieron al techo y descolgaron la camilla entre la multitud. Jesús vio su fe.',
+        verso:'«Hijo, tus pecados te son perdonados... Levántate, toma tu camilla y vete.»' },
+      { nombre:'La hija de Jairo', ref:'Lc 8:41–56', img:'img/enc12-hija-jairo.jpg',
+        contexto:'Jairo era jefe de la sinagoga. Se postró a los pies de Jesús. En el camino llegó la noticia: su hija ya había muerto.',
+        verso:'«No temas; cree solamente.» «Muchacha, levántate.» Su espíritu volvió al instante.' },
+      { nombre:'El muchacho epiléptico', ref:'Mc 9:17–27', img:'img/enc12-muchacho-epileptico.jpg',
+        contexto:'El padre llevaba años buscando ayuda para su hijo. Los discípulos ya habían intentado curarlo sin lograrlo.',
+        verso:'«¡Creo! ¡Ayuda mi incredulidad!» Jesús reprendió al espíritu y el muchacho quedó sano.' },
+      { nombre:'La hija de la sirofenicia', ref:'Mc 7:25–30', img:'img/enc12-sirofenicia.jpg',
+        contexto:'Era extranjera. Jesús le respondió con palabras duras. Ella no se rindió. Contestó con humildad y fe.',
+        verso:'«Por esta palabra, ve; el demonio ha salido de tu hija.»' },
+      { nombre:'El sordomudo de Decápolis', ref:'Mc 7:32–35', img:'img/enc12-sordomudo.jpg',
+        contexto:'Se lo llevaron rogando que le impusiera las manos. Jesús lo apartó de la multitud, le puso los dedos en los oídos y tocó su lengua.',
+        verso:'«¡Efatá!», que significa: «¡Ábrete!» Sus oídos se abrieron y su lengua fue desatada.' },
+      { nombre:'El ciego de Betsaida', ref:'Mc 8:22–25', img:'img/enc12-ciego-betsaida.jpg',
+        contexto:'Lo llevaron y rogaron que lo tocara. Jesús lo sacó del pueblo e impuso sus manos dos veces, hasta que vio con claridad.',
+        verso:'Y viendo con claridad a todos, quedó sano.' },
+      { nombre:'El hijo de la viuda de Naín', ref:'Lc 7:12–15', img:'img/enc12-viuda-nain.jpg',
+        contexto:'Jesús no fue llamado. Lo encontró de camino: un cortejo fúnebre. Era hijo único de una viuda. La vio y se compadeció.',
+        verso:'«Joven, a ti te digo: ¡Levántate!» El muerto se incorporó y comenzó a hablar.' },
+      { nombre:'Lázaro', ref:'Jn 11:1–44', img:'img/enc12-lazaro.jpg',
+        contexto:'Cuando Jesús llegó, llevaba cuatro días muerto. Marta y María lloraban. Jesús también lloró. Luego fue a la tumba.',
+        verso:'«¡Lázaro, ven fuera!» El muerto salió, atadas las manos y los pies con vendas.' },
+      { nombre:'Malco (la oreja cortada)', ref:'Lc 22:50–51', img:'img/enc12-malco.jpg',
+        contexto:'En el momento de su arresto, un discípulo le cortó la oreja al siervo del sumo sacerdote. Jesús, siendo arrestado, lo sanó.',
+        verso:'Jesús le tocó la oreja y lo sanó.' },
+      { nombre:'El hijo del funcionario real', ref:'Jn 4:46–50', img:'img/enc12-hijo-funcionario.jpg',
+        contexto:'El funcionario recorrió kilómetros para rogar por su hijo moribundo. Jesús lo sanó a distancia, con una sola palabra.',
+        verso:'«Ve, tu hijo vive.» El hombre creyó en la palabra y se fue.' },
+      { nombre:'El endemoniado mudo', ref:'Mt 9:32–33', img:'img/enc12-endemoniado-mudo.jpg',
+        contexto:'Se lo llevaron ante Jesús. Era mudo a causa de un demonio. Sin una sola palabra de la familia, Jesús actuó.',
+        verso:'Expulsado el demonio, el mudo habló. La multitud se maravilló.' },
+    ];
+
+    const MULTITUDES = [
+      { nombre:'Al atardecer en Capernaúm', ref:'Mt 8:16 · Mc 1:32', img:'img/enc12-multitud-capernaum.jpg',
+        contexto:'Al caer el sol, le llevaron a todos los enfermos y endemoniados de la ciudad a la puerta de la casa de Pedro.',
+        verso:'Él sanó a todos los enfermos, para que se cumpliese lo dicho por el profeta Isaías.' },
+      { nombre:'Orillas del Mar de Galilea', ref:'Mt 4:24 · Mc 3:10', img:'img/enc12-multitud-galilea.jpg',
+        contexto:'Grandes multitudes llegaron de Galilea, Judea, Jerusalén, Idumea y la región de Tiro y Sidón, trayendo enfermos.',
+        verso:'Todos los que tenían enfermedades se lanzaban sobre él para tocarlo.' },
+      { nombre:'En Genesaret', ref:'Mt 14:35 · Mc 6:53', img:'img/enc12-multitud-genesaret.jpg',
+        contexto:'Al desembarcar, la gente reconoció a Jesús y recorrió toda la región llevando enfermos en camillas a donde oían que estaba.',
+        verso:'Todos los que lo tocaron quedaron sanos.' },
+      { nombre:'Junto al mar (ocasiones generales)', ref:'Mt 12:15 · Mt 14:14', img:'img/enc12-multitud-general.jpg',
+        contexto:'En repetidas ocasiones, multitudes le presentaban a sus enfermos dondequiera que estuviera.',
+        verso:'Los sanó a todos.' },
+    ];
+
+    let activoId = null;
+
+    function crearFila(item, tipo, idx) {
+      const id = tipo + '-' + idx;
+      const div = document.createElement('div');
+      div.className = 'fila-sanacion';
+      div.id = id;
+      div.innerHTML = `<span class="fila-nom">${item.nombre}</span><span class="fila-ref">${item.ref}</span>`;
+      div.onclick = () => seleccionar(id, item, tipo === 'D' ? 'Directo' : 'Indirecto');
+      return div;
+    }
+
+    function crearChip(item, idx) {
+      const id = 'M-' + idx;
+      const div = document.createElement('div');
+      div.className = 'mult-chip';
+      div.id = id;
+      div.innerHTML = `<div class="mult-nom">${item.nombre}</div><div class="mult-ref">${item.ref}</div>`;
+      div.onclick = () => seleccionar(id, item, 'Multitud');
+      return div;
+    }
+
+    function seleccionar(id, item, cat) {
+      if (activoId) {
+        const prev = document.getElementById(activoId);
+        if (prev) prev.classList.remove('activo');
+      }
+      activoId = id;
+      document.getElementById(id).classList.add('activo');
+
+      const imgEl = document.getElementById('det-img');
+      imgEl.src = item.img;
+      imgEl.alt = item.nombre;
+      imgEl.style.display = 'block';
+      document.getElementById('det-badge').textContent = cat;
+      document.getElementById('det-nombre').textContent = item.nombre;
+      document.getElementById('det-ref').textContent = item.ref;
+      document.getElementById('det-contexto').textContent = item.contexto;
+      document.getElementById('det-verso').textContent = item.verso;
+
+      const panel = document.getElementById('detalle-sanacion');
+      panel.classList.add('visible');
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    const colD = document.getElementById('col-directos');
+    const colI = document.getElementById('col-indirectos');
+    const colM = document.getElementById('col-multitudes');
+
+    DIRECTOS.forEach((item, i) => colD.appendChild(crearFila(item, 'D', i)));
+    INDIRECTOS.forEach((item, i) => colI.appendChild(crearFila(item, 'I', i)));
+    MULTITUDES.forEach((item, i) => colM.appendChild(crearChip(item, i)));
+  </script>
+
+</body>
+</html>
