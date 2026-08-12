@@ -70,7 +70,7 @@
       border-bottom: 1px solid var(--border);
     }
     .santo-img {
-      width: 130px; height: 130px;
+      width: 200px; height: 200px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--gold);
@@ -583,10 +583,10 @@
 
     /* ── DATOS SANACIONES ── */
     const DIRECTOS = [
-      { nombre:'El leproso', ref:'Mt 8:2–3', img:'img/enc12-leproso.jpg',
+      { nombre:'El leproso', ref:'Mt 8:2–3', img:'img/enc12-leproso.jpg', imgFit:'contain',
         contexto:'Los leprosos eran excluidos de toda vida social. Debían mantenerse alejados y avisar a los demás. Este hombre rompió todas las reglas para arrodillarse ante Jesús.',
         verso:'«Señor, si quieres, puedes limpiarme.» Jesús extendió la mano, lo tocó y dijo: «Quiero, queda limpio.»' },
-      { nombre:'La mujer con flujo de sangre', ref:'Mt 9:20–22', img:'img/enc12-flujo-sangre.jpg',
+      { nombre:'La mujer con flujo de sangre', ref:'Mt 9:20–22', img:'img/enc12-flujo-sangre.jpg', imgPos:'top center',
         contexto:'Doce años enferma, había gastado todo en médicos sin mejorar. Tocó en secreto el borde del manto de Jesús entre la multitud, creyendo que con eso bastaría.',
         verso:'«Si solo toco su manto, quedaré sana.» Jesús se volvió: «Hija, tu fe te ha salvado.»' },
       { nombre:'El hombre con la mano seca', ref:'Mt 12:10–13', img:'img/enc12-mano-seca.jpg',
@@ -604,10 +604,10 @@
       { nombre:'El ciego Bartimeo', ref:'Mc 10:46–52', img:'img/enc12-bartimeo.jpg',
         contexto:'Bartimeo gritaba desde el borde del camino. La multitud intentaba callarlo. Jesús se detuvo, lo mandó llamar y le preguntó qué quería.',
         verso:'«¿Qué quieres que haga por ti?» «Maestro, que recobre la vista.» «Tu fe te ha salvado.»' },
-      { nombre:'El paralítico de Betesda', ref:'Jn 5:1–9', img:'img/enc12-betesda.jpg',
+      { nombre:'El paralítico de Betesda', ref:'Jn 5:1–9', img:'img/enc12-betesda.jpg', imgFit:'contain',
         contexto:'Treinta y ocho años enfermo, esperando junto al estanque ser el primero en entrar al agua. Jesús fue a él, no al revés.',
         verso:'«¿Quieres quedar sano?» «Levántate, toma tu camilla y anda.» Y al instante quedó sano.' },
-      { nombre:'El ciego de nacimiento', ref:'Jn 9:1–7', img:'img/enc12-ciego-nacimiento.jpg',
+      { nombre:'El ciego de nacimiento', ref:'Jn 9:1–7', img:'img/enc12-ciego-nacimiento.jpg', imgFit:'contain',
         contexto:'Los discípulos preguntaron quién había pecado. Jesús rechazó esa lógica: usó barro hecho con su saliva para sanar.',
         verso:'«Ni él pecó, ni sus padres, sino para que se manifiesten en él las obras de Dios.»' },
     ];
@@ -616,16 +616,16 @@
       { nombre:'El siervo del centurión', ref:'Mt 8:5–13', img:'img/enc12-centurion.jpg',
         contexto:'Un oficial romano vino a pedir por su sirviente. Era el "enemigo". Le dijo a Jesús que no era digno de recibirlo bajo su techo.',
         verso:'«Ni en Israel encontré tanta fe.» El siervo quedó sano en aquella misma hora.' },
-      { nombre:'La suegra de Pedro', ref:'Mt 8:14–15', img:'img/enc12-suegra-pedro.jpg',
+      { nombre:'La suegra de Pedro', ref:'Mt 8:14–15', img:'img/enc12-suegra-pedro.jpg', imgPos:'top center',
         contexto:'Al llegar a casa, Jesús la vio en cama con fiebre. No hubo palabras largas. Solo un gesto: tomó su mano.',
         verso:'La tomó de la mano y la fiebre la dejó. Ella se levantó y comenzó a servirles.' },
-      { nombre:'El paralítico del techo', ref:'Mc 2:3–12', img:'img/enc12-paralitico-techo.jpg',
+      { nombre:'El paralítico del techo', ref:'Mc 2:3–12', img:'img/enc12-paralitico-techo.jpg', imgFit:'contain',
         contexto:'Cuatro amigos no pudieron entrar por la puerta. Subieron al techo y descolgaron la camilla entre la multitud. Jesús vio su fe.',
         verso:'«Hijo, tus pecados te son perdonados... Levántate, toma tu camilla y vete.»' },
-      { nombre:'La hija de Jairo', ref:'Lc 8:41–56', img:'img/enc12-hija-jairo.jpg',
+      { nombre:'La hija de Jairo', ref:'Lc 8:41–56', img:'img/enc12-hija-jairo.jpg', imgFit:'contain',
         contexto:'Jairo era jefe de la sinagoga. Se postró a los pies de Jesús. En el camino llegó la noticia: su hija ya había muerto.',
         verso:'«No temas; cree solamente.» «Muchacha, levántate.» Su espíritu volvió al instante.' },
-      { nombre:'El muchacho epiléptico', ref:'Mc 9:17–27', img:'img/enc12-muchacho-epileptico.jpg',
+      { nombre:'El muchacho epiléptico', ref:'Mc 9:17–27', img:'img/enc12-muchacho-epileptico.jpg', imgFit:'contain',
         contexto:'El padre llevaba años buscando ayuda para su hijo. Los discípulos ya habían intentado curarlo sin lograrlo.',
         verso:'«¡Creo! ¡Ayuda mi incredulidad!» Jesús reprendió al espíritu y el muchacho quedó sano.' },
       { nombre:'La hija de la sirofenicia', ref:'Mc 7:25–30', img:'img/enc12-sirofenicia.jpg',
@@ -637,13 +637,13 @@
       { nombre:'El ciego de Betsaida', ref:'Mc 8:22–25', img:'img/enc12-ciego-betsaida.jpg',
         contexto:'Lo llevaron y rogaron que lo tocara. Jesús lo sacó del pueblo e impuso sus manos dos veces, hasta que vio con claridad.',
         verso:'Y viendo con claridad a todos, quedó sano.' },
-      { nombre:'El hijo de la viuda de Naín', ref:'Lc 7:12–15', img:'img/enc12-viuda-nain.jpg',
+      { nombre:'El hijo de la viuda de Naín', ref:'Lc 7:12–15', img:'img/enc12-viuda-nain.jpg', imgPos:'top center',
         contexto:'Jesús no fue llamado. Lo encontró de camino: un cortejo fúnebre. Era hijo único de una viuda. La vio y se compadeció.',
         verso:'«Joven, a ti te digo: ¡Levántate!» El muerto se incorporó y comenzó a hablar.' },
       { nombre:'Lázaro', ref:'Jn 11:1–44', img:'img/enc12-lazaro.jpg',
         contexto:'Cuando Jesús llegó, llevaba cuatro días muerto. Marta y María lloraban. Jesús también lloró. Luego fue a la tumba.',
         verso:'«¡Lázaro, ven fuera!» El muerto salió, atadas las manos y los pies con vendas.' },
-      { nombre:'Malco (la oreja cortada)', ref:'Lc 22:50–51', img:'img/enc12-malco.jpg',
+      { nombre:'Malco (la oreja cortada)', ref:'Lc 22:50–51', img:'img/enc12-malco.jpg', imgFit:'contain',
         contexto:'En el momento de su arresto, un discípulo le cortó la oreja al siervo del sumo sacerdote. Jesús, siendo arrestado, lo sanó.',
         verso:'Jesús le tocó la oreja y lo sanó.' },
       { nombre:'El hijo del funcionario real', ref:'Jn 4:46–50', img:'img/enc12-hijo-funcionario.jpg',
@@ -661,7 +661,7 @@
       { nombre:'Orillas del Mar de Galilea', ref:'Mt 4:24 · Mc 3:10', img:'img/enc12-multitud-galilea.jpg',
         contexto:'Grandes multitudes llegaron de Galilea, Judea, Jerusalén, Idumea y la región de Tiro y Sidón, trayendo enfermos.',
         verso:'Todos los que tenían enfermedades se lanzaban sobre él para tocarlo.' },
-      { nombre:'En Genesaret', ref:'Mt 14:35 · Mc 6:53', img:'img/enc12-multitud-genesaret.jpg',
+      { nombre:'En Genesaret', ref:'Mt 14:35 · Mc 6:53', img:'img/enc12-multitud-genesaret.jpg', imgPos:'top center',
         contexto:'Al desembarcar, la gente reconoció a Jesús y recorrió toda la región llevando enfermos en camillas a donde oían que estaba.',
         verso:'Todos los que lo tocaron quedaron sanos.' },
       { nombre:'Junto al mar (ocasiones generales)', ref:'Mt 12:15 · Mt 14:14', img:'img/enc12-multitud-general.jpg',
@@ -702,6 +702,8 @@
       const imgEl = document.getElementById('det-img');
       imgEl.src = item.img;
       imgEl.alt = item.nombre;
+      imgEl.style.objectFit = item.imgFit || 'cover';
+      imgEl.style.objectPosition = item.imgPos || 'center center';
       imgEl.style.display = 'block';
       document.getElementById('det-badge').textContent = cat;
       document.getElementById('det-nombre').textContent = item.nombre;
