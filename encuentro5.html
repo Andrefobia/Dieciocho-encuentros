@@ -199,6 +199,13 @@
       padding: 0.3rem 0 0.3rem 1.3rem;
       line-height: 1.5;
     }
+    .frase-audio {
+      width: 100%;
+      height: 32px;
+      display: block;
+      margin: 0.4rem 0 0 1.3rem;
+      accent-color: var(--accent);
+    }
     .frase-pausa {
       display: block;
       font-family: 'Cinzel', serif;
@@ -316,11 +323,19 @@
     Tú no sabías exactamente para qué eran.<br>
     Hoy quiero que escuches tus propias respuestas.</p>
 
-    <!-- Audio: tu historia · cortar 2:33–2:52 y 6:41–6:55 de la llamada -->
+    <!-- Audio 1: tu historia · cortar 2:33–2:52 de la llamada -->
     <div class="audio-block">
       <span class="audio-label">Tu voz · Tu historia</span>
       <audio controls>
-        <source src="audio/enc5-historia.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-historia-a.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <!-- Audio 2: continuación · cortar 6:41–6:55 de la llamada -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Y lo que vino después</span>
+      <audio controls>
+        <source src="audio/enc5-historia-b.mp3" type="audio/mpeg" />
       </audio>
     </div>
 
@@ -361,11 +376,19 @@
     <p>Ahora quiero hacerte una pregunta que tú misma ya respondiste.</p>
     <div class="cita">¿Qué le dirías a alguien que acaba de fracasar?</div>
 
-    <!-- Audio: tu consejo · cortar 8:34–9:18 y 9:35–9:44 de la llamada -->
+    <!-- Audio: tu consejo 1 · cortar 8:34–9:18 de la llamada -->
     <div class="audio-block">
       <span class="audio-label">Tu voz · Tu consejo</span>
       <audio controls>
-        <source src="audio/enc5-consejo.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-consejo-a.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <!-- Audio: tu consejo 2 · cortar 9:35–9:44 de la llamada -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Tu consejo, continuación</span>
+      <audio controls>
+        <source src="audio/enc5-consejo-b.mp3" type="audio/mpeg" />
       </audio>
     </div>
 
@@ -473,37 +496,47 @@
   <section class="parte">
     <span class="parte-label">VIII · Tu voz, otra vez</span>
 
-    <!-- Audio: frases clave con pausas · las mismas frases del consejo, cortadas solas -->
-    <div class="audio-block">
-      <span class="audio-label">Tu voz · Para que no lo olvides</span>
-      <audio controls>
-        <source src="audio/enc5-frases.mp3" type="audio/mpeg" />
-      </audio>
-    </div>
-
     <div class="frases">
       <div class="frase-item">
-        <span class="frase-texto">«Que le siga intentando.»</span>
+        <span class="frase-texto">«Que lo siga intentando.»</span>
+        <audio class="frase-audio" controls>
+          <source src="audio/enc5-f1.mp3" type="audio/mpeg" />
+        </audio>
         <span class="frase-pausa">· · ·</span>
       </div>
       <div class="frase-item">
         <span class="frase-texto">«Que intente ver más opciones.»</span>
+        <audio class="frase-audio" controls>
+          <source src="audio/enc5-f2.mp3" type="audio/mpeg" />
+        </audio>
         <span class="frase-pausa">· · ·</span>
       </div>
       <div class="frase-item">
         <span class="frase-texto">«Que hable.»</span>
+        <audio class="frase-audio" controls>
+          <source src="audio/enc5-f3.mp3" type="audio/mpeg" />
+        </audio>
         <span class="frase-pausa">· · ·</span>
       </div>
       <div class="frase-item">
         <span class="frase-texto">«Que se comunique.»</span>
+        <audio class="frase-audio" controls>
+          <source src="audio/enc5-f4.mp3" type="audio/mpeg" />
+        </audio>
         <span class="frase-pausa">· · ·</span>
       </div>
       <div class="frase-item">
         <span class="frase-texto">«Que busque consejos.»</span>
+        <audio class="frase-audio" controls>
+          <source src="audio/enc5-f5.mp3" type="audio/mpeg" />
+        </audio>
         <span class="frase-pausa">· · ·</span>
       </div>
       <div class="frase-item">
         <span class="frase-texto">«En algún punto va a mejorar todo.»</span>
+        <audio class="frase-audio" controls>
+          <source src="audio/enc5-f6.mp3" type="audio/mpeg" />
+        </audio>
       </div>
     </div>
   </section>
