@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>V · Para cuando fracases</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Paleta — Azul Petrino ────────────────────────────────────────────── */
+    :root {
+      --bg:           #ECF0F6;
+      --bg-alt:       #DDE6F1;
+      --text:         #19283A;
+      --text-muted:   #587090;
+      --accent:       #1B3A5C;
+      --accent-mid:   #2C5F8A;
+      --gold:         #8C6F2E;
+      --divider:      #ADBFD4;
+      --prayer-bg:    #D3E1EF;
+      --audio-bg:     #E6EFF8;
+      --quote-line:   #7AA5CC;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.88;
+    }
+
+    /* ─── Encabezado ─────────────────────────────────────────────────────── */
+    .enc-header {
+      background: var(--accent);
+      color: #EEF3FA;
+      text-align: center;
+      padding: 3.8rem 2rem 3.2rem;
+    }
+    .enc-number {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+    .enc-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.5rem, 4.5vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+    .enc-subtitle {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      opacity: 0.6;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── Banda del santo ────────────────────────────────────────────────── */
+    .saint-wrapper {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--divider);
+    }
+    .saint-band {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+    .saint-img {
+      flex-shrink: 0;
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      display: block;
+    }
+    .saint-text h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .saint-text h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .saint-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    /* ─── Envoltorio de contenido ────────────────────────────────────────── */
+    .content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ─── Secciones ──────────────────────────────────────────────────────── */
+    .parte {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--divider);
+    }
+    .parte:last-of-type { border-bottom: none; }
+
+    .parte-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      opacity: 0.75;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .parte p { margin-bottom: 0.85em; }
+    .parte p:last-child { margin-bottom: 0; }
+
+    /* ─── Audio ──────────────────────────────────────────────────────────── */
+    .audio-block {
+      background: var(--audio-bg);
+      border-left: 3px solid var(--accent-mid);
+      border-radius: 0 6px 6px 0;
+      padding: 1.1rem 1.4rem 1.2rem;
+      margin: 1.8rem 0;
+    }
+    .audio-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 0.65rem;
+    }
+    .audio-block audio {
+      width: 100%;
+      height: 38px;
+      display: block;
+      accent-color: var(--accent);
+    }
+
+    /* ─── Cita destacada ─────────────────────────────────────────────────── */
+    .cita {
+      border-left: 3px solid var(--quote-line);
+      padding: 0.5rem 0 0.5rem 1.4rem;
+      margin: 1.8rem 0;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    /* ─── Sección Pedro (fondo completo) ─────────────────────────────────── */
+    .parte-pedro {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      padding: 3.5rem 0;
+    }
+    .parte-pedro .parte { border-bottom: none; padding-top: 0; }
+
+    /* ─── Frases del último audio ────────────────────────────────────────── */
+    .frases {
+      margin: 2rem 0 0.5rem;
+    }
+    .frase-item {
+      margin-bottom: 1.5rem;
+    }
+    .frase-texto {
+      display: block;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--accent);
+      border-left: 3px solid var(--quote-line);
+      padding: 0.3rem 0 0.3rem 1.3rem;
+      line-height: 1.5;
+    }
+    .frase-pausa {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.5em;
+      color: var(--text-muted);
+      opacity: 0.4;
+      padding-left: 1.3rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ─── Caja de oración ────────────────────────────────────────────────── */
+    .oracion-wrap {
+      background: var(--prayer-bg);
+      border-radius: 6px;
+      border: 1px solid var(--divider);
+      padding: 2.8rem 2rem 2.5rem;
+      margin: 3rem 0 1rem;
+      text-align: center;
+    }
+    .oracion-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 1.6rem;
+    }
+    .oracion-text {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 2.1;
+    }
+    .oracion-amen {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-top: 1.2rem;
+    }
+
+    /* ─── Pie de página ──────────────────────────────────────────────────── */
+    .enc-footer {
+      text-align: center;
+      padding: 3rem 2rem 4.5rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--divider);
+    }
+    .nav-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.65;
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 1; }
+
+    /* ─── Responsive ─────────────────────────────────────────────────────── */
+    @media (max-width: 580px) {
+      .saint-band { flex-direction: column; text-align: center; gap: 1rem; }
+      .enc-title { font-size: 1.45rem; }
+      .audio-block { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ ENCABEZADO ═══════════════════════════════════════════════════════════ -->
+<header class="enc-header">
+  <p class="enc-number">Encuentro V</p>
+  <h1 class="enc-title">Para cuando fracases</h1>
+  <p class="enc-subtitle">Aquí hay algo que tú misma ya dijiste</p>
+</header>
+
+<!-- ═══ SANTO ════════════════════════════════════════════════════════════════ -->
+<div class="saint-wrapper">
+  <div class="saint-band">
+    <img class="saint-img" src="img/enc5-pedro.jpg" alt="San Pedro Apóstol"
+         onerror="this.style.display='none'" />
+    <div class="saint-text">
+      <h3>Patrono de este encuentro</h3>
+      <h2>San Pedro Apóstol</h2>
+      <p>El hombre que lo negó tres veces y a quien Cristo, después de la Resurrección, buscó primero.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PARTES I–V ══════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- ─ PARTE I ─ INTRODUCCIÓN ─────────────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">I · Introducción</span>
+
+    <p>Hola, Sophi.</p>
+    <p>Si estás leyendo esto, probablemente algo no salió como esperabas.<br>
+    Quizás fracasaste.<br>
+    Quizás algo por lo que trabajaste mucho no salió bien.<br>
+    Quizás cometiste un error.<br>
+    O quizás simplemente estás frente a una situación que te hace preguntarte si realmente puedes hacerlo.</p>
+    <p>Pero esta vez no quiero decirte yo qué hacer.<br>
+    Hace algún tiempo te hice unas preguntas.<br>
+    Tú no sabías exactamente para qué eran.<br>
+    Hoy quiero que escuches tus propias respuestas.</p>
+
+    <!-- Audio: tu historia · cortar 2:33–2:52 y 6:41–6:55 de la llamada -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Tu historia</span>
+      <audio controls>
+        <source src="audio/enc5-historia.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <p>Quizás cuando fracasamos hacemos algo extraño.<br>
+    Miramos solamente el momento en el que caímos.<br>
+    Nos olvidamos de todo lo que ocurrió antes.<br>
+    Nos olvidamos de quiénes éramos cuando comenzamos.<br>
+    Nos olvidamos de todo lo que tuvimos que aprender.</p>
+    <p>Por eso quiero que recuerdes tu propia historia.<br>
+    No para convencerte de que nunca vas a fracasar.<br>
+    Sino para que, cuando fracases, recuerdes que un fracaso no puede borrar todo lo que has vivido, aprendido y superado.</p>
+  </section>
+
+  <!-- ─ PARTE II ─ LO QUE CONSEGUISTE PARA TU MAMÁ ─────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">II · Lo que conseguiste para tu mamá</span>
+
+    <!-- Audio: tu orgullo · cortar 10:20–11:07 de la llamada -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Tu orgullo</span>
+      <audio controls>
+        <source src="audio/enc5-mama.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <p>No quiero cambiar tus palabras ni decir que esto demuestra que te sientes orgullosa de haber estudiado.<br>
+    Quiero simplemente dejar que seas tú quien cuente lo que dijiste.</p>
+    <p>Hay cosas que conseguimos para nosotros.<br>
+    Y hay cosas que hacemos por las personas que amamos.<br>
+    Tú sabes mejor que nadie por qué hiciste aquello.</p>
+    <p>Y quizás algún día, cuando algo no salga como esperabas, necesites recordar que tu vida no se reduce al resultado de un solo día.</p>
+  </section>
+
+  <!-- ─ PARTE III ─ LO QUE LE DIRÍAS A ALGUIEN QUE FRACASÓ ──────────────── -->
+  <section class="parte">
+    <span class="parte-label">III · Lo que le dirías a alguien que fracasó</span>
+
+    <p>Ahora quiero hacerte una pregunta que tú misma ya respondiste.</p>
+    <div class="cita">¿Qué le dirías a alguien que acaba de fracasar?</div>
+
+    <!-- Audio: tu consejo · cortar 8:34–9:18 y 9:35–9:44 de la llamada -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Tu consejo</span>
+      <audio controls>
+        <source src="audio/enc5-consejo.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <p>Esto lo dijiste tú.<br>
+    No te lo estoy diciendo yo.<br>
+    Te lo estás diciendo tú.</p>
+    <div class="cita">Así que escúchate.</div>
+  </section>
+
+  <!-- ─ PARTE IV ─ LO QUE HACES CUANDO LAS COSAS NO SALEN BIEN ──────────── -->
+  <section class="parte">
+    <span class="parte-label">IV · Lo que haces cuando las cosas no salen bien</span>
+
+    <!-- Audio: tu camino · fragmentos de 8:34–9:44 sobre seguir intentando, buscar opciones, comunicarse, pedir consejo -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Tu camino</span>
+      <audio controls>
+        <source src="audio/enc5-opciones.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <p>No siempre podemos controlar el resultado.<br>
+    Pero sí podemos decidir qué hacemos después de él.</p>
+    <p>Podemos volver a intentarlo.<br>
+    Podemos buscar otra manera.<br>
+    Podemos pedir ayuda.<br>
+    Podemos reconocer que no sabemos algo.<br>
+    Podemos aprender.<br>
+    Podemos levantarnos.<br>
+    Y podemos volver a empezar.</p>
+  </section>
+
+  <!-- ─ PARTE V ─ RECORDAR QUIÉN ERES ──────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">V · Recordar quién eres</span>
+
+    <!-- Audio: tu corazón · cortar 13:04–13:56 de la llamada -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Tu corazón</span>
+      <audio controls>
+        <source src="audio/enc5-persona.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <p>Quizás algún fracaso consiga hacerte dudar de tus capacidades.<br>
+    Quizás incluso consiga hacerte dudar de ti misma.</p>
+    <p>Pero no permitas que un resultado te haga olvidar quién eres.</p>
+    <p>No eres solamente lo que consigues.<br>
+    No eres solamente lo que produces.<br>
+    No eres solamente aquello en lo que tienes éxito.<br>
+    También eres la persona que decide cómo actuar cuando las cosas no salen bien.</p>
+  </section>
+
+</div><!-- fin .content -->
+
+
+<!-- ═══ PARTE VI — PEDRO (fondo completo) ═══════════════════════════════════ -->
+<div class="parte-pedro">
+  <div class="content">
+    <section class="parte">
+      <span class="parte-label">VI · Pedro</span>
+
+      <p>Y quiero contarte algo.</p>
+      <p>Pedro también fracasó.<br>
+      No cometió simplemente un pequeño error.<br>
+      Pedro había prometido permanecer junto a Cristo.<br>
+      Y terminó negándolo tres veces.</p>
+      <p>Sin embargo, Cristo no terminó la historia de Pedro en aquella caída.<br>
+      Después de la Resurrección volvió a buscarlo.</p>
+      <p>Y cuando lo encontró, no le recriminó la caída.<br>
+      Le preguntó tres veces: <em>«¿Me amas?»</em><br>
+      Una por cada negación.<br>
+      Como diciéndole: <em>cada vez que fallaste, yo seguí aquí.</em><br>
+      Y con la misma constancia con la que Pedro lo negó, Cristo lo restauró.</p>
+      <p>Porque una caída no tenía que convertirse en el final de su historia.<br>
+      Y tampoco tiene por qué convertirse en el final de la tuya.</p>
+      <p>Puedes fracasar.<br>
+      Puedes equivocarte.<br>
+      Puedes descubrir que estabas equivocada.<br>
+      Puedes tener que empezar de nuevo.<br>
+      Pero nada de eso significa que estés perdida.</p>
+    </section>
+  </div>
+</div>
+
+
+<!-- ═══ PARTES VII–IX ════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- ─ PARTE VII ─ DIOS ────────────────────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">VII · Dios</span>
+
+    <p>Hay algo todavía más importante que quiero que recuerdes.</p>
+    <p>Tu valor no depende de que tengas éxito.<br>
+    Dios no te ama más cuando triunfas.<br>
+    Y tampoco te ama menos cuando fracasas.</p>
+    <p>Tu dignidad no empieza cuando consigues algo.<br>
+    Ya estaba ahí antes.</p>
+    <p>Porque antes de ser una persona exitosa, antes de ser una profesional, antes de cumplir tus sueños y antes de conseguir cualquier cosa que te propongas, eres criatura de Dios.<br>
+    Y eso ningún fracaso puede quitártelo.</p>
+  </section>
+
+  <!-- ─ PARTE VIII ─ TU VOZ, OTRA VEZ ─────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">VIII · Tu voz, otra vez</span>
+
+    <!-- Audio: frases clave con pausas · las mismas frases del consejo, cortadas solas -->
+    <div class="audio-block">
+      <span class="audio-label">Tu voz · Para que no lo olvides</span>
+      <audio controls>
+        <source src="audio/enc5-frases.mp3" type="audio/mpeg" />
+      </audio>
+    </div>
+
+    <div class="frases">
+      <div class="frase-item">
+        <span class="frase-texto">«Que le siga intentando.»</span>
+        <span class="frase-pausa">· · ·</span>
+      </div>
+      <div class="frase-item">
+        <span class="frase-texto">«Que intente ver más opciones.»</span>
+        <span class="frase-pausa">· · ·</span>
+      </div>
+      <div class="frase-item">
+        <span class="frase-texto">«Que hable.»</span>
+        <span class="frase-pausa">· · ·</span>
+      </div>
+      <div class="frase-item">
+        <span class="frase-texto">«Que se comunique.»</span>
+        <span class="frase-pausa">· · ·</span>
+      </div>
+      <div class="frase-item">
+        <span class="frase-texto">«Que busque consejos.»</span>
+        <span class="frase-pausa">· · ·</span>
+      </div>
+      <div class="frase-item">
+        <span class="frase-texto">«En algún punto va a mejorar todo.»</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─ PARTE IX ─ CIERRE ───────────────────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">IX · Cierre</span>
+
+    <p>Ahora sí.</p>
+    <p>Cuando llegue un fracaso, vuelve a escuchar esto.<br>
+    No porque yo sepa exactamente qué necesitarás escuchar ese día.<br>
+    Sino porque tú misma ya dejaste aquí algunas de las palabras que podrías necesitar.</p>
+    <p>Y recuerda:</p>
+    <p>Puedes fracasar sin ser un fracaso.<br>
+    Puedes caer sin quedarte en el suelo.<br>
+    Puedes equivocarte sin que ese error defina toda tu vida.<br>
+    Puedes comenzar otra vez.</p>
+    <p>Y, sobre todo, nunca olvides que Dios no deja de caminar contigo simplemente porque hayas tomado un camino equivocado.</p>
+  </section>
+
+  <!-- ─ ORACIÓN ─────────────────────────────────────────────────────────── -->
+  <div class="oracion-wrap">
+    <span class="oracion-title">Oración</span>
+    <p class="oracion-text">
+      Señor,<br>
+      cuando fracase, dame humildad para reconocer mis errores.<br>
+      Dame sabiduría para aprender de ellos.<br>
+      Dame fortaleza para volver a intentarlo.<br>
+      Dame prudencia para pedir ayuda cuando la necesite.<br>
+      Y cuando vuelva a caer, recuérdame que mi fracaso<br>
+      nunca será más grande que tu misericordia.
+    </p>
+    <span class="oracion-amen">Amén.</span>
+  </div>
+
+</div><!-- fin .content -->
+
+
+<!-- ═══ PIE DE PÁGINA ════════════════════════════════════════════════════════ -->
+<footer class="enc-footer">
+  <a class="nav-link" href="index.html">← Volver al inicio</a>
+</footer>
+
+</body>
+</html>
