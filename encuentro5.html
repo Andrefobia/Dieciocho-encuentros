@@ -183,38 +183,64 @@
     }
     .parte-pedro .parte { border-bottom: none; padding-top: 0; }
 
-    /* ─── Frases del último audio ────────────────────────────────────────── */
-    .frases {
-      margin: 2rem 0 0.5rem;
+    /* ─── Secuencia de frases (Parte VIII) ──────────────────────────────── */
+    #frases-inicio {
+      text-align: center;
+      padding: 1.8rem 0 1rem;
     }
-    .frase-item {
-      margin-bottom: 1.5rem;
-    }
-    .frase-texto {
-      display: block;
-      font-style: italic;
-      font-size: 1.2rem;
+    .btn-iniciar {
+      background: none;
+      border: 1px solid var(--accent);
       color: var(--accent);
-      border-left: 3px solid var(--quote-line);
-      padding: 0.3rem 0 0.3rem 1.3rem;
-      line-height: 1.5;
-    }
-    .frase-audio {
-      width: 100%;
-      height: 32px;
-      display: block;
-      margin: 0.4rem 0 0 1.3rem;
-      accent-color: var(--accent);
-    }
-    .frase-pausa {
-      display: block;
       font-family: 'Cinzel', serif;
-      font-size: 0.55rem;
-      letter-spacing: 0.5em;
+      font-size: 0.72rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      padding: 0.85rem 2.4rem;
+      cursor: pointer;
+      border-radius: 3px;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+    .btn-iniciar:hover { opacity: 1; }
+    .frases-escena {
+      background: var(--bg-alt);
+      border: 1px solid var(--divider);
+      border-radius: 6px;
+      min-height: 180px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 2rem;
+      margin: 1.2rem 0;
+      text-align: center;
+    }
+    #frase-display {
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--accent);
+      opacity: 0;
+      line-height: 1.6;
+    }
+    .frases-cierre {
+      display: none;
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+    }
+    #cierre-esto {
+      font-size: 1.05rem;
       color: var(--text-muted);
-      opacity: 0.4;
-      padding-left: 1.3rem;
-      margin-top: 0.5rem;
+      opacity: 0;
+      margin-bottom: 1.4rem;
+      font-style: italic;
+    }
+    #cierre-escuchate {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      opacity: 0;
+      display: none;
     }
 
     /* ─── Caja de oración ────────────────────────────────────────────────── */
@@ -327,7 +353,7 @@
     <div class="audio-block">
       <span class="audio-label">Tu voz · Tu historia</span>
       <audio controls>
-        <source src="audio/enc5-historia-a.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-historia-a.m4a" type="audio/mp4" />
       </audio>
     </div>
 
@@ -335,7 +361,7 @@
     <div class="audio-block">
       <span class="audio-label">Tu voz · Y lo que vino después</span>
       <audio controls>
-        <source src="audio/enc5-historia-b.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-historia-b.m4a" type="audio/mp4" />
       </audio>
     </div>
 
@@ -355,9 +381,9 @@
 
     <!-- Audio: tu orgullo · cortar 10:20–11:07 de la llamada -->
     <div class="audio-block">
-      <span class="audio-label">Tu voz · Tu orgullo</span>
+      <span class="audio-label">Tu voz · Lo que hiciste por ella</span>
       <audio controls>
-        <source src="audio/enc5-mama.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-mama.m4a" type="audio/mp4" />
       </audio>
     </div>
 
@@ -380,7 +406,7 @@
     <div class="audio-block">
       <span class="audio-label">Tu voz · Tu consejo</span>
       <audio controls>
-        <source src="audio/enc5-consejo-a.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-consejo-a.m4a" type="audio/mp4" />
       </audio>
     </div>
 
@@ -388,7 +414,7 @@
     <div class="audio-block">
       <span class="audio-label">Tu voz · Tu consejo, continuación</span>
       <audio controls>
-        <source src="audio/enc5-consejo-b.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-consejo-b.m4a" type="audio/mp4" />
       </audio>
     </div>
 
@@ -401,14 +427,6 @@
   <!-- ─ PARTE IV ─ LO QUE HACES CUANDO LAS COSAS NO SALEN BIEN ──────────── -->
   <section class="parte">
     <span class="parte-label">IV · Lo que haces cuando las cosas no salen bien</span>
-
-    <!-- Audio: tu camino · fragmentos de 8:34–9:44 sobre seguir intentando, buscar opciones, comunicarse, pedir consejo -->
-    <div class="audio-block">
-      <span class="audio-label">Tu voz · Tu camino</span>
-      <audio controls>
-        <source src="audio/enc5-opciones.mp3" type="audio/mpeg" />
-      </audio>
-    </div>
 
     <p>No siempre podemos controlar el resultado.<br>
     Pero sí podemos decidir qué hacemos después de él.</p>
@@ -429,7 +447,7 @@
     <div class="audio-block">
       <span class="audio-label">Tu voz · Tu corazón</span>
       <audio controls>
-        <source src="audio/enc5-persona.mp3" type="audio/mpeg" />
+        <source src="audio/enc5-persona.m4a" type="audio/mp4" />
       </audio>
     </div>
 
@@ -458,10 +476,10 @@
       Y terminó negándolo tres veces.</p>
       <p>Sin embargo, Cristo no terminó la historia de Pedro en aquella caída.<br>
       Después de la Resurrección volvió a buscarlo.</p>
-      <p>Y cuando lo encontró, no le recriminó la caída.<br>
+      <p>Y cuando lo encontró, no redujo a Pedro a su caída.<br>
       Le preguntó tres veces: <em>«¿Me amas?»</em><br>
       Una por cada negación.<br>
-      Como diciéndole: <em>cada vez que fallaste, yo seguí aquí.</em><br>
+      Como si le mostrara que su caída no había conseguido apartarlo de Él.<br>
       Y con la misma constancia con la que Pedro lo negó, Cristo lo restauró.</p>
       <p>Porque una caída no tenía que convertirse en el final de su historia.<br>
       Y tampoco tiene por qué convertirse en el final de la tuya.</p>
@@ -482,7 +500,7 @@
   <section class="parte">
     <span class="parte-label">VII · Dios</span>
 
-    <p>Hay algo todavía más importante que quiero que recuerdes.</p>
+    <p>Pero aquí hay algo que quiero que recuerdes incluso más que todo lo anterior.</p>
     <p>Tu valor no depende de que tengas éxito.<br>
     Dios no te ama más cuando triunfas.<br>
     Y tampoco te ama menos cuando fracasas.</p>
@@ -496,48 +514,17 @@
   <section class="parte">
     <span class="parte-label">VIII · Tu voz, otra vez</span>
 
-    <div class="frases">
-      <div class="frase-item">
-        <span class="frase-texto">«Que lo siga intentando.»</span>
-        <audio class="frase-audio" controls>
-          <source src="audio/enc5-f1.mp3" type="audio/mpeg" />
-        </audio>
-        <span class="frase-pausa">· · ·</span>
-      </div>
-      <div class="frase-item">
-        <span class="frase-texto">«Que intente ver más opciones.»</span>
-        <audio class="frase-audio" controls>
-          <source src="audio/enc5-f2.mp3" type="audio/mpeg" />
-        </audio>
-        <span class="frase-pausa">· · ·</span>
-      </div>
-      <div class="frase-item">
-        <span class="frase-texto">«Que hable.»</span>
-        <audio class="frase-audio" controls>
-          <source src="audio/enc5-f3.mp3" type="audio/mpeg" />
-        </audio>
-        <span class="frase-pausa">· · ·</span>
-      </div>
-      <div class="frase-item">
-        <span class="frase-texto">«Que se comunique.»</span>
-        <audio class="frase-audio" controls>
-          <source src="audio/enc5-f4.mp3" type="audio/mpeg" />
-        </audio>
-        <span class="frase-pausa">· · ·</span>
-      </div>
-      <div class="frase-item">
-        <span class="frase-texto">«Que busque consejos.»</span>
-        <audio class="frase-audio" controls>
-          <source src="audio/enc5-f5.mp3" type="audio/mpeg" />
-        </audio>
-        <span class="frase-pausa">· · ·</span>
-      </div>
-      <div class="frase-item">
-        <span class="frase-texto">«En algún punto va a mejorar todo.»</span>
-        <audio class="frase-audio" controls>
-          <source src="audio/enc5-f6.mp3" type="audio/mpeg" />
-        </audio>
-      </div>
+    <div id="frases-inicio">
+      <button class="btn-iniciar" onclick="iniciarFrases()">Escucharla</button>
+    </div>
+
+    <div class="frases-escena" id="frases-escena">
+      <span id="frase-display"></span>
+    </div>
+
+    <div class="frases-cierre" id="frases-cierre">
+      <p id="cierre-esto">Esto lo dijiste tú.</p>
+      <p id="cierre-escuchate">Escúchate.</p>
     </div>
   </section>
 
@@ -580,5 +567,84 @@
   <a class="nav-link" href="index.html">← Volver al inicio</a>
 </footer>
 
+<script>
+  const FRASES_DATA = [
+    { src: 'audio/enc5-f1.m4a', texto: '«Que lo siga intentando.»' },
+    { src: 'audio/enc5-f2.m4a', texto: '«Que intente ver más opciones.»' },
+    { src: 'audio/enc5-f3.m4a', texto: '«Que hable.»' },
+    { src: 'audio/enc5-f4.m4a', texto: '«Que se comunique.»' },
+    { src: 'audio/enc5-f5.m4a', texto: '«Que busque consejos.»' },
+    { src: 'audio/enc5-f6.m4a', texto: '«En algún punto va a mejorar todo.»' },
+  ];
+  const audioFrases = new Audio();
+
+  function iniciarFrases() {
+    document.getElementById('frases-inicio').style.display = 'none';
+    const escena = document.getElementById('frases-escena');
+    escena.style.display = 'flex';
+    reproducirFrase(0);
+  }
+
+  function reproducirFrase(idx) {
+    if (idx >= FRASES_DATA.length) {
+      setTimeout(mostrarCierre, 3500);
+      return;
+    }
+    const { src, texto } = FRASES_DATA[idx];
+    const display = document.getElementById('frase-display');
+
+    // Limpiar frase anterior
+    display.style.transition = 'none';
+    display.style.opacity = '0';
+    display.textContent = '';
+
+    // Cargar y reproducir audio
+    audioFrases.src = src;
+    const mostrarTexto = () => {
+      display.textContent = texto;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        display.style.transition = 'opacity 0.8s ease';
+        display.style.opacity = '1';
+      }));
+      // Mantener visible 2.2s, luego desaparecer y pasar a la siguiente
+      setTimeout(() => {
+        display.style.opacity = '0';
+        setTimeout(() => reproducirFrase(idx + 1), 900);
+      }, 2200);
+    };
+
+    audioFrases.onended = mostrarTexto;
+    audioFrases.play().catch(mostrarTexto); // fallback si autoplay bloqueado
+  }
+
+  function mostrarCierre() {
+    const escena = document.getElementById('frases-escena');
+    escena.style.transition = 'opacity 1s ease';
+    escena.style.opacity = '0';
+
+    setTimeout(() => {
+      escena.style.display = 'none';
+      const cierre = document.getElementById('frases-cierre');
+      cierre.style.display = 'block';
+
+      // "Esto lo dijiste tú." aparece
+      const esto = document.getElementById('cierre-esto');
+      esto.style.transition = 'opacity 1.5s ease';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        esto.style.opacity = '1';
+      }));
+
+      // "Escúchate." aparece 3 segundos después, lentamente
+      setTimeout(() => {
+        const esc = document.getElementById('cierre-escuchate');
+        esc.style.display = 'block';
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          esc.style.transition = 'opacity 2.5s ease';
+          esc.style.opacity = '1';
+        }));
+      }, 3000);
+    }, 1000);
+  }
+</script>
 </body>
 </html>
