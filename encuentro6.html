@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VI · Para cuando el mundo te haga sentir que no eres suficiente</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Paleta — Marrón Dominicano ──────────────────────────────────────── */
+    :root {
+      --bg:          #F6F1EA;
+      --bg-alt:      #EDE5D8;
+      --text:        #2A1E14;
+      --text-muted:  #7A6050;
+      --accent:      #5C3317;
+      --accent-mid:  #8B5E3C;
+      --gold:        #A07830;
+      --divider:     #C5B49A;
+      --prayer-bg:   #E5D8C8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.88;
+    }
+
+    /* ─── Encabezado ──────────────────────────────────────────────────────── */
+    .enc-header {
+      background: var(--accent);
+      color: #F5EDE4;
+      text-align: center;
+      padding: 3.8rem 2rem 3.2rem;
+    }
+    .enc-number {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+    .enc-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.15rem, 3.2vw, 1.9rem);
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      line-height: 1.4;
+    }
+
+    /* ─── Banda del santo ─────────────────────────────────────────────────── */
+    .saint-wrapper {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--divider);
+    }
+    .saint-band {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+    .saint-img {
+      flex-shrink: 0;
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      display: block;
+    }
+    .saint-text h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .saint-text h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .saint-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    /* ─── Contenido ───────────────────────────────────────────────────────── */
+    .content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .parte {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--divider);
+    }
+    .parte:last-of-type { border-bottom: none; }
+    .parte-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      opacity: 0.75;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .parte p { margin-bottom: 0.85em; }
+    .parte p:last-child { margin-bottom: 0; }
+
+    /* ─── Cita destacada ──────────────────────────────────────────────────── */
+    .cita {
+      border-left: 3px solid var(--accent-mid);
+      padding: 0.5rem 0 0.5rem 1.4rem;
+      margin: 1.8rem 0;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    /* ─── Tabla contraste ─────────────────────────────────────────────────── */
+    .contraste {
+      margin: 2rem 0;
+    }
+    .contraste-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 0.4rem;
+      padding: 0 0 0.3rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    .contraste-header span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .contraste-header span:last-child {
+      padding-left: 1.5rem;
+      color: var(--accent);
+    }
+    .contraste-par {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--divider);
+      padding: 0.9rem 0;
+    }
+    .contraste-mundo {
+      padding-right: 1.5rem;
+      border-right: 1px solid var(--divider);
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.6;
+      text-decoration: line-through;
+      text-decoration-color: var(--divider);
+      opacity: 0.65;
+    }
+    .contraste-dios {
+      padding-left: 1.5rem;
+      color: var(--accent);
+      font-size: 1rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .cita-ref {
+      display: block;
+      font-size: 0.66rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.12em;
+      color: var(--accent-mid);
+      opacity: 0.65;
+      margin-top: 0.3rem;
+      font-style: normal;
+    }
+
+    /* ─── Fondo sección Martín ────────────────────────────────────────────── */
+    .parte-martin {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      padding: 3.5rem 0;
+    }
+    .parte-martin .parte { border-bottom: none; padding-top: 0; }
+
+    /* ─── Sección contemplativa ───────────────────────────────────────────── */
+    .contemp-section {
+      background: #160D05;
+      color: #F0E8D8;
+      padding: 5rem 1.5rem 5.5rem;
+      text-align: center;
+    }
+    .contemp-inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .contemp-section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(200, 168, 120, 0.35);
+      margin-bottom: 2.5rem;
+    }
+    .contemp-img {
+      width: 155px;
+      height: 205px;
+      object-fit: cover;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 2.5s ease;
+      margin: 0 auto 2.5rem;
+      display: block;
+    }
+    .contemp-img.contemp-visible { opacity: 0.88; }
+    .contemp-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.63rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #C8A878;
+      border: 1px solid rgba(200, 168, 120, 0.45);
+      padding: 0.75rem 2.4rem;
+      cursor: pointer;
+      background: transparent;
+      transition: opacity 0.3s;
+    }
+    .contemp-btn:hover { opacity: 0.6; }
+    .contemp-lineas { margin-top: 0.5rem; }
+    .contemp-linea {
+      opacity: 0;
+      transition: opacity 1.8s ease;
+      font-size: 1.12rem;
+      line-height: 1.85;
+      color: #E8DFD0;
+      margin-bottom: 0;
+    }
+    .contemp-linea.contemp-visible { opacity: 1; }
+    .contemp-nombre {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      color: #D4B07A;
+      margin-top: 2.2rem;
+    }
+    .contemp-fecha {
+      font-family: 'Cinzel', serif;
+      font-size: 0.63rem;
+      letter-spacing: 0.22em;
+      color: #9A8760;
+      margin-bottom: 0.5rem;
+    }
+    .contemp-pausa { margin-top: 2.2rem; }
+    .contemp-final {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      color: #D4B07A;
+      margin-top: 2.8rem;
+    }
+
+    /* ─── Oración ─────────────────────────────────────────────────────────── */
+    .oracion-wrap {
+      background: var(--prayer-bg);
+      border-radius: 6px;
+      border: 1px solid var(--divider);
+      padding: 2.8rem 2rem 2.5rem;
+      margin: 3rem 0 1rem;
+      text-align: center;
+    }
+    .oracion-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 1.6rem;
+    }
+    .oracion-text {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 2.1;
+    }
+    .oracion-amen {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-top: 1.2rem;
+    }
+
+    /* ─── Pie ─────────────────────────────────────────────────────────────── */
+    .enc-footer {
+      text-align: center;
+      padding: 3rem 2rem 4.5rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--divider);
+    }
+    .nav-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.65;
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 1; }
+
+    /* ─── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 580px) {
+      .saint-band { flex-direction: column; text-align: center; gap: 1rem; }
+      .contraste-par { grid-template-columns: 1fr; }
+      .contraste-mundo { border-right: none; padding-right: 0; padding-bottom: 0.6rem; border-bottom: 1px solid var(--divider); margin-bottom: 0.5rem; }
+      .contraste-dios { padding-left: 0; }
+      .contraste-header { grid-template-columns: 1fr; gap: 0.2rem; }
+      .contraste-header span:last-child { padding-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ ENCABEZADO ═══════════════════════════════════════════════════════════ -->
+<header class="enc-header">
+  <p class="enc-number">Encuentro VI</p>
+  <h1 class="enc-title">Para cuando el mundo te haga sentir que no eres suficiente</h1>
+</header>
+
+<!-- ═══ SANTO ════════════════════════════════════════════════════════════════ -->
+<div class="saint-wrapper">
+  <div class="saint-band">
+    <img class="saint-img" src="img/enc6-martin-a.jpg" alt="San Martín de Porres"
+         onerror="this.style.display='none'" />
+    <div class="saint-text">
+      <h3>Patrono de este encuentro</h3>
+      <h2>San Martín de Porres</h2>
+      <p>Es un símbolo de humildad y caridad, ya que dedicó su vida al servicio de los más necesitados, mostrando que la verdadera grandeza ante Dios radica en el amor y el servicio a los demás.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PARTES I–II ══════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- ─ PARTE I ─ La lista del mundo ──────────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">I · La lista del mundo</span>
+    <p>Hola, Sophi.</p>
+    <p>El mundo tiene una lista. No te la entrega por escrito, pero la sientes. Una lista de criterios, de requisitos, de condiciones. Y sin pedirte permiso, a veces te mide con ella.</p>
+    <p>Te mide por lo que has logrado. Por lo que produces. Por cómo te ven. Por lo que tienes o no tienes. Por lo que otros esperaban de ti.</p>
+    <p>Y hay días en que esa medida duele.<br>
+    En que parece que no estás llegando.<br>
+    En que sientes que a otros les sale más fácil.<br>
+    En que te preguntas si realmente puedes.</p>
+    <p>Para esos días es este encuentro.</p>
+  </section>
+
+  <!-- ─ PARTE II ─ El mundo dice / Dios dice ───────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">II · Lo que el mundo dice y lo que Dios dice</span>
+    <p>No voy a decirte que el mundo está equivocado en todo. Pero sí quiero que veas lo que pasa cuando pones sus palabras junto a las de Dios.</p>
+
+    <div class="contraste">
+      <div class="contraste-header">
+        <span>El mundo dice</span>
+        <span>Dios dice</span>
+      </div>
+      <div class="contraste-par">
+        <div class="contraste-mundo">No eres suficientemente fuerte.</div>
+        <div class="contraste-dios">«No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios.»<span class="cita-ref">Is 41:10</span></div>
+      </div>
+      <div class="contraste-par">
+        <div class="contraste-mundo">No eres suficientemente capaz.</div>
+        <div class="contraste-dios">«Mi poder se perfecciona en la debilidad.»<span class="cita-ref">2 Cor 12:9</span></div>
+      </div>
+      <div class="contraste-par">
+        <div class="contraste-mundo">No eres suficientemente importante.</div>
+        <div class="contraste-dios">«Antes de formarte en el vientre te conocí, antes de que nacieras te consagré.»<span class="cita-ref">Jer 1:5</span></div>
+      </div>
+      <div class="contraste-par">
+        <div class="contraste-mundo">No vales lo suficiente.</div>
+        <div class="contraste-dios">«¿No valéis vosotros mucho más que ellas?»<span class="cita-ref">Mt 6:26</span></div>
+      </div>
+      <div class="contraste-par">
+        <div class="contraste-mundo">No eres suficientemente buena.</div>
+        <div class="contraste-dios">«No he venido a llamar a justos, sino a pecadores.»<span class="cita-ref">Mc 2:17</span></div>
+      </div>
+      <div class="contraste-par">
+        <div class="contraste-mundo">Deberías ser más.</div>
+        <div class="contraste-dios">«Dios muestra su amor en que, siendo aún pecadores, Cristo murió por nosotros.»<span class="cita-ref">Rom 5:8</span></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══ PARTE III — MARTÍN (fondo completo) ══════════════════════════════════ -->
+<div class="parte-martin">
+  <div class="content">
+    <section class="parte">
+      <span class="parte-label">III · Martín</span>
+      <p>Quiero contarte algo sobre un hombre que vivió en Lima.</p>
+      <p>Martín de Porres nació en 1579, hijo de un padre que tardó años en reconocerlo y de una madre que vivió en la pobreza. Desde el principio, la sociedad de su tiempo tenía muy claro qué lugar le correspondía: el de abajo.</p>
+      <p>Cuando quiso entrar a la vida religiosa, le dijeron que no podía ser fraile. Las leyes de la época no lo permitían por su origen. Solo le ofrecieron ser hermano donado —una categoría inferior, sin los derechos de los demás religiosos.</p>
+      <p>Aceptó. Sin amargura. Sin resentimiento.<br>
+      Y desde ese lugar que el mundo consideraba inferior, comenzó a sanar enfermos, a alimentar a los pobres, a reconciliar enemigos, a consolar a los que no tenían a nadie.</p>
+      <p>Eventualmente, los propios frailes —avergonzados de su propia mezquindad— le pidieron que hiciera los votos plenos. Para entonces ya era conocido en toda Lima. Lo llamaban el padre de los pobres.</p>
+      <div class="cita">El mundo le dijo que no era suficiente.<br>Dios tenía otros planes.</div>
+      <p>Martín caminó las mismas calles de tu ciudad. Respiró el mismo aire de Lima. Fue medido por los mismos criterios que todavía existen hoy. Y eligió no dejar que esa medida definiera lo que él podía dar.</p>
+      <p><em>Mientras escribía esto, Martín me miraba desde mi cuarto.</em></p>
+    </section>
+  </div>
+</div>
+
+<!-- ═══ PARTE IV ═══════════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <section class="parte">
+    <span class="parte-label">IV · Lo que ninguna lista puede quitarte</span>
+    <p>Tu valor no empieza cuando alguien lo reconoce.<br>
+    No empieza cuando logras algo.<br>
+    No empieza cuando encajas en la lista.</p>
+    <p>Ya estaba ahí. Antes de todo eso.</p>
+    <p>Hay una dignidad en ti que no es tuya en el sentido de que te la hayas ganado. Es tuya porque te fue dada. Antes de que pudieras hacer cualquier cosa para merecerla o perderla.</p>
+    <p>El mundo puede tener su lista. Puede medirte. Puede no reconocerte. Puede pasar de largo.</p>
+    <p>Pero no puede quitarte lo que ya tienes.<br>
+    Y tampoco puede darte lo que ya eres.</p>
+  </section>
+
+</div>
+
+<!-- ═══ PARTE V — SAN MARTÍN (contemplación) ══════════════════════════════════ -->
+<div class="contemp-section">
+  <div class="contemp-inner">
+    <p class="contemp-section-label">V · San Martín</p>
+    <img id="contemp-img" class="contemp-img" src="img/enc6-martin-b.jpg" alt="San Martín de Porres"
+         onerror="this.style.display='none'" />
+    <button id="contemp-btn" class="contemp-btn" onclick="iniciarContemplacion()">· Contemplar ·</button>
+    <div class="contemp-lineas">
+      <p id="cl-nombre" class="contemp-linea contemp-nombre">San Martín de Porres</p>
+      <p id="cl-fecha"  class="contemp-linea contemp-fecha">1579 — 1639</p>
+      <p id="cl-l1"    class="contemp-linea contemp-pausa">El mundo había puesto un límite.</p>
+      <p id="cl-l2"    class="contemp-linea">Dios no había puesto ese límite.</p>
+      <p id="cl-l3"    class="contemp-linea contemp-pausa">Martín no necesitó demostrar cuánto valía.</p>
+      <p id="cl-l4"    class="contemp-linea">Vivió para Dios.</p>
+      <p id="cl-l5"    class="contemp-linea contemp-pausa">Quizás tú tampoco necesitas demostrarle al mundo que eres suficiente.</p>
+      <p id="cl-final" class="contemp-linea contemp-final">Vive para Dios.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ORACIÓN ════════════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <div class="oracion-wrap">
+    <span class="oracion-title">Oración</span>
+    <p class="oracion-text">
+      Señor,<br>
+      cuando el mundo me haga sentir que no soy suficiente,<br>
+      recuérdame que mi valor no depende de su medida.<br>
+      Dame la paz de Martín,<br>
+      que sirvió desde el lugar más bajo<br>
+      sin dejar que ese lugar lo definiera.<br>
+      Y ayúdame a recordar<br>
+      que a tus ojos ya soy suficiente.<br>
+      Siempre lo fui.
+    </p>
+    <span class="oracion-amen">Amén.</span>
+  </div>
+
+</div>
+
+<!-- ═══ PIE ═══════════════════════════════════════════════════════════════════ -->
+<footer class="enc-footer">
+  <a class="nav-link" href="index.html">← Volver al inicio</a>
+</footer>
+
+<script>
+  function iniciarContemplacion() {
+    document.getElementById('contemp-btn').style.display = 'none';
+    document.getElementById('contemp-img').classList.add('contemp-visible');
+
+    var lineas = [
+      ['cl-nombre',  1500],
+      ['cl-fecha',   3200],
+      ['cl-l1',      7000],
+      ['cl-l2',      9800],
+      ['cl-l3',     14500],
+      ['cl-l4',     17000],
+      ['cl-l5',     22000],
+      ['cl-final',  27000],
+    ];
+
+    lineas.forEach(function(item) {
+      setTimeout(function() {
+        var el = document.getElementById(item[0]);
+        if (el) el.classList.add('contemp-visible');
+      }, item[1]);
+    });
+  }
+</script>
+
+</body>
+</html>
