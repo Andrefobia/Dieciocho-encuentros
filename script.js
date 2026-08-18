@@ -5,24 +5,34 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ─── 1. Audio: compatibilidad móvil + ocultar si no existe ─── */
+  /* ─── 1. Audio: compatibilidad móvil ─── */
+  /*
+   * Fix para Android Chrome:
+   *   - Mover src de <source> al propio <audio> mejora la compatibilidad.
+   *   - preload="none" puede impedir la carga en móvil; se cambia a "metadata".
+   *
+   * El chequeo de existencia (fetch HEAD) solo aplica a bloques
+   * con clase .audio-bloque (estilo enc1), donde el bloque
+   * se oculta si el archivo no existe en el servidor.
+   */
   var reproductores = document.querySelectorAll('audio');
 
   reproductores.forEach(function (audio) {
     var fuente = audio.querySelector('source');
     if (!fuente) return;
 
+    var url = fuente.getAttribute('src');
+
+    /* Aplicar fix de src y preload a TODOS los audios */
+    audio.setAttribute('src', url);
+    if (audio.getAttribute('preload') === 'none' || !audio.hasAttribute('preload')) {
+      audio.setAttribute('preload', 'metadata');
+    }
+
+    /* Ocultar bloque si el archivo no existe — solo para .audio-bloque */
     var bloque = audio.closest('.audio-bloque');
     if (!bloque) return;
 
-    var url = fuente.getAttribute('src');
-
-    /* Mover src directamente al elemento <audio> mejora la compatibilidad
-       en Android Chrome vs usar <source> anidado */
-    audio.setAttribute('src', url);
-    audio.setAttribute('preload', 'metadata');
-
-    /* Verificar existencia del archivo y ocultar bloque si no existe */
     fetch(url, { method: 'HEAD' })
       .then(function (res) {
         if (!res.ok) {
