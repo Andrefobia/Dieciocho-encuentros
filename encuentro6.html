@@ -205,10 +205,32 @@
       color: #F0E8D8;
       padding: 5rem 1.5rem 5.5rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contemp-video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 2.5s ease;
+      z-index: 0;
+    }
+    .contemp-video.contemp-visible { opacity: 0.78; }
+    .contemp-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(22, 13, 5, 0.52);
+      z-index: 1;
+      pointer-events: none;
     }
     .contemp-inner {
       max-width: 480px;
       margin: 0 auto;
+      position: relative;
+      z-index: 2;
     }
     .contemp-section-label {
       font-family: 'Cinzel', serif;
@@ -218,17 +240,6 @@
       color: rgba(200, 168, 120, 0.35);
       margin-bottom: 2.5rem;
     }
-    .contemp-img {
-      width: 155px;
-      height: 205px;
-      object-fit: cover;
-      border-radius: 2px;
-      opacity: 0;
-      transition: opacity 2.5s ease;
-      margin: 0 auto 2.5rem;
-      display: block;
-    }
-    .contemp-img.contemp-visible { opacity: 0.88; }
     .contemp-btn {
       font-family: 'Cinzel', serif;
       font-size: 0.63rem;
@@ -457,10 +468,12 @@
 
 <!-- ═══ PARTE V — SAN MARTÍN (contemplación) ══════════════════════════════════ -->
 <div class="contemp-section">
+  <video id="contemp-video" class="contemp-video" src="video/enc6-martin.mp4"
+         loop muted playsinline preload="none"
+         onerror="this.style.display='none'"></video>
+  <div class="contemp-overlay"></div>
   <div class="contemp-inner">
     <p class="contemp-section-label">V · San Martín</p>
-    <img id="contemp-img" class="contemp-img" src="img/enc6-martin-b.jpg" alt="San Martín de Porres"
-         onerror="this.style.display='none'" />
     <button id="contemp-btn" class="contemp-btn" onclick="iniciarContemplacion()">· Contemplar ·</button>
     <div class="contemp-lineas">
       <p id="cl-nombre" class="contemp-linea contemp-nombre">San Martín de Porres</p>
@@ -504,7 +517,8 @@
 <script>
   function iniciarContemplacion() {
     document.getElementById('contemp-btn').style.display = 'none';
-    document.getElementById('contemp-img').classList.add('contemp-visible');
+    var video = document.getElementById('contemp-video');
+    if (video) { video.play().catch(function(){}); video.classList.add('contemp-visible'); }
 
     var lineas = [
       ['cl-nombre',  1500],
