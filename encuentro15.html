@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encuentro XV · Para cuando necesite volver a empezar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cinzel+Decorative:wght@400&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── PALETA MARIANA ─── */
+    :root {
+      --bg:          #F4F2EE;
+      --bg-alt:      #E6EDF5;
+      --text:        #0C1420;
+      --text-muted:  #556070;
+      --accent:      #1B3668;
+      --accent-mid:  #2A4E90;
+      --gold:        #8A7040;
+      --gold-light:  #B09A60;
+      --divider:     #B2C3D8;
+      --prayer-bg:   #D6E3F0;
+    }
+
+    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1.12rem;
+      line-height: 1.82;
+    }
+
+    /* ─── HEADER ─── */
+    .enc-header {
+      background: #06091A;
+      color: #EEF2FA;
+      padding: 3.5rem 1.5rem 3.2rem;
+      text-align: center;
+    }
+    .enc-numero {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      color: rgba(160, 190, 230, 0.45);
+      margin-bottom: 0.8rem;
+    }
+    .enc-titulo {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 400;
+      color: #F0F4FC;
+      line-height: 1.3;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ─── BANDA FÁTIMA ─── */
+    .fatima-band {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      padding: 1.6rem 1.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .fatima-img {
+      width: 96px;
+      height: 136px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 4px;
+      flex-shrink: 0;
+      background: var(--divider);
+    }
+    .fatima-name {
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .fatima-desc {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* ─── CONTENIDO ─── */
+    .contenido {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 1.5rem 4rem;
+    }
+
+    /* ─── PARTES ─── */
+    .parte {
+      padding: 3.2rem 0 2.2rem;
+      border-bottom: 1px solid var(--divider);
+      /* blur-to-focus */
+      opacity: 0;
+      filter: blur(5px);
+      transform: translateY(10px);
+      transition: opacity 1s ease, filter 1s ease, transform 1s ease;
+    }
+    .parte.visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+    .parte-label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      margin-bottom: 1.9rem;
+    }
+    .parte p {
+      margin-bottom: 1.2rem;
+    }
+    .parte p:last-child { margin-bottom: 0; }
+
+    /* ─── CITA ROSARIO ─── */
+    .cita-rosario {
+      border-left: 3px solid var(--accent-mid);
+      padding: 1rem 1.2rem 1rem 1.5rem;
+      margin: 2rem 0;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1.75;
+    }
+
+    /* ─── IMAGEN ROSARIO ─── */
+    .rosario-wrap {
+      margin: 2.2rem auto 2rem;
+      max-width: 340px;
+      text-align: center;
+    }
+    .rosario-img {
+      width: 100%;
+      height: auto;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 6px;
+      display: block;
+      background: var(--divider);
+    }
+    .rosario-caption {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 0.7rem;
+      opacity: 0.75;
+    }
+
+    /* ─── SECCIÓN FÁTIMA OSCURA ─── */
+    .parte-fatima {
+      background: #06091A;
+      color: #C8D5EA;
+      padding: 3.8rem 1.5rem 3.5rem;
+      margin: 0 -1.5rem;
+      border-bottom: none;
+    }
+    .parte-fatima .parte-label {
+      color: rgba(160, 185, 230, 0.45);
+    }
+    .parte-fatima p {
+      color: #C0CFEA;
+      margin-bottom: 1.2rem;
+    }
+    .parte-fatima p:last-child { margin-bottom: 0; }
+    .fatima-peticion {
+      text-align: center;
+      font-style: italic;
+      color: rgba(190, 210, 245, 0.85);
+      font-size: 1.08rem;
+      line-height: 2.2;
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border-top: 1px solid rgba(100, 140, 200, 0.2);
+      border-bottom: 1px solid rgba(100, 140, 200, 0.2);
+    }
+    .fatima-todavia {
+      text-align: center;
+      font-style: italic;
+      color: rgba(200, 220, 255, 0.9);
+      font-size: 1.18rem;
+      margin-top: 2rem;
+      line-height: 1.9;
+    }
+
+    /* ─── ORACIÓN ─── */
+    .oracion-sep {
+      text-align: center;
+      margin: 3.5rem 0 1.8rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--divider);
+    }
+    .oracion-wrap {
+      background: var(--prayer-bg);
+      border: 1px solid var(--divider);
+      border-radius: 6px;
+      padding: 2.4rem 2rem;
+      text-align: center;
+      opacity: 0;
+      filter: blur(4px);
+      transition: opacity 1s ease 0.1s, filter 1s ease 0.1s;
+    }
+    .oracion-wrap.visible {
+      opacity: 1;
+      filter: blur(0);
+    }
+    .oracion-titulo {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      color: var(--accent-mid);
+      margin-bottom: 1.6rem;
+    }
+    .oracion-texto {
+      font-style: italic;
+      line-height: 2.2;
+      color: var(--accent);
+      font-size: 1.05rem;
+    }
+    .oracion-amen {
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-top: 1.5rem;
+    }
+
+    /* ─── CIERRE ─── */
+    .cierre-wrap {
+      text-align: center;
+      padding: 3.5rem 0 2rem;
+      border-top: 1px solid var(--divider);
+    }
+    .cierre-linea {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .cierre-final {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-top: 1rem;
+    }
+
+    /* ─── LAS ORACIONES (guía) ─── */
+    .oraciones-guia {
+      border-top: 1px solid var(--divider);
+      padding: 3rem 0 2rem;
+    }
+    .oraciones-label {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .oraciones-intro {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.97rem;
+      margin-bottom: 2.2rem;
+    }
+    .oracion-item {
+      margin-bottom: 2rem;
+    }
+    .oracion-nombre {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      color: var(--accent-mid);
+      margin-bottom: 0.8rem;
+    }
+    .oracion-cuerpo {
+      background: var(--prayer-bg);
+      border: 1px solid var(--divider);
+      border-radius: 4px;
+      padding: 1.4rem 1.6rem;
+      font-style: italic;
+      font-size: 1rem;
+      line-height: 2.1;
+      color: var(--accent);
+    }
+    .oracion-cuerpo .amen {
+      font-style: normal;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-top: 0.8rem;
+      display: block;
+    }
+
+    /* ─── FOOTER ─── */
+    .enc-footer {
+      background: #06091A;
+      border-top: 1px solid rgba(90, 120, 180, 0.15);
+      text-align: center;
+      padding: 2.5rem 1.5rem 2.2rem;
+    }
+    .nav-link {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(140, 170, 215, 0.5);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(100, 140, 200, 0.22);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: rgba(140, 170, 215, 0.9); }
+
+    @media (max-width: 480px) {
+      .fatima-band { flex-direction: column; text-align: center; }
+      .oracion-wrap { padding: 1.8rem 1.2rem; }
+      .oracion-cuerpo { padding: 1.2rem; }
+    }
+
+    /* ─── JUEGO DE ACCESO ─── */
+    #game-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #06091A;
+      z-index: 9000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      overflow-y: auto;
+      transition: opacity 1s ease;
+    }
+    #game-overlay.fade-out { opacity: 0; pointer-events: none; }
+
+    .game-inner {
+      max-width: 580px;
+      width: 100%;
+      text-align: center;
+      padding: 1rem 0 2rem;
+    }
+    .game-cruz {
+      font-size: 1.4rem;
+      color: rgba(130, 165, 220, 0.25);
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.6em;
+    }
+    .game-intro {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      color: rgba(175, 200, 235, 0.65);
+      font-size: 1.02rem;
+      line-height: 1.9;
+      margin-bottom: 2.2rem;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* PERDISTE */
+    .perdiste-display {
+      margin-bottom: 1.8rem;
+      letter-spacing: 0.3em;
+    }
+    .perdiste-letra {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      color: rgba(200, 110, 110, 0.1);
+      transition: color 0.5s ease, text-shadow 0.5s ease;
+      display: inline-block;
+    }
+    .perdiste-letra.activo {
+      color: rgba(210, 100, 100, 0.6);
+      text-shadow: 0 0 14px rgba(200, 70, 70, 0.25);
+    }
+    /* FRASE BLANCOS */
+    .frase-display {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.45rem 0.55rem;
+      margin-bottom: 2.2rem;
+      padding: 0 0.5rem;
+    }
+    .palabra {
+      display: inline-flex;
+      gap: 2px;
+      align-items: flex-end;
+    }
+    .letra-slot {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 13px;
+    }
+    .letra-char {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      color: #D8E8FC;
+      height: 1.4rem;
+      line-height: 1.4rem;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+    }
+    .letra-char.visible { opacity: 1; }
+    .letra-linea {
+      width: 100%;
+      min-width: 13px;
+      height: 1px;
+      background: rgba(120, 160, 215, 0.35);
+      margin-top: 3px;
+    }
+    .letra-punct {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(160, 190, 230, 0.45);
+      align-self: flex-end;
+      padding-bottom: 4px;
+    }
+    /* TECLADO */
+    .teclado {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 5px;
+      max-width: 420px;
+      margin: 0 auto 1.4rem;
+    }
+    .tecla {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(110, 150, 210, 0.22);
+      color: rgba(170, 205, 245, 0.75);
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tecla:hover:not(:disabled) {
+      background: rgba(90, 135, 210, 0.16);
+      color: #C8E0FF;
+    }
+    .tecla:disabled { opacity: 0.18; cursor: default; }
+    .tecla.correcta { border-color: rgba(90, 180, 130, 0.45); color: rgba(120, 210, 155, 0.7); }
+    .tecla.erronea  { border-color: rgba(200, 90, 90, 0.28); color: rgba(210, 110, 110, 0.5); }
+
+    .game-mensaje {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      color: rgba(170, 200, 235, 0.45);
+      min-height: 1.4rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- JUEGO DE ACCESO -->
+<div id="game-overlay">
+  <div class="game-inner">
+
+    <div class="game-cruz" aria-hidden="true">✝ &nbsp; ✝ &nbsp; ✝</div>
+
+    <p class="game-intro">
+      Hay una frase que ya conoces.<br />
+      Está escrita en un papelito que guardas junto al rosario.<br /><br />
+      Encuéntrala letra por letra.<br />
+      Tienes ocho intentos antes de que se acabe el tiempo.
+    </p>
+
+    <div class="perdiste-display" aria-label="Intentos restantes">
+      <span class="perdiste-letra" id="p1">P</span>
+      <span class="perdiste-letra" id="p2">E</span>
+      <span class="perdiste-letra" id="p3">R</span>
+      <span class="perdiste-letra" id="p4">D</span>
+      <span class="perdiste-letra" id="p5">I</span>
+      <span class="perdiste-letra" id="p6">S</span>
+      <span class="perdiste-letra" id="p7">T</span>
+      <span class="perdiste-letra" id="p8">E</span>
+    </div>
+
+    <div class="frase-display" id="frase-display"></div>
+
+    <div class="teclado" id="teclado"></div>
+
+    <p class="game-mensaje" id="game-mensaje"></p>
+
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="enc-header">
+  <p class="enc-numero">ENCUENTRO XV</p>
+  <h1 class="enc-titulo">Para cuando necesite volver a empezar</h1>
+</header>
+
+<!-- BANDA NUESTRA SEÑORA DE FÁTIMA -->
+<div class="fatima-band">
+  <img
+    class="fatima-img"
+    src="img/enc15-fatima.jpg"
+    alt="Nuestra Señora de Fátima"
+    onerror="this.style.background='#B2C3D8';this.removeAttribute('src');"
+  />
+  <div>
+    <p class="fatima-name">Nuestra Señora de Fátima</p>
+    <p class="fatima-desc">En 1917 se apareció a tres niños pastores en Portugal.
+    No les habló de cosas complicadas. Les pidió algo muy concreto:
+    rezar el rosario, convertirse, y esperar con fe.
+    Su mensaje fue claro: <em>Todavía es posible.</em></p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<main class="contenido">
+
+  <!-- I · LA APERTURA -->
+  <section class="parte">
+    <span class="parte-label">I · Hola, Sophi</span>
+
+    <p>Si estás leyendo esto, probablemente sientes que algo se rompió,
+    se detuvo o se desvió.</p>
+
+    <p>Quizá fue un proyecto.<br />
+    Quizá una relación.<br />
+    Quizá una etapa de tu vida.<br />
+    O quizá simplemente sientes que te alejaste de ti misma,
+    de lo que querías ser, o de Dios.</p>
+
+    <p>No importa cuál sea la razón.</p>
+
+    <p>Este encuentro no está hecho para analizar el pasado.
+    Está hecho para acompañarte en el momento en que decides
+    que todavía es posible comenzar de nuevo.</p>
+
+    <p>Hay algo que quiero que sepas desde el principio.</p>
+
+    <p>Volver a empezar no es fingir que nada pasó.
+    Tampoco es borrar lo que duele.
+    Es mirar lo que quedó y decidir, con humildad y con esperanza,
+    dar el siguiente paso.</p>
+
+    <p>Y para eso no necesitas tener todo claro.<br />
+    Solo necesitas estar dispuesta a comenzar.</p>
+  </section>
+
+  <!-- II · EL ROSARIO -->
+  <section class="parte">
+    <span class="parte-label">II · El rosario</span>
+
+    <p>Te envié un rosario.
+    No era un regalo cualquiera.
+    En la cajita iba una frase que decía más o menos esto:</p>
+
+    <div class="cita-rosario">
+      «Este rosario me acompañó en mis primeros pasos de fe.<br />
+      Ahora quiero que te acompañe en los tuyos.»
+    </div>
+
+    <p>Ese rosario ya recorrió un camino.
+    Ahora quiere recorrer otro: el tuyo.</p>
+
+    <div class="rosario-wrap">
+      <img
+        class="rosario-img"
+        src="img/enc15-rosario.jpg"
+        alt="El rosario sobre la Sagrada Familia"
+        onerror="this.parentElement.style.display='none';"
+      />
+      <p class="rosario-caption">El rosario, sobre la Sagrada Familia.</p>
+    </div>
+
+    <p>No te lo di porque creyera que tenías que rezar perfectamente.
+    Te lo di porque sé que hay días en los que uno no sabe por dónde empezar…
+    y entonces basta con tomar las cuentas y decir la primera Avemaría.</p>
+
+    <p>A veces volver a empezar es tan sencillo como eso:<br />
+    tomar el rosario y comenzar la primera cuenta.</p>
+  </section>
+
+  <!-- III · FÁTIMA (sección oscura) -->
+  <section class="parte parte-fatima">
+    <span class="parte-label">III · Fátima</span>
+
+    <p>En 1917, en un pequeño pueblo de Portugal llamado Fátima,
+    la Virgen se apareció a tres niños pastores:
+    Lucía, Francisco y Jacinta.</p>
+
+    <p>No les habló de cosas complicadas.
+    Les pidió algo muy concreto:</p>
+
+    <div class="fatima-peticion">
+      rezar el rosario todos los días,<br />
+      convertirse,<br />
+      y ofrecer sacrificios por la paz del mundo<br />
+      y por la conversión de los pecadores.
+    </div>
+
+    <p>Les mostró que el mundo podía volver a empezar.
+    Que las personas podían volver a empezar.
+    Que incluso quienes se habían alejado mucho podían regresar.</p>
+
+    <p>La Virgen de Fátima no les dijo: <em>«Es demasiado tarde.»</em></p>
+
+    <div class="fatima-todavia">
+      Les dijo, con su presencia y con su mensaje:<br />
+      <em>«Todavía es posible.»</em>
+    </div>
+
+    <p>Ese es el corazón de este encuentro.</p>
+  </section>
+
+  <!-- IV · EL PRIMER PASO -->
+  <section class="parte" style="border-bottom: none;">
+    <span class="parte-label">IV · El primer paso</span>
+
+    <p>No importa cuánto tiempo haya pasado.
+    No importa cuántas veces hayas intentado y te hayas detenido.
+    No importa si sientes que ya no sabes cómo regresar.</p>
+
+    <p>Siempre se puede volver a empezar.</p>
+
+    <p>Y muchas veces el primer paso es tan pequeño
+    como tomar un rosario y rezar una decena.</p>
+
+    <p>No tienes que rezar el rosario completo hoy.
+    No tienes que sentir nada especial.
+    No tienes que estar en un estado de gracia perfecto.
+    Solo tienes que estar dispuesta a comenzar.</p>
+
+    <p>Toma el rosario que te envié.
+    Haz la señal de la cruz.
+    Y reza, aunque sea, una sola Avemaría.</p>
+
+    <p>Eso ya es un comienzo.</p>
+
+    <p>Después, si quieres, puedes seguir.
+    Si no puedes seguir, está bien.
+    Mañana puedes volver a intentar.</p>
+
+    <p>El rosario no te exige perfección.
+    Solo te acompaña.</p>
+
+    <p>La Virgen de Fátima sigue siendo hoy la misma
+    que se apareció a aquellos niños:
+    la Madre que no se cansa de esperar el regreso de sus hijos.</p>
+
+    <p>Ella no mira cuántas veces fallaste.
+    Mira si estás dispuesta a volver a empezar.</p>
+
+    <p>Y el rosario que tienes en tus manos
+    es una forma concreta de decirle:</p>
+
+    <p><em>«Aquí estoy. Quiero intentar otra vez.»</em></p>
+  </section>
+
+  <!-- ORACIÓN -->
+  <div class="oracion-sep">· · ·</div>
+
+  <div class="oracion-wrap">
+    <p class="oracion-titulo">Oración</p>
+    <p class="oracion-texto">
+      Señora de Fátima,<br />
+      Madre que no te cansas de llamar,<br />
+      hoy quiero volver a empezar.<br />
+      <br />
+      No sé si lo haré perfectamente.<br />
+      No sé si me mantendré firme.<br />
+      Pero quiero dar el primer paso.<br />
+      <br />
+      Toma este rosario que ahora está en mis manos<br />
+      y acompáñame,<br />
+      como acompañaste a Lucía, a Francisco y a Jacinta.<br />
+      <br />
+      Enséñame a confiar otra vez.<br />
+      Enséñame a rezar aunque no sepa qué decir.<br />
+      Enséñame a comenzar,<br />
+      aunque sea con una sola Avemaría.<br />
+      <br />
+      Y cuando vuelva a caer,<br />
+      recuérdame que siempre puedo volver a empezar.
+    </p>
+    <p class="oracion-amen">Amén.</p>
+  </div>
+
+  <!-- CIERRE -->
+  <div class="cierre-wrap">
+    <p class="cierre-linea">Ahora, si puedes, toma el rosario.</p>
+    <p class="cierre-linea">No hace falta que sea largo.</p>
+    <p class="cierre-final">Solo comienza.</p>
+  </div>
+
+  <!-- LAS ORACIONES · guía para quien no las sabe -->
+  <div class="oraciones-guia">
+    <span class="oraciones-label">Las oraciones · Por si no las recuerdas</span>
+    <p class="oraciones-intro">No hace falta saberlas de memoria desde el primer día.
+    Aquí están para que puedas comenzar.</p>
+
+    <div class="oracion-item">
+      <p class="oracion-nombre">El Padrenuestro</p>
+      <div class="oracion-cuerpo">
+        Padre nuestro, que estás en el cielo,<br />
+        santificado sea tu Nombre;<br />
+        venga a nosotros tu reino;<br />
+        hágase tu voluntad en la tierra como en el cielo.<br />
+        Danos hoy nuestro pan de cada día;<br />
+        perdona nuestras ofensas,<br />
+        como también nosotros perdonamos<br />
+        a los que nos ofenden;<br />
+        no nos dejes caer en la tentación,<br />
+        y líbranos del mal.
+        <span class="amen">Amén.</span>
+      </div>
+    </div>
+
+    <div class="oracion-item">
+      <p class="oracion-nombre">El Avemaría</p>
+      <div class="oracion-cuerpo">
+        Dios te salve, María,<br />
+        llena eres de gracia;<br />
+        el Señor es contigo.<br />
+        Bendita tú eres entre todas las mujeres,<br />
+        y bendito es el fruto de tu vientre, Jesús.<br />
+        Santa María, Madre de Dios,<br />
+        ruega por nosotros, pecadores,<br />
+        ahora y en la hora de nuestra muerte.
+        <span class="amen">Amén.</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="enc-footer">
+  <a class="nav-link" href="index.html">← Volver al inicio</a>
+</footer>
+
+<script>
+  /* ─── JUEGO DE ACCESO ─── */
+  (function () {
+    var FRASE = 'Este rosario me acompañó en mis primeros pasos de fe; ahora quiero que te acompañe en los tuyos.';
+    var PERDISTE_IDS = ['p1','p2','p3','p4','p5','p6','p7','p8'];
+    var errores = 0;
+    var usadas = [];
+    var terminado = false;
+
+    function norm(c) {
+      c = c.toLowerCase();
+      if (c === 'ñ') return 'ñ';
+      return c.normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+
+    /* Construir la frase en blancos */
+    var display = document.getElementById('frase-display');
+    var palabraActual = [];
+
+    function volcarPalabra() {
+      if (!palabraActual.length) return;
+      var spanPalabra = document.createElement('span');
+      spanPalabra.className = 'palabra';
+      palabraActual.forEach(function (info) {
+        var c = info.char;
+        var esLetra = /[a-záéíóúüñA-ZÁÉÍÓÚÜÑ]/.test(c);
+        if (esLetra) {
+          var slot = document.createElement('span');
+          slot.className = 'letra-slot';
+          var charEl = document.createElement('span');
+          charEl.className = 'letra-char';
+          charEl.id = 'lc-' + info.idx;
+          charEl.textContent = c;
+          charEl.setAttribute('data-norm', norm(c));
+          var linea = document.createElement('span');
+          linea.className = 'letra-linea';
+          slot.appendChild(charEl);
+          slot.appendChild(linea);
+          spanPalabra.appendChild(slot);
+        } else {
+          var punct = document.createElement('span');
+          punct.className = 'letra-punct';
+          punct.textContent = c;
+          spanPalabra.appendChild(punct);
+        }
+      });
+      display.appendChild(spanPalabra);
+      palabraActual = [];
+    }
+
+    for (var i = 0; i < FRASE.length; i++) {
+      var c = FRASE[i];
+      if (c === ' ') {
+        volcarPalabra();
+      } else {
+        palabraActual.push({ char: c, idx: i });
+      }
+    }
+    volcarPalabra();
+
+    /* Construir teclado */
+    var LETRAS = 'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('');
+    var teclado = document.getElementById('teclado');
+    LETRAS.forEach(function (l) {
+      var btn = document.createElement('button');
+      btn.className = 'tecla';
+      btn.textContent = l;
+      btn.setAttribute('data-norm', norm(l));
+      btn.onclick = function () { adivinar(l, btn); };
+      teclado.appendChild(btn);
+    });
+
+    function adivinar(letra, btn) {
+      if (terminado) return;
+      var n = norm(letra);
+      if (usadas.indexOf(n) !== -1) return;
+      usadas.push(n);
+      btn.disabled = true;
+
+      var encontradas = display.querySelectorAll('.letra-char[data-norm="' + n + '"]');
+      if (encontradas.length > 0) {
+        encontradas.forEach(function (el) { el.classList.add('visible'); });
+        btn.classList.add('correcta');
+        if (display.querySelectorAll('.letra-char:not(.visible)').length === 0) {
+          ganar();
+        }
+      } else {
+        btn.classList.add('erronea');
+        errores++;
+        if (errores <= 8) {
+          document.getElementById(PERDISTE_IDS[errores - 1]).classList.add('activo');
+        }
+        if (errores >= 8) { perder(); }
+      }
+    }
+
+    function ganar() {
+      terminado = true;
+      document.getElementById('game-mensaje').textContent = '· La reconociste ·';
+      setTimeout(function () {
+        var overlay = document.getElementById('game-overlay');
+        overlay.classList.add('fade-out');
+        setTimeout(function () { overlay.style.display = 'none'; }, 1050);
+      }, 1400);
+    }
+
+    function perder() {
+      terminado = true;
+      display.querySelectorAll('.letra-char').forEach(function (el) { el.classList.add('visible'); });
+      document.getElementById('game-mensaje').textContent = 'Vuelve al principio.';
+      setTimeout(function () { window.location.href = 'index.html'; }, 2800);
+    }
+  })();
+
+  /* ─── BLUR-TO-FOCUS ─── */
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.07 });
+
+  document.querySelectorAll('.parte, .oracion-wrap').forEach(function (el) {
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
