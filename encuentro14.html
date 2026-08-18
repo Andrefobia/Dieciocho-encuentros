@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XIV · Para cuando te sientas incomprendida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Paleta — Rosa de Lima ───────────────────────────────────────────── */
+    :root {
+      --bg:          #F5EDEC;
+      --bg-alt:      #EDE0DE;
+      --text:        #2C1A1D;
+      --text-muted:  #8A5A60;
+      --accent:      #7B2D3A;
+      --accent-mid:  #A04050;
+      --gold:        #9A7530;
+      --divider:     #C8AAAA;
+      --prayer-bg:   #E0CECE;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.88;
+    }
+
+    /* ─── Encabezado ──────────────────────────────────────────────────────── */
+    .enc-header {
+      background: var(--accent);
+      color: #F5EAEC;
+      text-align: center;
+      padding: 3.8rem 2rem 3.2rem;
+    }
+    .enc-number {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 1rem;
+    }
+    .enc-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.4rem, 4vw, 2.3rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
+
+    /* ─── Banda del santo ─────────────────────────────────────────────────── */
+    .saint-wrapper {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--divider);
+    }
+    .saint-band {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+    .saint-img {
+      flex-shrink: 0;
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent);
+      display: block;
+    }
+    .saint-text h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .saint-text h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .saint-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    /* ─── Contenido ───────────────────────────────────────────────────────── */
+    .content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ─── Efecto blur-to-focus ────────────────────────────────────────────── */
+    .parte {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--divider);
+      filter: blur(5px);
+      opacity: 0.4;
+      transition: filter 1.3s ease, opacity 1.1s ease;
+    }
+    .parte.visible {
+      filter: blur(0);
+      opacity: 1;
+    }
+    .parte:last-of-type { border-bottom: none; }
+    .parte-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      opacity: 0.75;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .parte p { margin-bottom: 0.85em; }
+    .parte p:last-child { margin-bottom: 0; }
+
+    /* ─── Cita destacada ──────────────────────────────────────────────────── */
+    .cita {
+      border-left: 3px solid var(--accent-mid);
+      padding: 0.5rem 0 0.5rem 1.4rem;
+      margin: 1.8rem 0;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+    .cita-fuente {
+      display: block;
+      font-size: 0.72rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.14em;
+      color: var(--accent-mid);
+      opacity: 0.7;
+      margin-top: 0.5rem;
+      font-style: normal;
+    }
+
+    /* ─── Sección Rosa (fondo completo) ──────────────────────────────────── */
+    .parte-rosa {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--divider);
+      border-bottom: 1px solid var(--divider);
+      padding: 3.5rem 0;
+    }
+    .parte-rosa .parte {
+      border-bottom: none;
+      padding-top: 0;
+    }
+
+    /* ─── Litanía ─────────────────────────────────────────────────────────── */
+    .litania {
+      margin: 2rem 0 0.5rem;
+    }
+    .litania-par {
+      margin-bottom: 1.8rem;
+    }
+    .litania-cuando {
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 0.25rem;
+    }
+    .litania-resp {
+      color: var(--accent);
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.07em;
+      padding-left: 1.4rem;
+    }
+
+    /* ─── Sección contemplativa ───────────────────────────────────────────── */
+    .contemp-section {
+      background: #180808;
+      color: #F0E4E6;
+      padding: 5rem 1.5rem 5.5rem;
+      text-align: center;
+    }
+    .contemp-inner {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .contemp-section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(200, 144, 152, 0.35);
+      margin-bottom: 2.5rem;
+    }
+    .contemp-img {
+      width: 155px;
+      height: 205px;
+      object-fit: cover;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 2.5s ease;
+      margin: 0 auto 2.5rem;
+      display: block;
+    }
+    .contemp-img.contemp-visible { opacity: 0.88; }
+    .contemp-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.63rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #C89098;
+      border: 1px solid rgba(200, 144, 152, 0.45);
+      padding: 0.75rem 2.4rem;
+      cursor: pointer;
+      background: transparent;
+      transition: opacity 0.3s;
+    }
+    .contemp-btn:hover { opacity: 0.6; }
+    .contemp-lineas { margin-top: 0.5rem; }
+    .contemp-linea {
+      opacity: 0;
+      transition: opacity 1.8s ease;
+      font-size: 1.12rem;
+      line-height: 1.85;
+      color: #EAE0E2;
+      margin-bottom: 0;
+    }
+    .contemp-linea.contemp-visible { opacity: 1; }
+    .contemp-nombre {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.14em;
+      color: #C89098;
+      margin-top: 2.2rem;
+    }
+    .contemp-pausa { margin-top: 2.2rem; }
+    .contemp-final {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.1em;
+      color: #C89098;
+      margin-top: 2.8rem;
+    }
+
+    /* ─── Oración ─────────────────────────────────────────────────────────── */
+    .oracion-wrap {
+      background: var(--prayer-bg);
+      border-radius: 6px;
+      border: 1px solid var(--divider);
+      padding: 2.8rem 2rem 2.5rem;
+      margin: 3rem 0 1rem;
+      text-align: center;
+      filter: blur(5px);
+      opacity: 0.4;
+      transition: filter 1.3s ease, opacity 1.1s ease;
+    }
+    .oracion-wrap.visible {
+      filter: blur(0);
+      opacity: 1;
+    }
+    .oracion-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 1.6rem;
+    }
+    .oracion-text {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 2.1;
+    }
+    .oracion-amen {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-top: 1.2rem;
+    }
+
+    /* ─── Pie ─────────────────────────────────────────────────────────────── */
+    .enc-footer {
+      text-align: center;
+      padding: 3rem 2rem 4.5rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--divider);
+    }
+    .nav-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.65;
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 1; }
+
+    /* ─── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 580px) {
+      .saint-band { flex-direction: column; text-align: center; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ ENCABEZADO ═══════════════════════════════════════════════════════════ -->
+<header class="enc-header">
+  <p class="enc-number">Encuentro XIV</p>
+  <h1 class="enc-title">Para cuando te sientas incomprendida</h1>
+</header>
+
+<!-- ═══ SANTO ════════════════════════════════════════════════════════════════ -->
+<div class="saint-wrapper">
+  <div class="saint-band">
+    <img class="saint-img" src="img/enc14-rosa-a.jpg" alt="Santa Rosa de Lima"
+         onerror="this.style.display='none'" />
+    <div class="saint-text">
+      <h3>Patrona de este encuentro</h3>
+      <h2>Santa Rosa de Lima</h2>
+      <p>La primera persona nacida en América en ser canonizada. Amó Lima, a los pobres, y a Dios con un amor que pocos supieron comprender. Pero Dios conocía su corazón.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PARTES I–II ══════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- ─ PARTE I ─ Una vida difícil de comprender ───────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">I · Una vida difícil de comprender</span>
+    <p>Hola, Sophi.</p>
+    <p>En este encuentro trataré de explicarte la vida de una mujer que quizás tú misma no comprendas. Quizás, como a los ojos de muchas personas de hoy, la veas como una persona extraña. Quizás pienses que fue exagerada. O incluso, como mucha gente se atreve a decir hoy, que tenía «problemas».</p>
+    <p>Lo cierto es que esta persona no es nada más y nada menos que una santa de la Iglesia Católica. Y no cualquiera. Fue la primera persona nacida en América en ser canonizada por la Iglesia.</p>
+    <p>Su nombre era Isabel Flores de Oliva. Pero nosotros la conocemos por el nombre que recibió en su confirmación: Rosa. Santa Rosa de Lima.</p>
+    <p>Y creo que precisamente por eso tiene un lugar aquí. Porque, al igual que tú, fue una hija de Dios que vivió en Lima. También conoció sus calles. También contempló sus flores. Y también las amó profundamente.</p>
+    <p>Pero hay algo mucho más importante que quiero que descubras sobre ella. Su vida puede parecernos extraña. Puede parecernos difícil. Puede incluso parecernos incomprensible. Y precisamente por eso quiero hablarte de ella. Porque este encuentro es para cuando te sientas incomprendida.</p>
+    <p>Y quizás, antes de intentar comprender por qué Santa Rosa hizo lo que hizo, tengamos que hacer algo mucho más difícil: intentar verla con los ojos con los que ella veía su propia vida.</p>
+  </section>
+
+  <!-- ─ PARTE II ─ Una mujer que servía ────────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">II · Una mujer que servía a los que nadie veía</span>
+    <p>Para comprender a Rosa, primero hay que entender una cosa: su amor a Dios no la alejó del sufrimiento de los demás. La llevó hacia él.</p>
+    <p>Rosa no fue solamente una mujer de oración y penitencia. También fue una mujer de caridad. En la Lima de su época existían hospitales destinados a distintos grupos de la sociedad, pero había personas que quedaban fuera de ellos y que tenían grandes dificultades para recibir atención. Rosa abrió las puertas de su propia casa para recibir a enfermos y desamparados. Los curaba. Los atendía. Los alimentaba. Los cuidaba. Y especialmente acogía a aquellos que no encontraban fácilmente un lugar donde ser atendidos. Por eso llegó a ser conocida por su servicio a los enfermos y a los pobres.</p>
+    <p>Y esto es importante. Porque cuando hablamos de Santa Rosa, es muy fácil quedarnos solamente con aquello que nos resulta extraordinario. Pero detrás de sus penitencias había una mujer que amaba concretamente a las personas que tenía delante. Su amor a Dios no era una idea. Se convertía en obras.</p>
+  </section>
+
+</div>
+
+<!-- ═══ PARTE III — FONDO COMPLETO ═══════════════════════════════════════════ -->
+<div class="parte-rosa">
+  <div class="content">
+    <section class="parte">
+      <span class="parte-label">III · La parte que hoy resulta difícil de comprender</span>
+      <p>Pero ahora llegamos a la parte de su vida que probablemente más te va a sorprender.</p>
+      <p>Rosa mortificaba su cuerpo. Ayunaba. Se privaba voluntariamente de determinados alimentos. Practicaba diversas formas de penitencia. Y algunas de estas prácticas fueron extraordinariamente rigurosas. Tan rigurosas que incluso las personas de su propia época se preguntaron por ellas. No son simplemente rumores que aparecieron siglos después. Estas prácticas forman parte de los testimonios conservados sobre su vida.</p>
+      <p>Y precisamente porque podían resultar difíciles de comprender, sus penitencias no quedaron simplemente a merced de su propia voluntad. Su vida espiritual fue acompañada y discernida por quienes tenían autoridad sobre ella. Su confesor establecía límites. Había cosas que podía hacer y cosas que no podía hacer. Incluso sus ayunos tenían límites establecidos. Y un médico, Juan del Castillo, estuvo también relacionado con la observación de su estado y de sus prácticas.</p>
+      <p>Esto es importante. Porque Rosa no entendía la penitencia como una manera de destruirse. La entendía desde su fe.</p>
+    </section>
+  </div>
+</div>
+
+<!-- ═══ PARTES IV–VII ════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- ─ PARTE IV ─ ¿Por qué alguien haría algo así? ────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">IV · ¿Por qué alguien haría algo así?</span>
+    <p>Quizás te estés preguntando lo mismo que muchas personas se han preguntado durante siglos: ¿Por qué? ¿Por qué alguien querría privarse voluntariamente de algo? ¿Por qué alguien aceptaría dolor? ¿Por qué alguien querría mortificar su propio cuerpo?</p>
+    <p>Para entenderlo tenemos que abandonar, por un momento, una idea muy común de nuestro tiempo: que todo placer es necesariamente bueno y que todo sufrimiento es necesariamente malo.</p>
+    <p>La fe católica no enseña que el cuerpo sea malo. Al contrario. Dios creó nuestro cuerpo, y por eso nuestro cuerpo es bueno. Pero tampoco enseña que debamos obedecer todos nuestros deseos simplemente porque los sentimos. El ser humano está llamado a ordenar sus deseos. A dominar sus pasiones. A practicar la templanza. A aprender que no todo lo que podemos hacer nos conviene y que no todo lo que produce placer constituye un verdadero bien.</p>
+    <p>Por eso la tradición cristiana habla de ayuno, penitencia y mortificación. No porque el cuerpo sea nuestro enemigo. Sino porque el cuerpo tampoco debe convertirse en nuestro señor. El cristiano busca que toda su persona —su cuerpo, su inteligencia, su voluntad y sus afectos— esté ordenada hacia Dios.</p>
+    <p>Rosa llevó esta lógica a un grado extraordinariamente radical. Y no estamos hablando de algo que todos debamos imitar de la misma manera. Pero sí podemos comprender el principio que había detrás: ella quería que Dios fuera el centro de su vida.</p>
+  </section>
+
+  <!-- ─ PARTE V ─ Cuando los demás no pueden ver lo que hay dentro ─────────── -->
+  <section class="parte">
+    <span class="parte-label">V · Cuando los demás no pueden ver lo que hay dentro</span>
+    <p>Y aquí es donde quiero volver al motivo por el que estás leyendo este encuentro.</p>
+    <p>Quizás hoy alguien mire la vida de Santa Rosa y piense: «Eso no puede ser normal.» «¿Por qué alguien querría sufrir?» «¿Qué le pasaba?»</p>
+    <p>Quizás tú misma, si hubieras vivido en su época, habrías tenido preguntas. Y está bien.</p>
+    <p>Pero hay algo que debemos recordar: nosotros vemos desde fuera. Vemos el acto. No vemos todo lo que ocurre dentro de la persona. Vemos la penitencia. Pero no vemos necesariamente la intención. Vemos el sacrificio. Pero no vemos el amor con el que fue ofrecido. Vemos una decisión. Pero no conocemos siempre todas las razones que llevaron a tomarla.</p>
+    <p>Y eso nos debería hacer más humildes antes de juzgar a otra persona. Porque hay cosas que solamente puede conocer quien está dentro del corazón. Y hay alguien que sí lo conoce perfectamente. Dios.</p>
+    <div class="cita">
+      «El hombre mira las apariencias, pero el Señor mira el corazón.»
+      <span class="cita-fuente">1 Samuel 16:7</span>
+    </div>
+  </section>
+
+  <!-- ─ PARTE VI ─ Santa Rosa sabía quién la conocía ──────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">VI · Santa Rosa sabía quién la conocía</span>
+    <p>Quizás esa sea una de las cosas más importantes que podemos aprender de Rosa. Ella no necesitaba que absolutamente todos comprendieran su vida. No porque no importara lo que los demás pensaran. No porque la verdad no importara. Sino porque había alguien cuya mirada estaba por encima de todas las demás. Dios.</p>
+    <p>Dios conocía sus intenciones. Dios conocía sus luchas. Dios conocía sus sacrificios. Dios conocía sus errores. Dios conocía su corazón. Y eso podía sostenerla incluso cuando otras personas no entendían completamente lo que hacía.</p>
+    <p>Por eso, Sophi, cuando tú te sientas incomprendida, quiero que recuerdes a esta mujer. No para que dejes de explicar lo que necesites explicar. No para que ignores a quienes te quieren. No para que pienses que nadie puede corregirte. Sino para que no permitas que la incomprensión de los demás te haga olvidar una verdad mucho más grande: Dios te conoce.</p>
+  </section>
+
+  <!-- ─ PARTE VII ─ Cuando nadie entienda (litanía) ────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">VII · Cuando nadie entienda</span>
+    <div class="litania">
+      <div class="litania-par">
+        <p class="litania-cuando">Cuando no entiendan tu silencio...</p>
+        <p class="litania-resp">Dios lo entiende.</p>
+      </div>
+      <div class="litania-par">
+        <p class="litania-cuando">Cuando no entiendan tus lágrimas...</p>
+        <p class="litania-resp">Dios las conoce.</p>
+      </div>
+      <div class="litania-par">
+        <p class="litania-cuando">Cuando no entiendan una decisión que tomaste con buena intención...</p>
+        <p class="litania-resp">Dios conoce tu intención.</p>
+      </div>
+      <div class="litania-par">
+        <p class="litania-cuando">Cuando nadie vea cuánto esfuerzo te costó seguir adelante...</p>
+        <p class="litania-resp">Dios lo ha visto.</p>
+      </div>
+      <div class="litania-par">
+        <p class="litania-cuando">Cuando sientas que nadie conoce realmente quién eres...</p>
+        <p class="litania-resp">Dios te conoce completamente.</p>
+      </div>
+      <div class="litania-par">
+        <p class="litania-cuando">Y cuando ni siquiera tú misma logres comprenderte...</p>
+        <p class="litania-resp">Dios sigue conociéndote.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══ PARTE VIII — SANTA ROSA (contemplación) ════════════════════════════ -->
+<div class="contemp-section">
+  <div class="contemp-inner">
+    <p class="contemp-section-label">VIII · Santa Rosa</p>
+    <img id="contemp-img" class="contemp-img" src="img/enc14-rosa-b.jpg" alt="Santa Rosa de Lima"
+         onerror="this.style.display='none'" />
+    <button id="contemp-btn" class="contemp-btn" onclick="iniciarContemplacion()">· Contemplar ·</button>
+    <div class="contemp-lineas">
+      <p id="cl-nombre" class="contemp-linea contemp-nombre">Santa Rosa de Lima</p>
+      <p id="cl-l1"    class="contemp-linea contemp-pausa">Quizás hubo cosas de su vida que nadie alrededor suyo llegó a comprender completamente.</p>
+      <p id="cl-l2"    class="contemp-linea contemp-pausa">Pero ella sabía para quién vivía.</p>
+      <p id="cl-l3"    class="contemp-linea contemp-pausa">Dios conocía su corazón.</p>
+      <p id="cl-final" class="contemp-linea contemp-final">Y quizás eso sea lo que necesitas recordar hoy.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PARTE IX + ORACIÓN ════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- ─ PARTE IX ─ Una última cosa ─────────────────────────────────────────── -->
+  <section class="parte">
+    <span class="parte-label">IX · Una última cosa</span>
+    <p><em>Sophi:</em></p>
+    <p>Es doloroso sentirse incomprendida. No voy a decirte que no importa. Sí importa. Todos necesitamos ser escuchados. Todos necesitamos personas que intenten conocernos de verdad. Y por eso, cuando puedas explicar lo que sientes, explícalo. Cuando necesites pedir ayuda, pídela. Cuando alguien que te ama te haga una pregunta, escúchalo también.</p>
+    <p>Pero no hagas depender tu paz de que absolutamente todos consigan comprenderte. Porque hay una Persona que conoce aquello que ni siquiera sabes explicar. Una Persona que conoce tus pensamientos antes de que los conviertas en palabras. Una Persona que conoce tus heridas antes de que puedas mostrarlas. Una Persona que conoce tu corazón mejor que tú misma.</p>
+    <p><em>Dios.</em></p>
+    <p>Y si algún día te sientes completamente incomprendida, recuerda a Rosa. Recuerda que ella también vivió delante de una mirada que era mucho más importante que todas las demás.</p>
+    <p>La mirada de Dios.</p>
+  </section>
+
+  <!-- ─ ORACIÓN ──────────────────────────────────────────────────────────── -->
+  <div class="oracion-wrap">
+    <span class="oracion-title">Oración</span>
+    <p class="oracion-text">
+      Señor,<br>
+      Tú conoces mi corazón.<br>
+      Conoces aquello que no sé explicar.<br>
+      Conoces mis intenciones, mis heridas,<br>
+      mis preocupaciones y también aquello que guardo en silencio.<br>
+      Cuando me duela no ser comprendida,<br>
+      no permitas que me encierre en mí misma<br>
+      ni que busque desesperadamente la aprobación de los demás.<br>
+      Enséñame, como a Santa Rosa, a vivir delante de Ti.<br>
+      Que cuando nadie comprenda lo que llevo dentro,<br>
+      recuerde que Tú sí lo conoces.<br>
+      Y cuando yo misma no logre comprenderme,<br>
+      enséñame a confiar en Ti.<br>
+      Que nunca olvide que puedo ser incomprendida por los hombres<br>
+      sin estar jamás escondida de Tus ojos.
+    </p>
+    <span class="oracion-amen">Amén.</span>
+  </div>
+
+</div>
+
+<!-- ═══ PIE ═══════════════════════════════════════════════════════════════════ -->
+<footer class="enc-footer">
+  <a class="nav-link" href="index.html">← Volver al inicio</a>
+</footer>
+
+<script>
+  // ─── Blur-to-focus al hacer scroll ──────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.parte, .oracion-wrap').forEach(el => observer.observe(el));
+
+  // ─── Contemplación — Parte VIII ─────────────────────────────────────────
+  function iniciarContemplacion() {
+    document.getElementById('contemp-btn').style.display = 'none';
+    document.getElementById('contemp-img').classList.add('contemp-visible');
+
+    var lineas = [
+      ['cl-nombre',  1500],
+      ['cl-l1',      5500],
+      ['cl-l2',     10500],
+      ['cl-l3',     15000],
+      ['cl-final',  20000],
+    ];
+
+    lineas.forEach(function(item) {
+      setTimeout(function() {
+        var el = document.getElementById(item[0]);
+        if (el) el.classList.add('contemp-visible');
+      }, item[1]);
+    });
+  }
+</script>
+
+</body>
+</html>
