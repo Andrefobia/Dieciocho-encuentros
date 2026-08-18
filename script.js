@@ -5,11 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ─── 1. Ocultar secciones de audio si el archivo no existe ─── */
-  /* Usa fetch HEAD para verificar la existencia real del archivo.
-     El evento 'error' del elemento <audio> no es fiable en móvil:
-     algunos navegadores Android lo disparan aunque el archivo exista,
-     porque deciden no precargar para ahorrar datos. */
+  /* ─── 1. Audio: compatibilidad móvil + ocultar si no existe ─── */
   var reproductores = document.querySelectorAll('audio');
 
   reproductores.forEach(function (audio) {
@@ -21,6 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var url = fuente.getAttribute('src');
 
+    /* Mover src directamente al elemento <audio> mejora la compatibilidad
+       en Android Chrome vs usar <source> anidado */
+    audio.setAttribute('src', url);
+    audio.setAttribute('preload', 'metadata');
+
+    /* Verificar existencia del archivo y ocultar bloque si no existe */
     fetch(url, { method: 'HEAD' })
       .then(function (res) {
         if (!res.ok) {
@@ -28,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       })
       .catch(function () {
-        /* Error de red genérico — no ocultar.
-           Si hay problema real de red el audio lo mostrará al usuario. */
+        /* Error de red genérico — no ocultar */
       });
   });
 
@@ -46,9 +47,5 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 300);
     });
   });
-
-
-  /* ─── 3. Forzar cierre de oración con Amén visible al hacer scroll ─── */
-  /* (No hace nada invasivo, solo prepara el terreno para futuras mejoras) */
 
 });
