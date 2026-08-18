@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IX · Para cuando hayas pecado</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Paleta — Cuaresmal / Penitencial ────────────────────────────────── */
+    :root {
+      --bg:          #F2F0ED;
+      --bg-alt:      #E8E4DF;
+      --text:        #18120E;
+      --text-muted:  #7A6A60;
+      --accent:      #3D1F5C;
+      --accent-mid:  #6A4090;
+      --gold:        #8A7040;
+      --divider:     #C8BEB4;
+      --prayer-bg:   #DEDAD6;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.88;
+    }
+
+    /* ─── Encabezado ──────────────────────────────────────────────────────── */
+    .enc-header {
+      background: #0C0810;
+      color: #EDE8F2;
+      text-align: center;
+      padding: 3.8rem 2rem 3.2rem;
+    }
+    .enc-number {
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      margin-bottom: 1rem;
+    }
+    .enc-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+    }
+
+    /* ─── Banda del santo ─────────────────────────────────────────────────── */
+    .saint-wrapper {
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--divider);
+    }
+    .saint-band {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+    .saint-img {
+      flex-shrink: 0;
+      width: 130px;
+      height: 100px;
+      border-radius: 4px;
+      object-fit: cover;
+      border: 2px solid var(--accent);
+      display: block;
+    }
+    .saint-text h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+    .saint-text h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+    .saint-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      line-height: 1.55;
+    }
+
+    /* ─── Contenido ───────────────────────────────────────────────────────── */
+    .content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .parte {
+      padding: 3rem 0 2.5rem;
+      border-bottom: 1px solid var(--divider);
+    }
+    .parte:last-of-type { border-bottom: none; }
+    .parte-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      opacity: 0.75;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+    .parte p { margin-bottom: 0.85em; }
+    .parte p:last-child { margin-bottom: 0; }
+
+    /* ─── Cita destacada ──────────────────────────────────────────────────── */
+    .cita {
+      border-left: 3px solid var(--accent-mid);
+      padding: 0.5rem 0 0.5rem 1.4rem;
+      margin: 1.8rem 0;
+      font-style: italic;
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+    .cita-fuente {
+      display: block;
+      font-size: 0.68rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 0.12em;
+      color: var(--accent-mid);
+      opacity: 0.65;
+      margin-top: 0.4rem;
+      font-style: normal;
+    }
+
+    /* ─── Contraste demonio / Cristo ──────────────────────────────────────── */
+    .contraste-frase {
+      margin: 2.2rem 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--divider);
+    }
+    .contraste-lado {
+      padding: 1.2rem 1.4rem;
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    .contraste-lado:first-child {
+      border-right: 1px solid var(--divider);
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .contraste-lado:last-child {
+      color: var(--accent);
+      font-style: italic;
+    }
+    .contraste-encabezado {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      display: block;
+      margin-bottom: 0.6rem;
+      font-style: normal;
+    }
+
+    /* ─── Sección Padre Pío (fondo oscuro) ────────────────────────────────── */
+    .parte-pio {
+      background: #100814;
+      border-top: 1px solid #2A2035;
+      border-bottom: 1px solid #2A2035;
+      padding: 4rem 0;
+    }
+    .parte-pio .parte {
+      border-bottom: none;
+      padding-top: 0;
+    }
+    .parte-pio .parte-label {
+      color: rgba(180, 140, 220, 0.5);
+      opacity: 1;
+    }
+    .parte-pio p {
+      color: #D8D0E8;
+    }
+    .parte-pio .cita {
+      border-left-color: rgba(130, 90, 180, 0.4);
+      color: #C8B8E0;
+    }
+
+    /* ─── Sección puerta (confesionario) ──────────────────────────────────── */
+    .parte-puerta {
+      background: #120A02;
+      padding: 5rem 1.5rem 6rem;
+      text-align: center;
+    }
+    .puerta-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(200, 160, 80, 0.3);
+      margin-bottom: 3rem;
+    }
+
+    /* ─── La puerta ────────────────────────────────────────────────────────── */
+    .puerta-perspectiva {
+      perspective: 1000px;
+      width: 120px;
+      height: 200px;
+      margin: 0 auto;
+    }
+    .puerta {
+      width: 100%;
+      height: 100%;
+      transform-origin: left center;
+      transform: rotateY(0deg);
+      transition: transform 1.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+      position: relative;
+      background: linear-gradient(165deg, #221208, #160A02);
+      border: 2px solid #4A3018;
+      border-top: 2px solid #5A3A20;
+    }
+    .puerta.abierta { transform: rotateY(-82deg); }
+    .puerta-cruz {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 18px;
+      height: 26px;
+    }
+    .puerta-cruz::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: rgba(160, 115, 45, 0.55);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .puerta-cruz::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(160, 115, 45, 0.55);
+      top: 28%;
+    }
+    .puerta-reja {
+      position: absolute;
+      top: 58px;
+      left: 14px;
+      right: 14px;
+      height: 86px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 3px;
+      border: 1px solid rgba(100, 65, 20, 0.5);
+      padding: 3px;
+    }
+    .puerta-reja div {
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(80, 50, 15, 0.3);
+    }
+    .puerta-panel-bajo {
+      position: absolute;
+      bottom: 16px;
+      left: 14px;
+      right: 14px;
+      height: 40px;
+      border: 1px solid rgba(100, 65, 20, 0.4);
+    }
+    .puerta-manija {
+      position: absolute;
+      right: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 20px;
+      background: rgba(150, 110, 40, 0.7);
+      border-radius: 3px;
+    }
+
+    .puerta-instruccion {
+      font-family: 'Cinzel', serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(200, 160, 80, 0.38);
+      margin-top: 1.4rem;
+      transition: opacity 0.8s ease;
+    }
+
+    /* ─── Texto que aparece tras abrir ────────────────────────────────────── */
+    .puerta-texto {
+      max-width: 420px;
+      margin: 3.5rem auto 0;
+    }
+    .paso-item {
+      opacity: 0;
+      transition: opacity 1.4s ease;
+      margin-bottom: 0.4rem;
+    }
+    .paso-item.paso-visible { opacity: 1; }
+    .paso-vuelve {
+      font-family: 'Cinzel', serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.14em;
+      color: #C8A060;
+      margin-bottom: 2.2rem;
+    }
+    .paso-muted {
+      font-style: italic;
+      color: rgba(232, 218, 200, 0.55);
+      font-size: 1rem;
+      margin-bottom: 1.8rem;
+    }
+    .paso-comando {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: #E0D4C0;
+      margin-bottom: 0.65rem;
+    }
+    .paso-final {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.25rem;
+      font-style: italic;
+      color: #C8A060;
+      margin-top: 1.8rem;
+    }
+
+    /* ─── Oración ─────────────────────────────────────────────────────────── */
+    .oracion-wrap {
+      background: var(--prayer-bg);
+      border-radius: 6px;
+      border: 1px solid var(--divider);
+      padding: 2.8rem 2rem 2.5rem;
+      margin: 3rem 0 1rem;
+      text-align: center;
+    }
+    .oracion-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.7;
+      display: block;
+      margin-bottom: 1.6rem;
+    }
+    .oracion-text {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 2.1;
+    }
+    .oracion-amen {
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-top: 1.2rem;
+    }
+
+    /* ─── Pie ─────────────────────────────────────────────────────────────── */
+    .enc-footer {
+      text-align: center;
+      padding: 3rem 2rem 4.5rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      border-top: 1px solid var(--divider);
+    }
+    .nav-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      opacity: 0.65;
+      border-bottom: 1px solid var(--divider);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .nav-link:hover { opacity: 1; }
+
+    /* ─── Responsive ──────────────────────────────────────────────────────── */
+    @media (max-width: 580px) {
+      .saint-band { flex-direction: column; text-align: center; gap: 1rem; }
+      .contraste-frase { grid-template-columns: 1fr; }
+      .contraste-lado:first-child { border-right: none; border-bottom: 1px solid var(--divider); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ ENCABEZADO ═══════════════════════════════════════════════════════════ -->
+<header class="enc-header">
+  <p class="enc-number">Encuentro IX</p>
+  <h1 class="enc-title">Para cuando hayas pecado</h1>
+</header>
+
+<!-- ═══ SANTO ════════════════════════════════════════════════════════════════ -->
+<div class="saint-wrapper">
+  <div class="saint-band">
+    <img class="saint-img" src="img/enc9-pio-a.jpg" alt="Padre Pío"
+         onerror="this.style.display='none'" />
+    <div class="saint-text">
+      <h3>Patrono de este encuentro</h3>
+      <h2>Padre Pío de Pietrelcina</h2>
+      <p>Pasó más de cincuenta años en el confesionario. Personas venían desde toda Europa para confesarse con él. Entendía que el problema no era que Dios se cansara de perdonar.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PARTES I–II ══════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <!-- ─ PARTE I ─ Cuando hayas hecho algo que sabes que estuvo mal ──────────── -->
+  <section class="parte">
+    <span class="parte-label">I · Cuando hayas hecho algo que sabes que estuvo mal</span>
+    <p>Hola, Sophi.</p>
+    <p>Si estás aquí, probablemente hiciste algo que sabes que no debiste hacer.</p>
+    <p>Quizás fue algo pequeño.<br>
+    Quizás no.<br>
+    Quizás nadie lo sabe.<br>
+    Pero tú sí lo sabes.<br>
+    Y Dios también.</p>
+    <p>Quiero decirte algo antes de continuar.</p>
+    <p>No huyas de Dios por haber pecado.<br>
+    Precisamente ahora es cuando más necesitas volver hacia Él.</p>
+  </section>
+
+  <!-- ─ PARTE II ─ No confundas culpa con desesperación ───────────────────── -->
+  <section class="parte">
+    <span class="parte-label">II · No confundas culpa con desesperación</span>
+    <p>Hay una trampa que aparece justo después del pecado. No es el arrepentimiento — el arrepentimiento es sano. La trampa es quedarse paralizada en la culpa, como si el peso de lo que hiciste fuera lo último que Dios puede ver de ti.</p>
+    <p>El paso que sigue al pecado no es la desesperación. Es el movimiento de regreso.</p>
+    <p>Reconoce lo que hiciste. No lo minimices ni lo justifiques. Llámalo por su nombre. Arrepiéntete de verdad —no porque alguien te descubrió, sino porque ofendiste a Dios y eso importa. Pide perdón. Repara el daño cuando corresponda. Y si se trata de pecado grave, ve a confesarlo. La Confesión no es un trámite. Es el sacramento donde Dios mismo te dice: <em>te perdono</em>.</p>
+
+    <div class="contraste-frase">
+      <div class="contraste-lado">
+        <span class="contraste-encabezado">El tentador quiere que digas</span>
+        «¿Cómo pude hacer esto?»
+      </div>
+      <div class="contraste-lado">
+        <span class="contraste-encabezado">Cristo quiere que preguntes</span>
+        «¿Cómo vuelvo a Ti?»
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ═══ PARTE III — PADRE PÍO (fondo oscuro) ══════════════════════════════ -->
+<div class="parte-pio">
+  <div class="content">
+    <section class="parte">
+      <span class="parte-label">III · Padre Pío</span>
+      <p>Durante décadas, personas llegaban al convento de San Giovanni Rotondo desde toda Italia, desde toda Europa. Viajaban horas. A veces días. Solo para confesarse con el Padre Pío.</p>
+      <p>No encontraban allí a alguien que minimizaba el pecado. El Padre Pío lo tomaba muy en serio —quizás más en serio que nadie. Tampoco encontraban a un juez que los aplastaba con la culpa. Encontraban a alguien que había pasado su vida entera parado en el umbral entre el pecado humano y la misericordia de Dios, y que sabía que la misericordia siempre era más grande.</p>
+      <p>Llegaba a confesar dieciséis horas seguidas. Y al final de cada confesión, el peso que llegaba cargado era menor que el que se iba.</p>
+      <div class="cita">
+        Dios no se cansa de perdonar. El problema es que nosotros nos cansamos de pedirle perdón.
+        <span class="cita-fuente">— Enseñanza del Padre Pío</span>
+      </div>
+      <p>Si sientes vergüenza de lo que hiciste, bien. Eso es la conciencia funcionando. Pero no permitas que la vergüenza sea la última palabra. Hay un sacramento hecho exactamente para este momento. Úsalo.</p>
+
+      <img src="img/enc9-pio-b.jpg" alt="Padre Pío en el confesionario"
+           onerror="this.style.display='none'"
+           style="display:block; width:100%; max-width:480px; margin:2.5rem auto 0; border-radius:3px; opacity:0.88;" />
+    </section>
+  </div>
+</div>
+
+<!-- ═══ PARTE IV — LA PUERTA ══════════════════════════════════════════════ -->
+<div class="parte-puerta">
+  <p class="puerta-label">IV · El movimiento final</p>
+
+  <div class="puerta-perspectiva">
+    <div id="puerta" class="puerta" onclick="tocarPuerta()" role="button" aria-label="Abrir puerta del confesionario">
+      <div class="puerta-cruz"></div>
+      <div class="puerta-reja">
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+      </div>
+      <div class="puerta-panel-bajo"></div>
+      <div class="puerta-manija"></div>
+    </div>
+  </div>
+  <p class="puerta-instruccion" id="puerta-instruccion">Toca la puerta.</p>
+
+  <div class="puerta-texto">
+    <p id="p-vuelve"   class="paso-item paso-vuelve">Vuelve.</p>
+    <p id="p-caido"    class="paso-item paso-muted">No importa cuánto hayas caído.</p>
+    <p id="p-levanta"  class="paso-item paso-comando">Levántate.</p>
+    <p id="p-arrepie"  class="paso-item paso-comando">Arrepiéntete.</p>
+    <p id="p-confiesa" class="paso-item paso-comando">Confiesa.</p>
+    <p id="p-repara"   class="paso-item paso-comando">Repara.</p>
+    <p id="p-caminar"  class="paso-item paso-final">Y vuelve a caminar.</p>
+  </div>
+</div>
+
+<!-- ═══ ORACIÓN ════════════════════════════════════════════════════════════════ -->
+<div class="content">
+
+  <div class="oracion-wrap">
+    <span class="oracion-title">Acto de Contrición</span>
+    <p class="oracion-text">
+      Dios mío,<br>
+      me arrepiento de todo corazón de haberte ofendido.<br>
+      Y me propongo, con tu santa gracia,<br>
+      no volver a pecar<br>
+      y alejarme de las ocasiones de pecado.
+    </p>
+    <span class="oracion-amen">Amén.</span>
+  </div>
+
+</div>
+
+<!-- ═══ PIE ═══════════════════════════════════════════════════════════════════ -->
+<footer class="enc-footer">
+  <a class="nav-link" href="index.html">← Volver al inicio</a>
+</footer>
+
+<script>
+  var puertaAbierta = false;
+
+  function tocarPuerta() {
+    if (puertaAbierta) return;
+    puertaAbierta = true;
+
+    document.getElementById('puerta').classList.add('abierta');
+    document.getElementById('puerta-instruccion').style.opacity = '0';
+
+    var pasos = [
+      ['p-vuelve',   2000],
+      ['p-caido',    4000],
+      ['p-levanta',  6200],
+      ['p-arrepie',  8400],
+      ['p-confiesa', 10600],
+      ['p-repara',   12800],
+      ['p-caminar',  15500],
+    ];
+
+    pasos.forEach(function(item) {
+      setTimeout(function() {
+        var el = document.getElementById(item[0]);
+        if (el) el.classList.add('paso-visible');
+      }, item[1]);
+    });
+  }
+</script>
+
+</body>
+</html>
