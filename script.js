@@ -6,24 +6,36 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ─── 1. Ocultar secciones de audio si el archivo no existe ─── */
-  /* Si el navegador no puede cargar el src, oculta el bloque de audio. */
-  const reproductores = document.querySelectorAll('audio');
+  /* Usa fetch HEAD para verificar la existencia real del archivo.
+     El evento 'error' del elemento <audio> no es fiable en móvil:
+     algunos navegadores Android lo disparan aunque el archivo exista,
+     porque deciden no precargar para ahorrar datos. */
+  var reproductores = document.querySelectorAll('audio');
 
   reproductores.forEach(function (audio) {
-    const fuente = audio.querySelector('source');
+    var fuente = audio.querySelector('source');
     if (!fuente) return;
 
-    const bloque = audio.closest('.audio-bloque');
+    var bloque = audio.closest('.audio-bloque');
     if (!bloque) return;
 
-    audio.addEventListener('error', function () {
-      bloque.style.display = 'none';
-    }, true);
+    var url = fuente.getAttribute('src');
+
+    fetch(url, { method: 'HEAD' })
+      .then(function (res) {
+        if (!res.ok) {
+          bloque.style.display = 'none';
+        }
+      })
+      .catch(function () {
+        /* Error de red genérico — no ocultar.
+           Si hay problema real de red el audio lo mostrará al usuario. */
+      });
   });
 
 
   /* ─── 2. Feedback sutil al intentar abrir encuentros bloqueados ─── */
-  const bloqueados = document.querySelectorAll('.encuentro-card.bloqueado');
+  var bloqueados = document.querySelectorAll('.encuentro-card.bloqueado');
 
   bloqueados.forEach(function (card) {
     card.addEventListener('click', function () {
