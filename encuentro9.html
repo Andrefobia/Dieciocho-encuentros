@@ -70,10 +70,11 @@
     }
     .saint-img {
       flex-shrink: 0;
-      width: 130px;
-      height: 100px;
+      width: 105px;
+      height: 158px;
       border-radius: 4px;
       object-fit: cover;
+      object-position: center top;
       border: 2px solid var(--accent);
       display: block;
     }
@@ -344,6 +345,21 @@
       color: #C8A060;
       margin-top: 1.8rem;
     }
+    .pio-confesionario {
+      width: 290px;
+      height: 400px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity 2s ease;
+      margin: 3rem auto 0;
+      display: block;
+    }
+    .pio-confesionario.paso-visible { opacity: 0.9; }
+    @media (max-width: 580px) {
+      .pio-confesionario { width: 220px; height: 310px; }
+    }
 
     /* ─── Oración ─────────────────────────────────────────────────────────── */
     .oracion-wrap {
@@ -485,9 +501,6 @@
       </div>
       <p>Si sientes vergüenza de lo que hiciste, bien. Eso es la conciencia funcionando. Pero no permitas que la vergüenza sea la última palabra. Hay un sacramento hecho exactamente para este momento. Úsalo.</p>
 
-      <img src="img/enc9-pio-b.jpg" alt="Padre Pío en el confesionario"
-           onerror="this.style.display='none'"
-           style="display:block; width:100%; max-width:480px; margin:2.5rem auto 0; border-radius:3px; opacity:0.88;" />
     </section>
   </div>
 </div>
@@ -509,6 +522,10 @@
     </div>
   </div>
   <p class="puerta-instruccion" id="puerta-instruccion">Toca la puerta.</p>
+
+  <img id="pio-confesionario" class="pio-confesionario paso-item"
+       src="img/enc9-pio-b.jpg" alt="Padre Pío en el confesionario"
+       onerror="this.style.display='none'" />
 
   <div class="puerta-texto">
     <p id="p-vuelve"   class="paso-item paso-vuelve">Vuelve.</p>
@@ -554,13 +571,14 @@
     document.getElementById('puerta-instruccion').style.opacity = '0';
 
     var pasos = [
-      ['p-vuelve',   2000],
-      ['p-caido',    4000],
-      ['p-levanta',  6200],
-      ['p-arrepie',  8400],
-      ['p-confiesa', 10600],
-      ['p-repara',   12800],
-      ['p-caminar',  15500],
+      ['pio-confesionario', 1800],
+      ['p-vuelve',          5000],
+      ['p-caido',           7000],
+      ['p-levanta',         9200],
+      ['p-arrepie',        11400],
+      ['p-confiesa',       13600],
+      ['p-repara',         15800],
+      ['p-caminar',        18500],
     ];
 
     pasos.forEach(function(item) {
